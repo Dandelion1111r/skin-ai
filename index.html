@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SKIN AI – Konzept-Prototyp</title>
+<meta name="description" content="Interaktiver Konzept-Prototyp einer Skincare-App mit Hauttest, Gesichtskarte und Wirkstoff-Lexikon. Konzept und Design: Raluca Jidvian.">
+<meta name="robots" content="noindex">
+<style>
+@font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/bodoni-moda-latin-ext-400-normal.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/bodoni-moda-latin-400-normal.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:500;font-display:swap;src:url("fonts/bodoni-moda-latin-ext-500-normal.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:500;font-display:swap;src:url("fonts/bodoni-moda-latin-500-normal.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Bodoni Moda";font-style:italic;font-weight:400;font-display:swap;src:url("fonts/bodoni-moda-latin-ext-400-italic.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Bodoni Moda";font-style:italic;font-weight:400;font-display:swap;src:url("fonts/bodoni-moda-latin-400-italic.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Jost";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/jost-latin-ext-400-normal.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Jost";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/jost-latin-400-normal.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Jost";font-style:normal;font-weight:500;font-display:swap;src:url("fonts/jost-latin-ext-500-normal.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Jost";font-style:normal;font-weight:500;font-display:swap;src:url("fonts/jost-latin-500-normal.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"DM Mono";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/dm-mono-latin-ext-400-normal.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"DM Mono";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/dm-mono-latin-400-normal.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+.proto-bar{background:var(--ink);color:var(--bg);font-size:.82rem;line-height:1.5;padding:.6rem max(16px,env(safe-area-inset-left,0px));margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px)));text-align:center}
+.proto-bar a{color:inherit;text-underline-offset:3px}
+footer .legal-links{display:flex;flex-wrap:wrap;gap:.25rem 1.25rem;font-size:.85rem}
+footer .legal-links a{color:var(--muted);padding-block:.4rem}
+</style>
+</head>
+<body>
+<div class="proto-bar">Konzept-Prototyp · keine echte App, es werden keine Daten übertragen</div>
+<style>
+/* Layout: editorial two-column sections (label column + content column) on a 12-col rhythm; the face map is the one bold object. */
+:root{
+  --bg:#F7F5F6;
+  --surface:#FFFFFF;
+  --ink:#241B23;
+  --muted:#5C505B;
+  --line:#E3DBE0;
+  --accent:#86516A;
+  --accent-soft:#F1E6EB;
+  --zone:#C7849F;
+  --warn:#94562B;
+  --display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --body:"Jost","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --mono:"DM Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --s1:.5rem;--s2:1rem;--s3:1.5rem;--s4:2.5rem;--s5:4.5rem;
+  --radius:6px;
+  --ok:#3D6A4C;--ok-bg:#E7F1EA;--mid:#8A5A1E;--mid-bg:#F7EDDF;--bad:#9B3A55;--bad-bg:#F6E4EA;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#18121A;--surface:#221A23;--ink:#F2EAEF;--muted:#B6A7B2;--line:#372B35;
+  --accent:#DBA5BB;--accent-soft:#35242E;--zone:#B66A8B;--warn:#E5A87A;--ok:#8FC6A0;--ok-bg:#1F2E24;--mid:#E6B676;--mid-bg:#33281A;--bad:#E79AB2;--bad-bg:#3A1F29;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#18121A;--surface:#221A23;--ink:#F2EAEF;--muted:#B6A7B2;--line:#372B35;
+  --accent:#DBA5BB;--accent-soft:#35242E;--zone:#B66A8B;--warn:#E5A87A;--ok:#8FC6A0;--ok-bg:#1F2E24;--mid:#E6B676;--mid-bg:#33281A;--bad:#E79AB2;--bad-bg:#3A1F29;color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:400;font-size:1.0625rem;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:72rem;margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.12;text-wrap:balance;margin:0;hyphens:manual}
+h1{font-size:clamp(2.4rem,5.2vw,4.25rem);letter-spacing:-.01em}
+h1 span{display:block}
+h1 em{color:var(--accent)}
+h2{font-size:clamp(1.9rem,3.4vw,2.75rem);letter-spacing:-.005em}
+h3{font-size:1.35rem;line-height:1.25}
+p{margin:0;max-width:60ch}
+a{color:var(--accent)}
+.eyebrow{font-weight:500;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.mono{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.muted{color:var(--muted)}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* header */
+header{display:flex;justify-content:space-between;align-items:center;gap:var(--s2) var(--s4);flex-wrap:wrap;padding-block:1.25rem;border-bottom:1px solid var(--line)}
+.logo{font-family:var(--display);font-weight:500;font-size:1.35rem;letter-spacing:.28em;color:var(--ink);text-decoration:none;white-space:nowrap}
+.hdr-right{display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap}
+nav{display:flex;gap:var(--s3);flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-size:.92rem}
+nav a:hover{color:var(--ink)}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px}
+.lang button{background:transparent;border:0;color:var(--muted);padding:.25rem .75rem;border-radius:999px;font-size:.8rem;font-weight:500;letter-spacing:.08em}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:7fr 5fr;gap:var(--s5);align-items:center;padding-block:var(--s5)}
+.hero-copy{min-width:0;display:flex;flex-direction:column;gap:var(--s3)}
+.lead{font-size:1.15rem;color:var(--muted)}
+.btns{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{border:1px solid var(--ink);background:var(--ink);color:var(--bg);padding:.8rem 1.5rem;border-radius:999px;font-weight:500;font-size:.95rem;text-decoration:none;display:inline-block;letter-spacing:.01em}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--ink)}
+.btn:not(.ghost):hover{opacity:.9}
+.btn[disabled]{opacity:.3;cursor:not-allowed}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.profile{padding:var(--s3);display:flex;flex-direction:column;min-width:0}
+.profile header{all:unset;display:flex;justify-content:space-between;align-items:baseline;padding-bottom:var(--s2);border-bottom:1px solid var(--line)}
+.profile dl{margin:0;display:grid;grid-template-columns:auto 1fr}
+.profile dt,.profile dd{padding-block:.8rem;border-bottom:1px solid var(--line);margin:0}
+.profile dt{color:var(--muted);font-size:.92rem;padding-right:var(--s2)}
+.profile dd{text-align:right;font-weight:500;min-width:0}
+.profile dd.mono{font-weight:400;color:var(--ink)}
+.profile dt:last-of-type,.profile dd:last-of-type{border-bottom:0;padding-bottom:0}
+
+/* sections */
+section{display:grid;grid-template-columns:4fr 8fr;gap:var(--s3) var(--s5);padding-block:var(--s5);border-top:1px solid var(--line)}
+section > *{min-width:0}
+.sec-head{display:flex;flex-direction:column;gap:var(--s2);align-self:start}
+section.wide{grid-template-columns:1fr}
+section.wide .sec-head{max-width:44rem}
+
+/* steps */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:0;counter-reset:s}
+.steps li{display:grid;grid-template-columns:4rem 1fr;gap:var(--s2);padding-block:var(--s3);border-bottom:1px solid var(--line)}
+.steps li:first-child{padding-top:0}
+.steps li:last-child{border-bottom:0;padding-bottom:0}
+.steps li::before{counter-increment:s;content:"0" counter(s);font-family:var(--display);font-size:1.9rem;line-height:1;color:var(--accent)}
+.steps li div{display:flex;flex-direction:column;gap:.35rem;min-width:0}
+
+/* quiz */
+.quiz{padding:var(--s4)}
+.progress{height:2px;background:var(--line);margin-bottom:var(--s3);border-radius:2px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--accent);transition:width .3s}
+.qmeta{display:flex;justify-content:space-between;gap:var(--s2);margin-bottom:.75rem}
+.quiz h3{margin-bottom:var(--s3);font-size:1.6rem}
+.opts{display:grid;gap:.6rem}
+.opts.two{grid-template-columns:1fr 1fr}
+.opt{text-align:left;background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:var(--radius);padding:.85rem 1.1rem;display:flex;align-items:center;gap:.8rem}
+.opt::before{content:"";flex:none;width:.9rem;height:.9rem;border:1px solid var(--muted);border-radius:50%}
+.opts.multi .opt::before{border-radius:3px}
+.opt:hover{border-color:var(--accent)}
+.opt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.opt[aria-pressed="true"]::before{background:var(--accent);border-color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent-soft)}
+.qnav{display:flex;justify-content:space-between;gap:var(--s2);margin-top:var(--s4);flex-wrap:wrap}
+.start{display:flex;flex-direction:column;gap:var(--s3)}
+.start ul{margin:0;padding:0;list-style:none;display:grid;gap:.5rem}
+.start li{display:flex;gap:.75rem}
+.start li::before{content:"";flex:none;width:.4rem;height:.4rem;margin-top:.65rem;border-radius:50%;background:var(--accent)}
+
+/* result */
+.result{display:flex;flex-direction:column;gap:var(--s3)}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.chip{border:1px solid var(--accent);color:var(--accent);border-radius:999px;padding:.25rem .85rem;font-size:.88rem;font-weight:500}
+.routine{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3);padding-block:var(--s3);border-block:1px solid var(--line)}
+.routine > div{min-width:0}
+.routine ol{margin:.75rem 0 0;padding:0;list-style:none;display:grid;gap:.85rem;counter-reset:r}
+.routine li{display:grid;grid-template-columns:1.6rem 1fr;gap:.25rem}
+.routine li::before{counter-increment:r;content:counter(r);font-family:var(--display);color:var(--accent);font-size:1.1rem;line-height:1.4}
+.routine li small{display:block;margin-top:.15rem}
+.note{border-left:2px solid var(--warn);padding-left:var(--s2)}
+.note b{color:var(--warn);font-weight:500}
+.fine{font-size:.88rem;color:var(--muted)}
+.copied{font-size:.88rem;color:var(--accent)}
+
+/* face map */
+.map{display:grid;grid-template-columns:5fr 7fr;gap:var(--s5);align-items:start}
+.map > *{min-width:0}
+.face-wrap{padding:0;overflow:hidden;display:flex;justify-content:center;background:#e9e4e2}
+.face{width:100%;height:auto;display:block}
+.face .z{fill:#FFFFFF;fill-opacity:.26;stroke:#FFFFFF;stroke-opacity:.95;stroke-width:2.5;opacity:0;transition:opacity .45s}
+.face .z.on{opacity:1}
+.face .avoid{fill:none;stroke:#F2A7BD;stroke-width:3;stroke-dasharray:2 9;stroke-linecap:round;opacity:0;transition:opacity .45s}
+.face .avoid.on{opacity:1}
+.detail{display:flex;flex-direction:column;gap:var(--s3)}
+.products{display:flex;flex-wrap:wrap;gap:.5rem}
+.pbtn{background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:.45rem 1rem;font-size:.92rem}
+.pbtn:hover{border-color:var(--ink)}
+.pbtn[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.detail h3{font-size:1.75rem}
+.detail dl{display:grid;grid-template-columns:7.5rem 1fr;margin:0}
+.detail dt,.detail dd{margin:0;padding-block:.75rem;border-top:1px solid var(--line)}
+.detail dt{font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding-top:.95rem}
+.detail dd{min-width:0}
+.legend{display:flex;gap:var(--s3);flex-wrap:wrap;font-size:.88rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:.45rem}
+.legend span::before{content:"";width:.85rem;height:.85rem;border-radius:50%;background:var(--surface);border:1.5px solid var(--muted)}
+.legend span.av::before{background:transparent;border:1.5px dotted #D9849E}
+
+/* app mockups: the phone screens keep the app's own light look in both themes */
+.phones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s4);justify-items:center}
+.phones figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:var(--s2);width:100%;max-width:290px}
+.phones figcaption{font-size:.92rem;color:var(--muted);text-align:center;max-width:24ch}
+.phone{width:100%;aspect-ratio:9/19;border-radius:44px;background:#1E171D;padding:9px;box-shadow:0 40px 60px -40px rgba(36,27,35,.55)}
+.screen{height:100%;border-radius:35px;background:#FAF7F8;color:#241B23;overflow:hidden;display:flex;flex-direction:column;font-size:.78rem;line-height:1.4}
+.notch{flex:none;width:86px;height:22px;background:#1E171D;border-radius:0 0 14px 14px;margin:0 auto}
+.sbody{flex:1;min-height:0;padding:14px 14px 10px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.a-h{font-family:var(--display);font-size:1.45rem;line-height:1.15}
+.a-h2{font-family:var(--display);font-size:1.1rem;line-height:1.2}
+.a-muted{color:#7A6C78;font-size:.72rem}
+.a-label{font-size:.62rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#86516A;margin-bottom:4px}
+.acard{background:#FFFFFF;border:1px solid #EDE5EA;border-radius:16px;padding:11px 12px}
+.a-row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.a-pill{font-size:.65rem;background:#F1E6EB;color:#86516A;border-radius:999px;padding:2px 8px;white-space:nowrap}
+.a-bar{height:4px;background:#EFE8EC;border-radius:4px;margin:8px 0 6px;overflow:hidden}
+.a-bar i{display:block;height:100%;background:#86516A}
+.a-steps{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.a-steps li{display:flex;gap:8px;align-items:center}
+.a-steps li::before{content:"";flex:none;width:14px;height:14px;border-radius:50%;border:1.5px solid #C9B6C0}
+.a-steps li.done::before{background:#86516A;border-color:#86516A;box-shadow:inset 0 0 0 3px #FFFFFF}
+.a-steps li.done span{color:#7A6C78;text-decoration:line-through;text-decoration-color:#C9B6C0}
+.a-arrow{font-size:1.2rem;color:#86516A}
+.a-week{display:flex;justify-content:space-between;gap:4px}
+.a-week .d{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:.6rem;background:#86516A;color:#FFFFFF}
+.a-week .d.half{background:#D7AFC0}
+.a-week .d.today{background:transparent;color:#86516A;border:1.5px solid #86516A}
+.a-tip{background:#F4ECEF;border-color:#F4ECEF}
+.a-prod{display:flex;justify-content:center;background:#F3ECEF;border-radius:16px;padding:8px}
+.a-fit{align-self:flex-start;font-size:.68rem;font-weight:500;color:#3F6B4E;background:#E5F0E8;border-radius:999px;padding:3px 9px}
+.a-chips{display:flex;flex-wrap:wrap;gap:4px}
+.a-chips span{font-family:var(--mono);font-size:.62rem;border:1px solid #E3D6DC;border-radius:999px;padding:2px 7px}
+.a-ad{font-size:.6rem;color:#7A6C78;border:1px solid #E3D6DC;border-radius:4px;padding:1px 5px}
+.a-btn{margin-top:auto;text-align:center;background:#241B23;color:#FAF7F8;border-radius:999px;padding:9px;font-weight:500}
+.a-bars{display:flex;align-items:flex-end;gap:10px;height:70px;padding-top:4px}
+.a-bars div{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:3px}
+.a-bars i{display:block;width:100%;background:#D7AFC0;border-radius:6px 6px 2px 2px}
+.a-bars div:last-child i{background:#86516A}
+.a-bars span{font-size:.6rem;color:#7A6C78}
+.tabbar{flex:none;display:flex;justify-content:space-around;padding:9px 6px 16px;border-top:1px solid #EDE5EA;background:#FFFFFF;font-size:.62rem;color:#8A7D88}
+.tabbar .on{color:#86516A;font-weight:500}
+@media (max-width:900px){
+  .phones{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;justify-content:flex-start;padding-bottom:var(--s2);gap:var(--s3)}
+  .phones figure{flex:none;width:250px;scroll-snap-align:center}
+}
+
+.tabgroup{display:flex;flex-direction:column;gap:.6rem}
+.ing{display:block;margin-top:.4rem;color:var(--accent)}
+.note.med{margin-top:var(--s4);max-width:62rem}
+#sNoteV.flag{color:var(--warn)}
+
+/* ingredient lexicon */
+.lex{display:grid;grid-template-columns:5fr 7fr;gap:var(--s4);align-items:start}
+.lex > *{min-width:0}
+.ing-list{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.ibtn{text-align:left;background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:var(--radius);padding:.7rem .9rem;display:flex;flex-direction:column;gap:.1rem;min-width:0}
+.ibtn:hover{border-color:var(--accent)}
+.ibtn b{font-weight:500;font-size:.95rem}
+.ibtn small{font-family:var(--mono);font-size:.68rem;color:var(--muted);overflow-wrap:anywhere}
+.ibtn[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.ibtn[aria-pressed="true"] small{color:var(--bg);opacity:.75}
+.ing-card{padding:var(--s4) var(--s3);display:flex;flex-direction:column;gap:.4rem}
+.ing-card h3{font-size:1.9rem;margin-bottom:var(--s2)}
+.ing-card dl{display:grid;grid-template-columns:7.5rem 1fr;margin:0}
+.ing-card dt,.ing-card dd{margin:0;padding-block:.75rem;border-top:1px solid var(--line)}
+.ing-card dt{font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding-top:.95rem}
+.combo{margin-top:var(--s4);padding:var(--s4);display:grid;grid-template-columns:4fr 8fr;gap:var(--s3) var(--s5)}
+.combo > *{min-width:0}
+.combo-head{display:flex;flex-direction:column;gap:.5rem;grid-row:span 3}
+.combo-head h3{font-size:1.75rem}
+.combo-pick{display:flex;align-items:flex-end;gap:var(--s2);flex-wrap:wrap}
+.combo-pick label{display:flex;flex-direction:column;gap:.35rem;flex:1 1 12rem;min-width:0}
+.combo-pick select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:.7rem .8rem;width:100%}
+.plus{font-family:var(--display);font-size:1.8rem;color:var(--accent);padding-bottom:.3rem}
+.combo-res{display:flex;flex-direction:column;gap:.6rem;padding:var(--s3);border-radius:var(--radius);background:var(--res-bg);border-left:3px solid var(--res)}
+.combo-res .badge{align-self:flex-start;font-size:.8rem;font-weight:500;color:var(--res);letter-spacing:.02em}
+.combo-res.good{--res:var(--ok);--res-bg:var(--ok-bg)}
+.combo-res.split{--res:var(--mid);--res-bg:var(--mid-bg)}
+.combo-res.caution{--res:var(--bad);--res-bg:var(--bad-bg)}
+.combo-res.none{--res:var(--muted);--res-bg:var(--accent-soft)}
+@media (max-width:900px){.lex,.combo{grid-template-columns:1fr}.combo-head{grid-row:auto}}
+@media (max-width:600px){.ing-card dl{grid-template-columns:1fr}.ing-card dt{padding-bottom:0}.ing-card dd{border-top:0;padding-top:.25rem}.combo{padding:var(--s3)}}
+
+/* trust + faq */
+.trusts{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4) var(--s3)}
+.trust{display:flex;flex-direction:column;gap:.5rem;min-width:0}
+.trust svg{width:28px;height:28px;fill:none;stroke:var(--accent);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;margin-bottom:.25rem}
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:var(--s2);padding-block:1.1rem;font-family:var(--display);font-size:1.2rem;line-height:1.3}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--body);font-size:1.4rem;color:var(--accent);flex:none;transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding-bottom:1.2rem}
+@media (max-width:600px){.trusts{grid-template-columns:1fr}}
+
+/* tiers */
+.tiers{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
+.tier{padding:var(--s4) var(--s3);display:flex;flex-direction:column;gap:var(--s2);min-width:0}
+.tier.main{border-color:var(--accent)}
+.tier.alt{background:transparent}
+.tier ul{margin:var(--s1) 0 0;padding:0;list-style:none;display:grid;gap:.6rem}
+.tier li{display:flex;gap:.7rem}
+.tier li::before{content:"✓";color:var(--accent);flex:none}
+.tier.alt li::before{content:"+";color:var(--muted)}
+.price{font-family:var(--display);font-size:2.6rem;line-height:1}
+
+footer{border-top:1px solid var(--line);padding-block:var(--s4);display:grid;grid-template-columns:4fr 8fr;gap:var(--s2) var(--s5)}
+footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
+
+@media (max-width:900px){
+  section,footer{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr;gap:var(--s4);padding-block:var(--s4)}
+  .map{grid-template-columns:1fr;gap:var(--s3)}
+}
+@media (max-width:600px){
+  nav{display:none}
+  .routine,.tiers,.opts.two{grid-template-columns:1fr}
+  .quiz{padding:var(--s3)}
+  .quiz h3{font-size:1.35rem}
+  section{padding-block:var(--s4)}
+  .detail dl{grid-template-columns:1fr}
+  .detail dt{padding-bottom:0}
+  .detail dd{border-top:0;padding-top:.25rem}
+  .profile dd{text-align:left}
+  .profile dl{grid-template-columns:1fr}
+  .profile dt{padding-bottom:0;border-bottom:0}
+  .profile dd{padding-top:.15rem}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+<header>
+  <a class="logo" href="#top" id="top">SKIN AI</a>
+  <div class="hdr-right">
+    <nav aria-label="Navigation">
+      <a href="#ablauf" data-t="nav1"></a>
+      <a href="#hauttypen" data-t="nav5"></a>
+      <a href="#test" data-t="nav2"></a>
+      <a href="#karte" data-t="nav3"></a>
+      <a href="#wirkstoffe" data-t="nav6"></a>
+      <a href="#preise" data-t="nav4"></a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Sprache / Limba">
+      <button id="lang-de" data-lang="de" aria-pressed="true">DE</button>
+      <button id="lang-ro" data-lang="ro" aria-pressed="false">RO</button>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow" data-t="heroEyebrow"></span>
+    <h1 data-th="heroTitle"></h1>
+    <p class="lead" data-t="heroLead"></p>
+    <div class="btns">
+      <a class="btn" href="#test" data-t="heroCta1"></a>
+      <a class="btn ghost" href="#karte" data-t="heroCta2"></a>
+    </div>
+  </div>
+  <aside class="card profile" aria-labelledby="pf-title">
+    <header><span class="eyebrow" id="pf-title" data-t="pfTitle"></span><span class="mono">v1</span></header>
+    <dl>
+      <dt data-t="pfType"></dt><dd data-t="pfTypeV"></dd>
+      <dt data-t="pfSens"></dt><dd data-t="pfSensV"></dd>
+      <dt data-t="pfFocus"></dt><dd data-t="pfFocusV"></dd>
+      <dt data-t="pfIng"></dt><dd class="mono">Salicylic Acid · Niacinamide</dd>
+      <dt data-t="pfPm"></dt><dd data-t="pfPmV"></dd>
+    </dl>
+  </aside>
+</div>
+
+<section id="ablauf">
+  <div class="sec-head">
+    <span class="eyebrow" data-t="howEyebrow"></span>
+    <h2 data-t="howTitle"></h2>
+  </div>
+  <ol class="steps">
+    <li><div><h3 data-t="s1t"></h3><p class="muted" data-t="s1d"></p></div></li>
+    <li><div><h3 data-t="s2t"></h3><p class="muted" data-t="s2d"></p></div></li>
+    <li><div><h3 data-t="s3t"></h3><p class="muted" data-t="s3d"></p></div></li>
+  </ol>
+</section>
+
+<section id="app" class="wide">
+  <div class="sec-head">
+    <span class="eyebrow" data-t="appEyebrow"></span>
+    <h2 data-t="appTitle"></h2>
+    <p class="muted" data-t="appSub"></p>
+  </div>
+  <div class="phones">
+    <figure>
+      <div class="phone"><div class="screen">
+        <div class="notch"></div>
+        <div class="sbody">
+          <div><div class="a-muted" data-t="a1Date"></div><div class="a-h" data-t="a1Hello"></div></div>
+          <div class="acard">
+            <div class="a-row"><b data-t="a1Am"></b><span class="a-pill" data-t="a1Count"></span></div>
+            <div class="a-bar"><i style="width:66%"></i></div>
+            <ul class="a-steps">
+              <li class="done"><span data-t="a1s1"></span></li>
+              <li class="done"><span data-t="a1s2"></span></li>
+              <li><span data-t="a1s3"></span></li>
+            </ul>
+          </div>
+          <div class="acard a-row"><div><b data-t="a1Pm"></b><div class="a-muted" data-t="a1PmV"></div></div><span class="a-arrow">›</span></div>
+          <div class="acard"><div class="a-label" data-t="a1Week"></div><div class="a-week"><span class="d" data-t="d1"></span><span class="d" data-t="d2"></span><span class="d" data-t="d3"></span><span class="d" data-t="d4"></span><span class="d" data-t="d5"></span><span class="d half" data-t="d6"></span><span class="d today" data-t="d7"></span></div></div>
+          <div class="acard a-tip"><div class="a-label" data-t="a1Tip"></div><div data-t="a1TipV"></div></div>
+        </div>
+        <nav class="tabbar" aria-hidden="true"><span class="on" data-t="tHome"></span><span data-t="tSkin"></span><span data-t="tProd"></span><span data-t="tRout"></span></nav>
+      </div></div>
+      <figcaption data-t="c1"></figcaption>
+    </figure>
+    <figure>
+      <div class="phone"><div class="screen">
+        <div class="notch"></div>
+        <div class="sbody">
+          <div class="a-prod" aria-hidden="true">
+            <svg viewBox="0 0 120 120" width="96" height="96"><defs><linearGradient id="tube" x1="0" x2="1"><stop offset="0" stop-color="#F6EEF1"/><stop offset=".5" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E9DCE2"/></linearGradient></defs><rect x="38" y="14" width="44" height="78" rx="10" fill="url(#tube)" stroke="#D9C8D0"/><rect x="46" y="92" width="28" height="16" rx="3" fill="#86516A"/><rect x="46" y="40" width="28" height="2" fill="#86516A" opacity=".5"/><rect x="50" y="48" width="20" height="2" fill="#86516A" opacity=".3"/></svg>
+          </div>
+          <div><div class="a-muted" data-t="a2Brand"></div><div class="a-h2" data-t="a2Name"></div></div>
+          <span class="a-fit" data-t="a2Fit"></span>
+          <div><div class="a-label" data-t="a2Ing"></div><div class="a-chips"><span>Ceramide NP</span><span>Panthenol</span><span>Niacinamide</span></div></div>
+          <div><div class="a-label" data-t="a2Use"></div><div data-t="a2UseV"></div></div>
+          <div class="acard a-row"><div><div data-t="a2Shop"></div><b data-t="a2Price"></b></div><span class="a-ad" data-t="a2Ad"></span></div>
+          <div class="a-btn" data-t="a2Btn"></div>
+        </div>
+        <nav class="tabbar" aria-hidden="true"><span data-t="tHome"></span><span data-t="tSkin"></span><span class="on" data-t="tProd"></span><span data-t="tRout"></span></nav>
+      </div></div>
+      <figcaption data-t="c2"></figcaption>
+    </figure>
+    <figure>
+      <div class="phone"><div class="screen">
+        <div class="notch"></div>
+        <div class="sbody">
+          <div class="a-h" data-t="a3Title"></div>
+          <div class="acard">
+            <div class="a-h2" data-t="a3Type"></div>
+            <div class="a-muted" data-t="a3Sens"></div>
+            <div class="a-label" style="margin-top:8px" data-t="a3Focus"></div>
+            <div class="a-chips"><span data-t="a3c1"></span><span data-t="a3c2"></span></div>
+          </div>
+          <div class="acard">
+            <div class="a-label" data-t="a3Prog"></div>
+            <div class="a-bars" aria-hidden="true">
+              <div><i style="height:50%"></i><span>1</span></div>
+              <div><i style="height:60%"></i><span>2</span></div>
+              <div><i style="height:70%"></i><span>3</span></div>
+              <div><i style="height:80%"></i><span>4</span></div>
+            </div>
+          </div>
+          <div class="acard"><div class="a-label" data-t="a3Note"></div><div data-t="a3NoteV"></div><div class="a-muted" style="margin-top:4px" data-t="a3NoteD"></div></div>
+          <div class="a-muted" data-t="a3Next"></div>
+          <div class="a-btn" data-t="a3Btn"></div>
+        </div>
+        <nav class="tabbar" aria-hidden="true"><span data-t="tHome"></span><span class="on" data-t="tSkin"></span><span data-t="tProd"></span><span data-t="tRout"></span></nav>
+      </div></div>
+      <figcaption data-t="c3"></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="hauttypen" class="wide">
+  <div class="sec-head">
+    <span class="eyebrow" data-t="skinEyebrow"></span>
+    <h2 data-t="skinTitle"></h2>
+    <p class="muted" data-t="skinSub"></p>
+  </div>
+  <div class="map">
+    <div class="card face-wrap" id="face2"></div>
+    <div class="detail">
+      <div class="tabgroup"><span class="mono" data-t="gTypes"></span><div class="products" id="types" role="group"></div></div>
+      <div class="tabgroup"><span class="mono" data-t="gProblems"></span><div class="products" id="problems" role="group"></div></div>
+      <h3 id="sName"></h3>
+      <dl>
+        <dt data-t="sSign"></dt><dd id="sSignV"></dd>
+        <dt data-t="dZones"></dt><dd id="sZonesV"></dd>
+        <dt data-t="sHelp"></dt><dd><span id="sHelpV"></span><small class="mono ing" id="sIngV"></small></dd>
+        <dt data-t="dWarn"></dt><dd id="sNoteV"></dd>
+      </dl>
+    </div>
+  </div>
+  <p class="note med" data-th="medNote"></p>
+</section>
+
+<section id="test">
+  <div class="sec-head">
+    <span class="eyebrow" data-t="testEyebrow"></span>
+    <h2 data-t="testTitle"></h2>
+    <p class="muted" data-t="testSub"></p>
+  </div>
+  <div class="card quiz" id="quiz" aria-live="polite"></div>
+</section>
+
+<section id="karte" class="wide">
+  <div class="sec-head">
+    <span class="eyebrow" data-t="mapEyebrow"></span>
+    <h2 data-t="mapTitle"></h2>
+    <p class="muted" data-t="mapSub"></p>
+  </div>
+  <div class="map">
+    <div class="card face-wrap">
+      <svg class="face" viewBox="0 0 750 1000" role="img" aria-labelledby="faceTitle">
+        <title id="faceTitle">Face map</title>
+        <defs><filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur in="SourceGraphic" stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+        <image href="face.jpg" x="0" y="0" width="750" height="1000" preserveAspectRatio="xMidYMid slice"/>
+        <g filter="url(#glow)">
+          <ellipse class="z" data-zone="forehead" cx="380" cy="240" rx="150" ry="62"/>
+          <ellipse class="z" data-zone="eye_area" cx="276" cy="400" rx="74" ry="36"/>
+          <ellipse class="z" data-zone="eye_area" cx="484" cy="400" rx="74" ry="36"/>
+          <path class="z" data-zone="nose" d="M354 352 Q380 342 406 352 L436 505 Q380 530 324 505 Z"/>
+          <ellipse class="z" data-zone="left_cheek" cx="248" cy="548" rx="58" ry="72"/>
+          <ellipse class="z" data-zone="right_cheek" cx="512" cy="548" rx="58" ry="72"/>
+          <ellipse class="z" data-zone="chin" cx="380" cy="702" rx="72" ry="32"/>
+          <path class="z" data-zone="neck" d="M300 790 Q380 812 460 790 L478 960 Q380 980 282 960 Z"/>
+        </g>
+        <ellipse class="avoid" data-avoid="eye_area" cx="276" cy="400" rx="74" ry="36"/>
+        <ellipse class="avoid" data-avoid="eye_area" cx="484" cy="400" rx="74" ry="36"/>
+      </svg>
+    </div>
+    <div class="detail">
+      <div class="products" id="products" role="group"></div>
+      <h3 id="pName"></h3>
+      <dl>
+        <dt data-t="dZones"></dt><dd id="pZones"></dd>
+        <dt data-t="dAmount"></dt><dd id="pAmount"></dd>
+        <dt data-t="dHow"></dt><dd id="pHow"></dd>
+        <dt data-t="dFreq"></dt><dd id="pFreq"></dd>
+        <dt data-t="dWarn"></dt><dd id="pWarn"></dd>
+      </dl>
+      <div class="legend"><span data-t="legOn"></span><span class="av" data-t="legAvoid"></span></div>
+    </div>
+  </div>
+</section>
+
+<section id="wirkstoffe" class="wide">
+  <div class="sec-head">
+    <span class="eyebrow" data-t="lexEyebrow"></span>
+    <h2 data-t="lexTitle"></h2>
+    <p class="muted" data-t="lexSub"></p>
+  </div>
+  <div class="lex">
+    <div class="ing-list" id="ingList" role="group"></div>
+    <div class="card ing-card">
+      <span class="mono" id="iInci"></span>
+      <h3 id="iName"></h3>
+      <dl>
+        <dt data-t="lDoes"></dt><dd id="iDoes"></dd>
+        <dt data-t="lFor"></dt><dd id="iFor"></dd>
+        <dt data-t="lUse"></dt><dd id="iUse"></dd>
+        <dt data-t="lWarn"></dt><dd id="iWarn"></dd>
+      </dl>
+    </div>
+  </div>
+  <div class="card combo">
+    <div class="combo-head">
+      <span class="eyebrow" data-t="cEyebrow"></span>
+      <h3 data-t="cTitle"></h3>
+    </div>
+    <div class="combo-pick">
+      <label><span class="mono" data-t="cA"></span><select id="cSelA"></select></label>
+      <span class="plus" aria-hidden="true">+</span>
+      <label><span class="mono" data-t="cB"></span><select id="cSelB"></select></label>
+    </div>
+    <div class="combo-res" id="cRes" aria-live="polite">
+      <span class="badge" id="cBadge"></span>
+      <p id="cText"></p>
+    </div>
+    <p class="fine" data-t="cFine"></p>
+  </div>
+</section>
+
+<section id="preise">
+  <div class="sec-head">
+    <span class="eyebrow" data-t="freeEyebrow"></span>
+    <h2 data-t="freeTitle"></h2>
+    <p class="muted" data-t="freeSub"></p>
+  </div>
+  <div class="tiers">
+    <div class="card tier main">
+      <span class="eyebrow" data-t="tFree"></span>
+      <span class="price">0 €</span>
+      <ul data-tl="tFreeList"></ul>
+    </div>
+    <div class="card tier alt">
+      <span class="eyebrow" data-t="tLater"></span>
+      <span class="price muted">Premium</span>
+      <ul class="muted" data-tl="tLaterList"></ul>
+    </div>
+  </div>
+</section>
+
+<section id="datenschutz">
+  <div class="sec-head">
+    <span class="eyebrow" data-t="dsEyebrow"></span>
+    <h2 data-t="dsTitle"></h2>
+    <p class="muted" data-t="dsSub"></p>
+  </div>
+  <div class="trusts"><div class="trust"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-2.5h6L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><h3 data-t="tr1t"></h3><p class="muted" data-t="tr1d"></p></div><div class="trust"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="3"/><path d="M4 4l16 16"/></svg><h3 data-t="tr2t"></h3><p class="muted" data-t="tr2d"></p></div><div class="trust"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M10 7V4.5h4V7M7 7l1 13h8l1-13"/></svg><h3 data-t="tr3t"></h3><p class="muted" data-t="tr3d"></p></div><div class="trust"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg><h3 data-t="tr4t"></h3><p class="muted" data-t="tr4d"></p></div></div>
+</section>
+
+<section id="faq">
+  <div class="sec-head">
+    <span class="eyebrow">FAQ</span>
+    <h2 data-t="faqTitle"></h2>
+  </div>
+  <div class="faq"><details><summary data-t="f1q"></summary><p class="muted" data-t="f1a"></p></details><details><summary data-t="f2q"></summary><p class="muted" data-t="f2a"></p></details><details><summary data-t="f3q"></summary><p class="muted" data-t="f3a"></p></details><details><summary data-t="f4q"></summary><p class="muted" data-t="f4a"></p></details><details><summary data-t="f5q"></summary><p class="muted" data-t="f5a"></p></details><details><summary data-t="f6q"></summary><p class="muted" data-t="f6a"></p></details><details><summary data-t="f7q"></summary><p class="muted" data-t="f7a"></p></details></div>
+</section>
+
+<footer>
+  <div><span class="logo">SKIN AI</span></div>
+  <div>
+    <p class="muted" data-t="disclaimer"></p>
+    <p class="mono" data-t="credit"></p>
+    <p class="legal-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><span class="muted">Foto: Unsplash</span></p>
+  </div>
+</footer>
+</div>
+
+<script>
+(() => {
+const T = {
+de:{
+  nav6:"Wirkstoffe",
+  lexEyebrow:"Wirkstoff-Lexikon",lexTitle:"Was steckt in deiner Pflege?",
+  lexSub:"Die wichtigsten Wirkstoffe, einfach erklärt. Mit dem Kombi-Check siehst du, welche du zusammen verwenden kannst.",
+  lDoes:"Wirkung",lFor:"Gut für",lUse:"Anwendung",lWarn:"Hinweis",
+  cEyebrow:"Kombi-Check",cTitle:"Kann ich das zusammen verwenden?",cA:"Wirkstoff 1",cB:"Wirkstoff 2",
+  cFine:"Allgemeine Hinweise. Halte dich immer an die Anwendung auf der Verpackung.",
+  cSame:"Wähle zwei verschiedene Wirkstoffe.",
+  lv:{good:"Passt gut zusammen",split:"Getrennt verwenden",caution:"Mit Vorsicht kombinieren",none:"Gleicher Wirkstoff"},
+  I:{
+    niacinamide:["Niacinamid (Vitamin B3)","Stärkt die Hautbarriere, reguliert Talg, mildert Rötungen und hellt Flecken auf.","Fast alle Hauttypen, besonders Mischhaut, fettige Haut und Pigmentflecken.","Morgens und/oder abends, meist als Serum.","Hohe Konzentrationen können empfindliche Haut reizen. Mit niedrigen Prozentwerten beginnen."],
+    bha:["Salicylsäure (BHA)","Löst Talg und abgestorbene Hautzellen in den Poren und wirkt gegen Mitesser und Unreinheiten.","Fettige Haut, Mischhaut, Mitesser, Akne.","Abends, 2–3 Mal pro Woche, langsam steigern.","Kann austrocknen. Am nächsten Tag Sonnenschutz verwenden."],
+    aha:["Fruchtsäuren (AHA)","Peelen die Hautoberfläche und machen das Hautbild glatter und ebenmäßiger.","Fahle Haut, raue Hautstruktur, Pigmentflecken, normale bis trockene Haut.","Abends, 1–3 Mal pro Woche.","Machen die Haut sonnenempfindlicher. Bei empfindlicher Haut eher Milchsäure wählen."],
+    retinol:["Retinol (Vitamin A)","Beschleunigt die Zellerneuerung, mildert feine Linien und verbessert das Hautbild.","Feine Linien, Unreinheiten, unebene Haut.","Nur abends. Anfangs 1–2 Mal pro Woche, dann langsam steigern.","Kann anfangs reizen und schuppen. Täglich Sonnenschutz verwenden. In Schwangerschaft und Stillzeit nicht anwenden."],
+    vitc:["Vitamin C","Antioxidans: schützt vor Umwelteinflüssen, sorgt für einen frischen Teint und hellt Flecken auf.","Fahle Haut, Pigmentflecken, Schutz am Morgen.","Morgens, vor dem Sonnenschutz.","Reines Vitamin C ist licht- und luftempfindlich. Wird das Produkt gelb oder braun, ist es oxidiert."],
+    azelaic:["Azelainsäure","Beruhigt Rötungen, wirkt gegen Unreinheiten und hellt Flecken auf.","Unreinheiten, Rötungen, Aknemale, empfindliche Haut.","Morgens und/oder abends.","Kann anfangs leicht kribbeln. Bei Rosazea die Behandlung hautärztlich abstimmen."],
+    bpo:["Benzoylperoxid","Wirkt gegen Bakterien, die an der Entstehung von Akne beteiligt sind.","Entzündete Pickel, Akne.","Punktuell oder als Reinigung, meist einmal täglich.","Kann Textilien und Haare bleichen und die Haut austrocknen."],
+    ha:["Hyaluronsäure","Bindet Feuchtigkeit in der Haut und polstert sie sichtbar auf.","Alle Hauttypen, besonders bei Feuchtigkeitsmangel.","Morgens und abends auf die leicht feuchte Haut, danach eincremen.","Ohne Creme darüber kann die Haut bei trockener Luft wieder austrocknen."],
+    ceramide:["Ceramide","Hautähnliche Lipide, die die Hautbarriere stärken und Feuchtigkeitsverlust verhindern.","Trockene, empfindliche oder gereizte Haut.","Morgens und abends, meist in der Creme.","Sehr gut verträglich. Passt zu fast allen Wirkstoffen."],
+    panthenol:["Panthenol (Provitamin B5)","Beruhigt, spendet Feuchtigkeit und unterstützt die Regeneration der Haut.","Empfindliche, gereizte oder trockene Haut.","Morgens und abends.","Sehr gut verträglich."]
+  },
+  C:{
+    gentle:"Feuchtigkeitsspendende und beruhigende Wirkstoffe ergänzen fast jeden anderen Wirkstoff und machen ihn verträglicher.",
+    nia_any:"Niacinamid ist gut verträglich und ergänzt Peelings und Wirkstoffe gegen Unreinheiten.",
+    nia_ret:"Niacinamid stärkt die Hautbarriere und kann Reizungen durch Retinol abmildern.",
+    nia_vitc:"Dass sich die beiden gegenseitig aufheben, ist ein verbreiteter Mythos. In heutigen Produkten lassen sie sich gut kombinieren.",
+    ret_acid:"Nicht am selben Abend. Beide reizen, zusammen ist das Risiko für Rötung und Schuppen hoch. Verwende sie abwechselnd an verschiedenen Abenden.",
+    ret_bpo:"Benzoylperoxid morgens, Retinol abends. Benzoylperoxid kann manche Retinoide abbauen, und zusammen reizen sie stark.",
+    ret_vitc:"Ein klassisches Duo, aber zu verschiedenen Tageszeiten: Vitamin C morgens, Retinol abends.",
+    ret_aze:"Möglich, aber vorsichtig: Beide können anfangs kribbeln. Führe sie zuerst einzeln ein und kombiniere sie erst, wenn deine Haut beide verträgt.",
+    aha_bha:"Vorsicht vor zu viel Peeling. Fertige Produkte kombinieren beide oft gut abgestimmt, aber trage nicht zwei Peelings übereinander auf.",
+    vitc_acid:"Besser getrennt: Vitamin C morgens, Säurepeeling abends. Zusammen kann es auf empfindlicher Haut brennen.",
+    vitc_bpo:"Benzoylperoxid kann Vitamin C oxidieren und unwirksam machen. Vitamin C morgens, Benzoylperoxid abends.",
+    bpo_acid:"Zusammen trocknen sie stark aus. Verwende sie lieber zu verschiedenen Zeiten und creme gut ein.",
+    aze_acid:"Möglich, aber nicht gleich zu Beginn. Beide können reizen. Erst einzeln vertragen, dann kombinieren.",
+    aze_vitc:"Beide wirken gegen Flecken und ergänzen sich gut.",
+    aze_bpo:"Möglich, aber das trocknet aus. Langsam einführen und gut eincremen."
+  },
+  dsEyebrow:"Datenschutz",dsTitle:"Deine Haut, deine Daten",
+  dsSub:"Fotos vom Gesicht und Angaben zur Haut sind sensible Daten. Diese Grundsätze gelten von Anfang an.",
+  tr1t:"Fotos sind freiwillig",tr1d:"Die Fotoanalyse ist optional und braucht deine ausdrückliche Zustimmung. Dein Profil entsteht auch nur aus dem Fragebogen.",
+  tr2t:"Kein KI-Training",tr2d:"Deine Fotos werden nicht zum Training von KI-Modellen verwendet und nicht an Dritte verkauft.",
+  tr3t:"Jederzeit löschen",tr3d:"Einzelne Fotos, dein Profil oder das ganze Konto kannst du in den Einstellungen selbst löschen. Deine Daten kannst du auch exportieren.",
+  tr4t:"Geschützt nach DSGVO",tr4d:"Fotos liegen verschlüsselt in einem privaten Speicher. Nur du siehst sie, über kurzlebige, gesicherte Links.",
+  faqTitle:"Häufige Fragen",
+  f1q:"Ist SKIN AI kostenlos?",f1a:"Ja. Hauttest, Profil, Routine, Produktkatalog und Gesichtskarte sind kostenlos. Später kommen optionale Premium-Funktionen dazu. Was heute kostenlos ist, bleibt kostenlos.",
+  f2q:"Ersetzt SKIN AI den Besuch beim Hautarzt?",f2a:"Nein. SKIN AI hilft bei der kosmetischen Hautpflege und stellt keine Diagnosen. Bei Hautkrankheiten, starken Beschwerden oder Muttermalen, die sich verändern, gehört die Haut in ärztliche Hände.",
+  f3q:"Muss ich ein Foto hochladen?",f3a:"Nein. Die Fotoanalyse ist freiwillig. Dein Hautprofil und deine Routine entstehen auch nur aus dem Fragebogen.",
+  f4q:"Woher kommen die Produktempfehlungen?",f4a:"Aus einer geprüften Produktdatenbank. Jedes Produkt wird mit vollständiger Inhaltsstoffliste und Hinweisen geprüft, bevor es empfohlen wird. Die Empfehlungen folgen festen Regeln, nicht dem Zufall einer KI.",
+  f5q:"Verdient SKIN AI an den Produkten?",f5a:"Bei manchen Händlern erhalten wir eine Provision, wenn du über einen Link kaufst. Diese Links sind als Werbelink gekennzeichnet. Die Provision hat keinen Einfluss darauf, welche Produkte empfohlen werden.",
+  f6q:"Kann ich meine eigenen Produkte eintragen?",f6a:"Ja. Du speicherst die Produkte, die du schon hast, und SKIN AI zeigt dir, wie sie in deine Routine passen und ob sich Wirkstoffe vertragen.",
+  f7q:"In welchen Sprachen gibt es SKIN AI?",f7a:"Zum Start auf Deutsch und Rumänisch.",
+  appEyebrow:"Die App",appTitle:"So sieht SKIN AI auf dem Handy aus",appSub:"Ein erster Entwurf der wichtigsten Bildschirme. Alle Inhalte sind Beispiele.",
+  a1Date:"Sonntag, 15. November",d1:"M",d2:"D",d3:"M",d4:"D",d5:"F",d6:"S",d7:"S",a1Hello:"Guten Morgen",a1Am:"Morgenroutine",a1Count:"2 von 3",
+  a1s1:"Milde Gel-Reinigung",a1s2:"Leichte Feuchtigkeitscreme",a1s3:"Sonnenschutz LSF 30+",
+  a1Week:"Diese Woche",a1Pm:"Abendroutine",a1PmV:"4 Schritte · heute mit BHA",a1Tip:"Tipp des Tages",a1TipV:"Trage den Sonnenschutz als letzten Schritt auf, auch an bewölkten Tagen.",
+  tHome:"Heute",tSkin:"Haut",tProd:"Produkte",tRout:"Routine",
+  a2Brand:"Beispielmarke",a2Name:"Beruhigende Barrierecreme",a2Fit:"Passt zu deiner Haut",a2Ing:"Wirkstoffe",a2Use:"Anwendung",
+  a2UseV:"Abends · erbsengroße Menge · ganzes Gesicht",a2Shop:"Bei 3 Händlern erhältlich",a2Price:"ab 18,90 €",a2Ad:"Werbelink",a2Btn:"Zur Routine hinzufügen",
+  a3Title:"Meine Haut",a3Type:"Mischhaut",a3Sens:"Empfindlichkeit: mittel",a3Focus:"Fokus",a3c1:"Sichtbare Poren",a3c2:"Mitesser",
+  a3Prog:"Hautgefühl · Wochen 1–4",a3Note:"Letzte Notiz",a3NoteV:"Weniger Glanz auf der Stirn, keine Reizung durch das BHA-Peeling.",a3NoteD:"vor 4 Tagen",a3Next:"Nächster Check-in in 3 Tagen",a3Btn:"Fortschritt eintragen",
+  c1:"Heute: deine Routine Schritt für Schritt",c2:"Produktseite: Wirkstoffe, Eignung und Anwendung",c3:"Meine Haut: Profil und Fortschritt",
+  nav5:"Hauttypen",
+  skinEyebrow:"Hauttypen & Hautprobleme",skinTitle:"Jede Haut ist anders",
+  skinSub:"Wähle einen Hauttyp oder ein Hautproblem und sieh, woran du es erkennst, wo es meistens auftritt und welche Wirkstoffe helfen können.",
+  gTypes:"Hauttypen",gProblems:"Hautprobleme",sSign:"Merkmale",sHelp:"Was hilft",
+  medNote:"<b>Wann zur Hautärztin oder zum Hautarzt?</b> Bei starker oder schmerzhafter Akne, anhaltenden Rötungen, Verdacht auf Rosazea, Ekzem oder Melasma und bei Muttermalen, die sich verändern. SKIN AI gibt dazu keine Einschätzung ab.",
+  S:{
+    normal:["Normale Haut","Ausgeglichen, feine Poren, selten Spannungsgefühl oder Glanz.","Ganzes Gesicht, gleichmäßig","Eine einfache Routine: milde Reinigung, Feuchtigkeit, täglicher Sonnenschutz.","Auch normale Haut braucht jeden Morgen Sonnenschutz."],
+    dry:["Trockene Haut","Spannt nach dem Waschen, wirkt matt und kann schuppen. Feine Linien fallen schneller auf.","Vor allem Wangen und Stirn","Reichhaltige Pflege, die die Hautbarriere stärkt, und eine milde, cremige Reinigung.","Heißes Wasser und aggressive Reinigungsprodukte vermeiden."],
+    oily:["Fettige Haut","Glänzt im ganzen Gesicht, die Poren sind gut sichtbar, Unreinheiten entstehen leicht.","Ganzes Gesicht, besonders die T-Zone","Leichte Gel-Texturen und Wirkstoffe, die Talg und Poren regulieren.","Auch fettige Haut braucht Feuchtigkeit. Zu starkes Entfetten macht es oft schlimmer."],
+    combo:["Mischhaut","Stirn, Nase und Kinn glänzen, die Wangen sind normal bis trocken.","T-Zone: Stirn, Nase, Kinn","Leichte Pflege für das ganze Gesicht, gezielte Wirkstoffe nur in der T-Zone.","Du kannst Produkte zonenweise auftragen, zum Beispiel BHA nur auf die T-Zone."],
+    sens:["Empfindliche Haut","Brennt, juckt oder rötet sich schnell, besonders bei neuen Produkten.","Oft Wangen und Nase","Wenige, parfümfreie Produkte mit beruhigenden Wirkstoffen.","Neue Produkte einzeln einführen und 48 Stunden an einer kleinen Stelle testen."],
+    acne:["Akne & Unreinheiten","Pickel, entzündete Stellen und Mitesser, die immer wieder auftreten.","Stirn, Nase, Kinn und Kieferlinie","Wirkstoffe, die die Poren klären und Entzündungen beruhigen, langsam eingeführt.","Bei starker, schmerzhafter oder narbenbildender Akne zur Hautärztin oder zum Hautarzt."],
+    pores:["Mitesser & große Poren","Dunkle Punkte und sichtbar erweiterte Poren.","Nase, Kinn und Stirn","Regelmäßiges, sanftes Peeling mit BHA, das in die Poren eindringt.","Nicht ausdrücken. Das reizt die Haut und kann Spuren hinterlassen."],
+    pigment:["Pigmentflecken & Aknemale","Braune oder rötliche Flecken, oft nach Pickeln oder durch die Sonne.","Wangen und Stirn","Wirkstoffe, die Flecken aufhellen, und konsequenter Sonnenschutz.","Ohne täglichen Sonnenschutz kommen Flecken zurück. Großflächige Flecken (Melasma) hautärztlich abklären."],
+    redness:["Rötungen & Rosazea","Gerötete Wangen und Nase, plötzliches Erröten, manchmal sichtbare Äderchen.","Wangen, Nase und Kinn","Beruhigende Pflege ohne Duftstoffe, ohne Alkohol und ohne starke Peelings.","Anhaltende Rötungen oder Verdacht auf Rosazea gehören in hautärztliche Hände."],
+    dehyd:["Feuchtigkeitsmangel","Spannt und wirkt fahl, auch bei fettiger Haut. Make-up setzt sich in feinen Linien ab.","Ganzes Gesicht","Feuchtigkeitsspendende Wirkstoffe und eine Creme, die die Feuchtigkeit in der Haut hält.","Feuchtigkeitsmangel ist kein Hauttyp. Er kann bei jeder Haut auftreten."],
+    lines:["Feine Linien & Falten","Feine Linien um die Augen und auf der Stirn, nachlassende Spannkraft.","Augenpartie und Stirn","Retinoide langsam einführen, dazu Peptide und täglicher Sonnenschutz.","Retinoide machen die Haut sonnenempfindlicher. Nicht am selben Abend wie BHA verwenden."]
+  },
+  nav1:"So funktioniert's",nav2:"Hauttest",nav3:"Gesichtskarte",nav4:"Kostenlos",
+  heroEyebrow:"Personalisierte Hautpflege",
+  heroTitle:"<span>Verstehe deine Haut.</span><span><em>Finde deine Produkte.</em></span><span>Baue deine Routine.</span>",
+  heroLead:"Ein Test von zwei Minuten zeigt dir deinen Hauttyp, worauf du achten solltest und wie eine passende Routine für morgens und abends aussieht.",
+  heroCta1:"Hauttest starten",heroCta2:"Gesichtskarte ansehen",
+  pfTitle:"Beispielprofil",pfType:"Hauttyp",pfTypeV:"Mischhaut",pfSens:"Empfindlichkeit",pfSensV:"Mittel",pfFocus:"Fokus",pfFocusV:"Sichtbare Poren, Mitesser",pfIng:"Wirkstoffe",pfPm:"Abends",pfPmV:"Reinigung → BHA (2×/Woche) → Creme",
+  howEyebrow:"So funktioniert's",howTitle:"In drei Schritten zu deiner Routine",
+  s1t:"Fragen beantworten",s1d:"Acht Fragen dazu, wie sich deine Haut im Laufe des Tages verhält und was dich stört.",
+  s2t:"Profil erhalten",s2d:"Hauttyp, Empfindlichkeit und deine Hautanliegen, einfach erklärt.",
+  s3t:"Routine aufbauen",s3d:"Die Schritte für morgens und abends, passende Wirkstoffe und wo jedes Produkt aufgetragen wird.",
+  testEyebrow:"Hauttest",testTitle:"Welcher Hauttyp bist du?",testSub:"Dauert etwa zwei Minuten. Deine Antworten bleiben in deinem Browser.",
+  qStartMeta:"8 Fragen · etwa 2 Minuten",qStartTitle:"Antworte so, wie sich deine Haut normalerweise verhält.",
+  qStartList:["Dein Hauttyp und deine Empfindlichkeit","Die Hautanliegen, auf die du dich konzentrieren solltest","Eine Basisroutine für morgens und abends"],
+  qStartBtn:"Test starten",qOf:(a,b)=>`Frage ${a} von ${b}`,qMulti:"Mehrfachauswahl",qBack:"Zurück",qNext:"Weiter",qDone:"Ergebnis ansehen",
+  rEyebrow:"Dein Profil",rAm:"Morgens",rPm:"Abends",rNone:"Du hast kein bestimmtes Anliegen gewählt. Eine einfache, regelmäßige Basisroutine reicht dir.",
+  rFine:"Das Ergebnis basiert nur auf deinen Antworten und dient der Information. Es ist keine Diagnose.",
+  rCopy:"Ergebnis kopieren",rRedo:"Test wiederholen",rCopied:"Kopiert. Du kannst es jetzt teilen.",
+  rSummary:(t,s,c)=>`Mein SKIN AI Profil: ${t}, ${s}.${c?` Fokus: ${c}.`:""}`,
+  types:{oily:"Fettige Haut",combo:"Mischhaut",normal:"Normale Haut",dry:"Trockene Haut",und:"Hauttyp noch unklar"},
+  sens:{low:"geringe Empfindlichkeit",mid:"mittlere Empfindlichkeit",high:"hohe Empfindlichkeit"},
+  conc:{acne:"Akne",blackheads:"Mitesser",marks:"Aknemale",pigment:"Pigmentflecken",redness:"Rötungen",dryness:"Trockenheit",pores:"Sichtbare Poren",lines:"Feine Linien",dehyd:"Feuchtigkeitsmangel"},
+  rt:{moist:{oily:"Feuchtigkeitspflege mit Gel-Textur",combo:"Leichte Feuchtigkeitscreme",normal:"Feuchtigkeitscreme",dry:"Reichhaltige Creme mit Ceramiden",und:"Leichte Feuchtigkeitscreme"},
+    cleanseSoft:"Milde, cremige Reinigung ohne Duftstoffe",cleanse:"Milde Gel-Reinigung",
+    spf:"Sonnenschutz mit LSF 30 oder höher",spfNote:"Der wichtigste Schritt am Morgen",
+    calm:"Beruhigendes Serum für die Hautbarriere",bha:"BHA-Peeling, 2–3 Mal pro Woche",spots:"Serum gegen Flecken, an Abenden ohne Peeling",
+    retinoid:"Retinoid, langsam einführen (anfangs 1–2 Abende pro Woche)",red:"Beruhigende Pflege bei Rötungen"},
+  notes:{und:"<b>Dein Hauttyp ist noch nicht eindeutig.</b> Deine Antworten deuten in mehrere Richtungen. Beobachte deine Haut ein paar Tage und mache den Test dann noch einmal.",
+    sens:"<b>Empfindliche Haut.</b> Führe immer nur ein neues Produkt ein und teste es zuerst 48 Stunden lang an einer kleinen Stelle.",
+    red:"<b>Häufige Rötungen</b> können verschiedene Ursachen haben. Lass sie am besten hautärztlich abklären.",
+    spf:"<b>Täglicher Sonnenschutz</b> beugt Pigmentflecken und vorzeitiger Hautalterung vor. Damit solltest du anfangen.",
+    mix:"<b>Retinoid und BHA</b> nicht am selben Abend verwenden. Wechsle sie ab."},
+  Q:[
+    ["Wie fühlt sich deine Haut gegen Mittag an?",["Überall glänzend","Nur in der T-Zone glänzend (Stirn, Nase, Kinn)","Angenehm und ausgeglichen","Spannend oder schuppig"]],
+    ["Etwa eine Stunde nach der Reinigung, ohne weitere Produkte, fühlt sich deine Haut so an:",["Spannend","Angenehm","Fettig in der T-Zone","Überall fettig"]],
+    ["Wie sichtbar sind deine Poren?",["Kaum sichtbar","Vor allem an Nase und Stirn","Im größten Teil des Gesichts"]],
+    ["Wie oft reagiert deine Haut auf neue Produkte, zum Beispiel mit Brennen, Rötung oder Juckreiz?",["Nie oder fast nie","Manchmal","Oft"]],
+    ["Bemerkst du Rötungen oder plötzliches Erröten im Gesicht?",["Nein","Gelegentlich","Häufig"]],
+    ["Spannt deine Haut oder wirkt sie fahl, auch wenn sie gleichzeitig fettet?",["Nein","Ja"]],
+    ["Worauf möchtest du dich konzentrieren?",["Akne","Mitesser","Aknemale","Pigmentflecken","Rötungen","Trockenheit","Sichtbare Poren","Feine Linien","Nichts Bestimmtes"]],
+    ["Verwendest du jeden Morgen Sonnenschutz?",["Ja, fast täglich","Nur im Sommer oder im Urlaub","Nein"]]
+  ],
+  mapEyebrow:"Gesichtskarte",mapTitle:"Wo wird welches Produkt aufgetragen?",
+  mapSub:"Nicht jedes Serum und jede Creme gehört auf das ganze Gesicht. Wähle ein Produkt und sieh dir Zonen, Menge und Anwendung an.",
+  dZones:"Zonen",dAmount:"Menge",dHow:"Anwendung",dFreq:"Häufigkeit",dWarn:"Hinweis",legOn:"Hier auftragen",legAvoid:"Bereich aussparen",
+  zn:{forehead:"Stirn",nose:"Nase",left_cheek:"linke Wange",right_cheek:"rechte Wange",chin:"Kinn",eye_area:"Augenpartie",neck:"Hals"},
+  zAll:"Ganzes Gesicht und Hals",zAvoid:"Augenpartie aussparen",
+  P:[
+    ["Sonnenschutz","Zwei-Finger-Regel: zwei Fingerlängen Produkt für Gesicht und Hals","Letzter Schritt am Morgen. Gleichmäßig verteilen, ohne zu reiben, auch auf Ohren und Haaransatz.","Täglich morgens. In der Sonne alle 2 Stunden erneuern.","Make-up mit LSF ersetzt keinen Sonnenschutz, weil man zu wenig davon aufträgt."],
+    ["Serum","2–3 Tropfen","Auf die gereinigte Haut mit den Handflächen sanft einarbeiten, von der Gesichtsmitte nach außen.","Laut Produktangabe, meist ein- bis zweimal täglich.","Die Augenpartie aussparen, wenn das Serum nicht dafür gedacht ist."],
+    ["Augencreme","Etwa ein Reiskorn für beide Augen","Mit dem Ringfinger sanft auf den Knochen rund um das Auge klopfen, nicht auf das bewegliche Lid.","Morgens und/oder abends.","Nicht zu nah am Wimpernkranz auftragen."],
+    ["BHA-Peeling","Einige Tropfen oder ein getränktes Wattepad","Auf Bereiche mit sichtbaren Poren und Mitessern auftragen, einziehen lassen, danach eincremen.","Abends, 2–3 Mal pro Woche. Beginne mit einmal pro Woche.","Nicht am selben Abend wie ein Retinoid. Am nächsten Tag unbedingt Sonnenschutz verwenden."],
+    ["Punktuelle Behandlung","Eine sehr dünne Schicht, nur auf die Unreinheit","Gezielt nur auf Pickel auftragen. Die markierten Zonen sind ein Beispiel.","Abends, laut Produktangabe.","Nicht großflächig verteilen. Bei Reizungen seltener anwenden."],
+    ["Feuchtigkeitscreme","Eine erbsengroße Menge für das Gesicht, etwas mehr für den Hals","Zwischen den Fingern anwärmen und mit sanften Bewegungen von unten nach oben auftragen.","Morgens und abends.","Für die Augenpartie ein eigenes Produkt verwenden."]
+  ],
+  freeEyebrow:"Ohne Abo",freeTitle:"Alles Wichtige ist kostenlos",
+  freeSub:"Die App startet kostenlos, ohne Kreditkarte und ohne Testphase. Später kommen optionale Zusatzfunktionen für alle, die mehr möchten.",
+  tFree:"Kostenlos",tLater:"Später · optional",
+  tFreeList:["Hauttest und persönliches Profil","Routine für morgens und abends","Katalog geprüfter Produkte","Gesichtskarte für jedes Produkt","Liste deiner vorhandenen Produkte"],
+  tLaterList:["KI-Assistent für Fragen zur Hautpflege","Hautfortschritt mit Fotos verfolgen","Mehrere gespeicherte Routinen","Produktvergleiche"],
+  disclaimer:"SKIN AI ist ein Informationsangebot zur kosmetischen Hautpflege. Es stellt keine Diagnosen und ersetzt keine hautärztliche Beratung.",
+  credit:"Konzept & Design: Raluca Jidvian · 2026"
+},
+ro:{
+  nav6:"Ingrediente",
+  lexEyebrow:"Lexicon de ingrediente",lexTitle:"Ce conțin produsele tale?",
+  lexSub:"Cele mai importante ingrediente, explicate simplu. Cu verificatorul de combinații vezi pe care le poți folosi împreună.",
+  lDoes:"Ce face",lFor:"Potrivit pentru",lUse:"Aplicare",lWarn:"Atenție",
+  cEyebrow:"Verificator de combinații",cTitle:"Le pot folosi împreună?",cA:"Ingredientul 1",cB:"Ingredientul 2",
+  cFine:"Informații generale. Respectă întotdeauna instrucțiunile de pe ambalaj.",
+  cSame:"Alege două ingrediente diferite.",
+  lv:{good:"Se potrivesc bine",split:"Folosește-le separat",caution:"Combină cu grijă",none:"Același ingredient"},
+  I:{
+    niacinamide:["Niacinamidă (vitamina B3)","Întărește bariera pielii, reglează sebumul, reduce roșeața și estompează petele.","Aproape toate tipurile de ten, mai ales mixt, gras și cu pete pigmentare.","Dimineața și/sau seara, de obicei ca ser.","Concentrațiile mari pot irita pielea sensibilă. Începe cu procente mici."],
+    bha:["Acid salicilic (BHA)","Dizolvă sebumul și celulele moarte din pori și ajută la puncte negre și imperfecțiuni.","Ten gras, ten mixt, puncte negre, acnee.","Seara, de 2–3 ori pe săptămână, crescând treptat.","Poate usca pielea. A doua zi folosește protecție solară."],
+    aha:["Acizi din fructe (AHA)","Exfoliază suprafața pielii și o fac mai netedă și mai uniformă.","Ten tern, textură aspră, pete pigmentare, ten normal spre uscat.","Seara, de 1–3 ori pe săptămână.","Fac pielea mai sensibilă la soare. Pentru ten sensibil, alege mai degrabă acidul lactic."],
+    retinol:["Retinol (vitamina A)","Accelerează reînnoirea celulară, estompează liniile fine și îmbunătățește aspectul pielii.","Linii fine, imperfecțiuni, ten neuniform.","Doar seara. La început de 1–2 ori pe săptămână, apoi crescând treptat.","La început poate irita și descuama pielea. Folosește zilnic protecție solară. Nu se folosește în sarcină și în perioada de alăptare."],
+    vitc:["Vitamina C","Antioxidant: protejează de factorii de mediu, dă strălucire tenului și estompează petele.","Ten tern, pete pigmentare, protecție dimineața.","Dimineața, înainte de protecția solară.","Vitamina C pură este sensibilă la lumină și aer. Dacă produsul devine galben sau maroniu, s-a oxidat."],
+    azelaic:["Acid azelaic","Calmează roșeața, ajută la imperfecțiuni și estompează petele.","Imperfecțiuni, roșeață, urme post-acnee, ten sensibil.","Dimineața și/sau seara.","La început poate furnica ușor. În caz de rozacee, stabilește tratamentul cu medicul dermatolog."],
+    bpo:["Peroxid de benzoil","Acționează împotriva bacteriilor implicate în apariția acneei.","Coșuri inflamate, acnee.","Local sau ca produs de curățare, de obicei o dată pe zi.","Poate decolora textilele și părul și poate usca pielea."],
+    ha:["Acid hialuronic","Atrage și reține apa în piele și o face vizibil mai plină.","Toate tipurile de ten, mai ales cu deshidratare.","Dimineața și seara, pe pielea ușor umedă, apoi cremă.","Fără o cremă deasupra, în aer uscat pielea se poate deshidrata din nou."],
+    ceramide:["Ceramide","Lipide asemănătoare cu cele ale pielii, care întăresc bariera și previn pierderea apei.","Ten uscat, sensibil sau iritat.","Dimineața și seara, de obicei în cremă.","Foarte bine tolerate. Se potrivesc cu aproape toate ingredientele."],
+    panthenol:["Pantenol (provitamina B5)","Calmează, hidratează și ajută la refacerea pielii.","Ten sensibil, iritat sau uscat.","Dimineața și seara.","Foarte bine tolerat."]
+  },
+  C:{
+    gentle:"Ingredientele hidratante și calmante completează aproape orice alt activ și îl fac mai ușor de tolerat.",
+    nia_any:"Niacinamida este bine tolerată și completează exfoliantele și ingredientele împotriva imperfecțiunilor.",
+    nia_ret:"Niacinamida întărește bariera pielii și poate reduce iritația dată de retinol.",
+    nia_vitc:"Ideea că se anulează reciproc este un mit răspândit. În produsele de azi se pot combina fără probleme.",
+    ret_acid:"Nu în aceeași seară. Ambele pot irita, iar împreună riscul de roșeață și descuamare e mare. Alternează-le în seri diferite.",
+    ret_bpo:"Peroxidul de benzoil dimineața, retinolul seara. Peroxidul poate degrada unii retinoizi, iar împreună irită puternic.",
+    ret_vitc:"Un duo clasic, dar în momente diferite ale zilei: vitamina C dimineața, retinolul seara.",
+    ret_aze:"Se poate, dar cu grijă: ambele pot furnica la început. Introdu-le întâi separat și combină-le doar după ce pielea le tolerează pe amândouă.",
+    aha_bha:"Atenție la exfolierea excesivă. Produsele gata făcute le combină adesea echilibrat, dar nu aplica două exfoliante unul peste altul.",
+    vitc_acid:"Mai bine separat: vitamina C dimineața, exfoliantul acid seara. Împreună pot ustura pielea sensibilă.",
+    vitc_bpo:"Peroxidul de benzoil poate oxida vitamina C și o face ineficientă. Vitamina C dimineața, peroxidul seara.",
+    bpo_acid:"Împreună usucă puternic pielea. Folosește-le mai bine la ore diferite și hidratează bine.",
+    aze_acid:"Se poate, dar nu de la început. Ambele pot irita. Asigură-te întâi că le tolerezi separat.",
+    aze_vitc:"Ambele ajută la pete și se completează bine.",
+    aze_bpo:"Se poate, dar usucă pielea. Introdu-le treptat și hidratează bine."
+  },
+  dsEyebrow:"Protecția datelor",dsTitle:"Pielea ta, datele tale",
+  dsSub:"Fotografiile feței și informațiile despre piele sunt date sensibile. Aceste principii se aplică de la început.",
+  tr1t:"Pozele sunt opționale",tr1d:"Analiza foto este opțională și are nevoie de acordul tău explicit. Profilul se poate crea și doar din chestionar.",
+  tr2t:"Fără antrenare AI",tr2d:"Pozele tale nu sunt folosite pentru antrenarea modelelor AI și nu sunt vândute altor firme.",
+  tr3t:"Ștergi oricând",tr3d:"Poți șterge singură, din setări, pozele, profilul sau tot contul. Îți poți și exporta datele.",
+  tr4t:"Protejat conform GDPR",tr4d:"Pozele sunt criptate și stocate privat. Doar tu le vezi, prin linkuri securizate, valabile scurt timp.",
+  faqTitle:"Întrebări frecvente",
+  f1q:"Este SKIN AI gratuit?",f1a:"Da. Testul de piele, profilul, rutina, catalogul de produse și harta feței sunt gratuite. Mai târziu vor exista funcții Premium opționale. Ce este gratuit acum rămâne gratuit.",
+  f2q:"Înlocuiește SKIN AI medicul dermatolog?",f2a:"Nu. SKIN AI te ajută cu îngrijirea cosmetică a pielii și nu pune diagnostice. Pentru boli de piele, simptome puternice sau alunițe care se schimbă, mergi la medic.",
+  f3q:"Trebuie să încarc o poză?",f3a:"Nu. Analiza foto este opțională. Profilul și rutina se creează și doar din chestionar.",
+  f4q:"De unde vin recomandările de produse?",f4a:"Dintr-o bază de date cu produse verificate. Fiecare produs este verificat, cu lista completă de ingrediente și avertismentele lui, înainte să fie recomandat. Recomandările urmează reguli clare, nu hazardul unui AI.",
+  f5q:"Câștigă SKIN AI din produse?",f5a:"La unele magazine primim un comision dacă cumperi printr-un link. Aceste linkuri sunt marcate ca link afiliat. Comisionul nu influențează ce produse îți recomandăm.",
+  f6q:"Pot adăuga produsele pe care le am deja?",f6a:"Da. Salvezi produsele pe care le ai, iar SKIN AI îți arată cum se potrivesc în rutină și dacă ingredientele se pot combina.",
+  f7q:"În ce limbi este disponibil SKIN AI?",f7a:"La lansare: germană și română.",
+  appEyebrow:"Aplicația",appTitle:"Așa arată SKIN AI pe telefon",appSub:"O primă schiță a ecranelor principale. Toate conținuturile sunt exemple.",
+  a1Date:"Duminică, 15 noiembrie",d1:"L",d2:"M",d3:"M",d4:"J",d5:"V",d6:"S",d7:"D",a1Hello:"Bună dimineața",a1Am:"Rutina de dimineață",a1Count:"2 din 3",
+  a1s1:"Gel de curățare blând",a1s2:"Cremă hidratantă ușoară",a1s3:"Protecție solară SPF 30+",
+  a1Week:"Săptămâna aceasta",a1Pm:"Rutina de seară",a1PmV:"4 pași · azi cu BHA",a1Tip:"Sfatul zilei",a1TipV:"Aplică protecția solară ca ultim pas, chiar și în zilele înnorate.",
+  tHome:"Azi",tSkin:"Piele",tProd:"Produse",tRout:"Rutină",
+  a2Brand:"Brand exemplu",a2Name:"Cremă calmantă pentru barieră",a2Fit:"Potrivită pentru tenul tău",a2Ing:"Ingrediente",a2Use:"Aplicare",
+  a2UseV:"Seara · cât o boabă de mazăre · toată fața",a2Shop:"Disponibilă în 3 magazine",a2Price:"de la 18,90 €",a2Ad:"Link afiliat",a2Btn:"Adaugă în rutină",
+  a3Title:"Pielea mea",a3Type:"Ten mixt",a3Sens:"Sensibilitate: moderată",a3Focus:"Focus",a3c1:"Pori vizibili",a3c2:"Puncte negre",
+  a3Prog:"Cum se simte pielea · săptămânile 1–4",a3Note:"Ultima notiță",a3NoteV:"Mai puțin luciu pe frunte, nicio iritație de la exfoliantul cu BHA.",a3NoteD:"acum 4 zile",a3Next:"Următoarea evaluare peste 3 zile",a3Btn:"Notează progresul",
+  c1:"Azi: rutina ta, pas cu pas",c2:"Pagina produsului: ingrediente, potrivire și aplicare",c3:"Pielea mea: profil și progres",
+  nav5:"Tipuri de ten",
+  skinEyebrow:"Tipuri de ten și probleme ale pielii",skinTitle:"Fiecare piele este diferită",
+  skinSub:"Alege un tip de ten sau o problemă a pielii și vezi după ce o recunoști, unde apare de obicei și ce ingrediente pot ajuta.",
+  gTypes:"Tipuri de ten",gProblems:"Probleme ale pielii",sSign:"Semne",sHelp:"Ce ajută",
+  medNote:"<b>Când mergi la medicul dermatolog?</b> La acnee severă sau dureroasă, roșeață persistentă, suspiciune de rozacee, eczemă sau melasmă și la alunițe care se schimbă. SKIN AI nu face evaluări în aceste cazuri.",
+  S:{
+    normal:["Ten normal","Echilibrat, cu pori fini, rareori întins sau lucios.","Toată fața, uniform","O rutină simplă: curățare blândă, hidratare și protecție solară zilnică.","Și tenul normal are nevoie de protecție solară în fiecare dimineață."],
+    dry:["Ten uscat","Se simte întins după spălare, arată mat și se poate descuama. Liniile fine se văd mai repede.","Mai ales obrajii și fruntea","Creme bogate, care întăresc bariera pielii, și o curățare blândă, cremoasă.","Evită apa fierbinte și produsele de curățare agresive."],
+    oily:["Ten gras","Lucește pe toată fața, porii sunt vizibili și apar ușor imperfecțiuni.","Toată fața, mai ales zona T","Texturi ușoare, de tip gel, și ingrediente care reglează sebumul și porii.","Și tenul gras are nevoie de hidratare. Degresarea excesivă înrăutățește de obicei situația."],
+    combo:["Ten mixt","Fruntea, nasul și bărbia lucesc, iar obrajii sunt normali sau uscați.","Zona T: frunte, nas, bărbie","Hidratare ușoară pe toată fața și ingrediente active doar pe zona T.","Poți aplica produsele pe zone, de exemplu BHA doar pe zona T."],
+    sens:["Ten sensibil","Usturime, mâncărime sau roșeață rapidă, mai ales la produse noi.","Adesea obrajii și nasul","Puține produse, fără parfum, cu ingrediente calmante.","Introdu produsele noi pe rând și testează-le 48 de ore pe o zonă mică."],
+    acne:["Acnee și imperfecțiuni","Coșuri, zone inflamate și puncte negre care reapar.","Fruntea, nasul, bărbia și linia maxilarului","Ingrediente care curăță porii și calmează inflamația, introduse treptat.","La acnee severă, dureroasă sau care lasă cicatrici, mergi la medicul dermatolog."],
+    pores:["Puncte negre și pori dilatați","Puncte închise la culoare și pori vizibil dilatați.","Nasul, bărbia și fruntea","Exfoliere blândă și regulată cu BHA, care pătrunde în pori.","Nu le stoarce. Pielea se irită și pot rămâne urme."],
+    pigment:["Pete pigmentare și urme post-acnee","Pete maronii sau roșiatice, adesea după coșuri sau din cauza soarelui.","Obrajii și fruntea","Ingrediente care estompează petele și protecție solară zilnică, fără excepție.","Fără protecție solară zilnică, petele revin. Petele întinse (melasma) trebuie evaluate de un dermatolog."],
+    redness:["Roșeață și rozacee","Obraji și nas înroșiți, înroșire bruscă, uneori vase de sânge vizibile.","Obrajii, nasul și bărbia","Îngrijire calmantă, fără parfum, fără alcool și fără exfolieri puternice.","Roșeața persistentă sau suspiciunea de rozacee trebuie evaluate de un medic dermatolog."],
+    dehyd:["Deshidratare","Pielea se simte întinsă și arată ternă, chiar dacă e grasă. Machiajul se depune în liniile fine.","Toată fața","Ingrediente care atrag apa și o cremă care o păstrează în piele.","Deshidratarea nu este un tip de ten. Poate apărea la orice tip de piele."],
+    lines:["Linii fine și riduri","Linii fine în jurul ochilor și pe frunte, piele mai puțin fermă.","Conturul ochilor și fruntea","Retinoizi introduși treptat, peptide și protecție solară zilnică.","Retinoizii fac pielea mai sensibilă la soare. Nu îi folosi în aceeași seară cu BHA."]
+  },
+  nav1:"Cum funcționează",nav2:"Testul de piele",nav3:"Harta feței",nav4:"Gratuit",
+  heroEyebrow:"Îngrijire personalizată a pielii",
+  heroTitle:"<span>Înțelege-ți pielea.</span><span><em>Descoperă-ți produsele.</em></span><span>Construiește-ți rutina.</span>",
+  heroLead:"Un test de două minute îți arată ce tip de ten ai, pe ce să te concentrezi și cum arată o rutină potrivită pentru dimineață și seară.",
+  heroCta1:"Începe testul",heroCta2:"Vezi harta feței",
+  pfTitle:"Exemplu de profil",pfType:"Tip de ten",pfTypeV:"Mixt",pfSens:"Sensibilitate",pfSensV:"Moderată",pfFocus:"Focus",pfFocusV:"Pori vizibili, puncte negre",pfIng:"Ingrediente",pfPm:"Seara",pfPmV:"Curățare → BHA (2×/săpt.) → Cremă",
+  howEyebrow:"Cum funcționează",howTitle:"Trei pași până la rutina ta",
+  s1t:"Răspunzi la întrebări",s1d:"Opt întrebări despre cum se comportă pielea ta pe parcursul zilei și ce te deranjează.",
+  s2t:"Primești profilul",s2d:"Tipul de ten, sensibilitatea și problemele pe care să te concentrezi, explicate simplu.",
+  s3t:"Îți construiești rutina",s3d:"Pașii de dimineață și de seară, ingredientele potrivite și unde se aplică fiecare produs.",
+  testEyebrow:"Testul de piele",testTitle:"Ce tip de ten ai?",testSub:"Durează aproximativ două minute. Răspunsurile rămân în browserul tău.",
+  qStartMeta:"8 întrebări · aproximativ 2 minute",qStartTitle:"Răspunde după cum se comportă pielea ta de obicei.",
+  qStartList:["Tipul de ten și nivelul de sensibilitate","Problemele pe care să te concentrezi","O rutină de bază pentru dimineață și seară"],
+  qStartBtn:"Începe testul",qOf:(a,b)=>`Întrebarea ${a} din ${b}`,qMulti:"Alegere multiplă",qBack:"Înapoi",qNext:"Mai departe",qDone:"Vezi rezultatul",
+  rEyebrow:"Profilul tău",rAm:"Dimineața",rPm:"Seara",rNone:"Nu ai ales o problemă anume. O rutină de bază, folosită constant, este suficientă.",
+  rFine:"Rezultatul se bazează doar pe răspunsurile tale și are rol informativ. Nu este un diagnostic.",
+  rCopy:"Copiază rezultatul",rRedo:"Refă testul",rCopied:"Copiat. Îl poți trimite mai departe.",
+  rSummary:(t,s,c)=>`Profilul meu SKIN AI: ${t}, ${s}.${c?` Focus: ${c}.`:""}`,
+  types:{oily:"Ten gras",combo:"Ten mixt",normal:"Ten normal",dry:"Ten uscat",und:"Tip de ten încă neclar"},
+  sens:{low:"sensibilitate scăzută",mid:"sensibilitate moderată",high:"sensibilitate ridicată"},
+  conc:{acne:"Acnee",blackheads:"Puncte negre",marks:"Urme post-acnee",pigment:"Pete pigmentare",redness:"Roșeață",dryness:"Uscăciune",pores:"Pori vizibili",lines:"Linii fine",dehyd:"Deshidratare"},
+  rt:{moist:{oily:"Cremă hidratantă cu textură de gel",combo:"Cremă hidratantă ușoară",normal:"Cremă hidratantă",dry:"Cremă bogată, cu ceramide",und:"Cremă hidratantă ușoară"},
+    cleanseSoft:"Produs de curățare blând, cremos, fără parfum",cleanse:"Gel de curățare blând",
+    spf:"Protecție solară SPF 30 sau mai mare",spfNote:"Cel mai important pas al dimineții",
+    calm:"Ser calmant pentru bariera pielii",bha:"Exfoliant cu BHA, de 2–3 ori pe săptămână",spots:"Ser pentru pete, în serile fără exfoliant",
+    retinoid:"Retinoid, introdus treptat (la început 1–2 seri pe săptămână)",red:"Produs calmant pentru roșeață"},
+  notes:{und:"<b>Tipul de ten nu este încă clar.</b> Răspunsurile tale indică mai multe direcții. Observă-ți pielea câteva zile și refă testul.",
+    sens:"<b>Piele sensibilă.</b> Introdu un singur produs nou o dată și testează-l mai întâi pe o zonă mică, timp de 48 de ore.",
+    red:"<b>Roșeața frecventă</b> poate avea mai multe cauze. Merită o consultație la medicul dermatolog.",
+    spf:"<b>Protecția solară zilnică</b> ajută la prevenirea petelor și a îmbătrânirii premature. Este primul obicei pe care merită să-l adaugi.",
+    mix:"<b>Retinoidul și BHA-ul</b> nu se folosesc în aceeași seară. Alternează-le."},
+  Q:[
+    ["Cum îți simți pielea la prânz?",["Lucioasă pe toată fața","Lucioasă doar în zona T (frunte, nas, bărbie)","Confortabilă și echilibrată","Întinsă sau cu zone descuamate"]],
+    ["La aproximativ o oră după curățare, fără alte produse, pielea ta este:",["Întinsă","Confortabilă","Grasă în zona T","Grasă pe toată fața"]],
+    ["Cât de vizibili sunt porii tăi?",["Abia vizibili","Mai ales pe nas și frunte","Pe aproape toată fața"]],
+    ["Cât de des reacționează pielea ta la produse noi, de exemplu prin usturime, roșeață sau mâncărime?",["Niciodată sau aproape niciodată","Uneori","Des"]],
+    ["Observi roșeață sau înroșire bruscă a feței?",["Nu","Ocazional","Frecvent"]],
+    ["Pielea ta se simte întinsă sau arată ternă, chiar dacă devine și grasă?",["Nu","Da"]],
+    ["Pe ce vrei să te concentrezi?",["Acnee","Puncte negre","Urme post-acnee","Pete pigmentare","Roșeață","Uscăciune","Pori vizibili","Linii fine","Nimic anume"]],
+    ["Folosești protecție solară în fiecare dimineață?",["Da, aproape zilnic","Doar vara sau în vacanță","Nu"]]
+  ],
+  mapEyebrow:"Harta feței",mapTitle:"Unde se aplică fiecare produs?",
+  mapSub:"Nu orice ser sau cremă se aplică pe toată fața. Alege un produs și vezi zonele, cantitatea și modul de aplicare.",
+  dZones:"Zone",dAmount:"Cantitate",dHow:"Aplicare",dFreq:"Frecvență",dWarn:"Atenție",legOn:"Se aplică aici",legAvoid:"Evită zona",
+  zn:{forehead:"frunte",nose:"nas",left_cheek:"obrazul stâng",right_cheek:"obrazul drept",chin:"bărbie",eye_area:"conturul ochilor",neck:"gât"},
+  zAll:"Toată fața și gâtul",zAvoid:"evită conturul ochilor",
+  P:[
+    ["Protecție solară","Regula celor două degete: produs pe lungimea a două degete, pentru față și gât","Ultimul pas dimineața. Întinde uniform, fără să freci, inclusiv pe urechi și la linia părului.","Zilnic, dimineața. Reaplică la 2 ore când stai la soare.","Machiajul cu SPF nu înlocuiește protecția solară, pentru că se aplică prea puțin."],
+    ["Ser","2–3 picături","Pe pielea curată, presează ușor cu palmele, din centrul feței spre exterior.","Conform instrucțiunilor, de obicei o dată sau de două ori pe zi.","Evită conturul ochilor dacă serul nu este formulat pentru această zonă."],
+    ["Cremă de ochi","Cât un bob de orez pentru ambii ochi","Tapotează cu degetul inelar pe osul din jurul ochiului, nu pe pleoapa mobilă.","Dimineața și/sau seara.","Nu aplica prea aproape de linia genelor."],
+    ["Exfoliant cu BHA","Câteva picături sau un disc demachiant îmbibat","Pe zonele cu pori vizibili și puncte negre. Lasă-l să se absoarbă, apoi aplică crema.","Seara, de 2–3 ori pe săptămână. Începe cu o dată pe săptămână.","Nu în aceeași seară cu un retinoid. A doua zi folosește neapărat protecție solară."],
+    ["Tratament local","Un strat foarte subțire, doar pe imperfecțiune","Aplică punctual, doar pe coșuri. Zonele marcate sunt un exemplu.","Seara, conform instrucțiunilor.","Nu întinde pe toată fața. Dacă apar iritații, aplică mai rar."],
+    ["Cremă hidratantă","Cât o boabă de mazăre pentru față, puțin în plus pentru gât","Încălzește crema între degete și aplic-o cu mișcări ușoare, de jos în sus.","Dimineața și seara.","Pentru conturul ochilor folosește un produs dedicat."]
+  ],
+  freeEyebrow:"Fără abonament",freeTitle:"Tot ce contează este gratuit",
+  freeSub:"Aplicația pornește gratuit, fără card și fără perioadă de probă. Mai târziu vor exista funcții suplimentare, opționale, pentru cine vrea mai mult.",
+  tFree:"Gratuit",tLater:"Mai târziu · opțional",
+  tFreeList:["Testul de piele și profilul tău","Rutina de dimineață și de seară","Catalog de produse verificate","Harta feței pentru fiecare produs","Lista produselor pe care le ai deja"],
+  tLaterList:["Asistent AI pentru întrebări despre îngrijirea pielii","Urmărirea progresului cu fotografii","Mai multe rutine salvate","Comparații între produse"],
+  disclaimer:"SKIN AI este un instrument informativ pentru îngrijirea cosmetică a pielii. Nu pune diagnostice și nu înlocuiește consultul unui medic dermatolog.",
+  credit:"Concept și design: Raluca Jidvian · 2026"
+}};
+
+/* quiz logic is language-neutral: answers are stored as option indexes */
+const LOGIC = [
+  {k:"midday",o:[{oily:3},{combo:3},{normal:3},{dry:3}]},
+  {k:"cleanse",o:[{dry:2},{normal:2},{combo:2},{oily:2}]},
+  {k:"pores",o:[{dry:1,normal:1},{combo:1},{oily:1}]},
+  {k:"react",o:[{},{sens:2},{sens:4}]},
+  {k:"redness",o:[{},{sens:1},{sens:2,flag:"redness"}]},
+  {k:"dehyd",o:[{},{dehyd:2}]},
+  {k:"concerns",multi:true,o:[{c:"acne"},{c:"blackheads"},{c:"marks"},{c:"pigment"},{c:"redness"},{c:"dryness"},{c:"pores"},{c:"lines"},{none:true}]},
+  {k:"spf",o:[{spf:true},{},{}]}
+];
+const FACE = ["forehead","nose","left_cheek","right_cheek","chin"];
+const PZ = [
+  {z:[...FACE,"neck"]},
+  {z:[...FACE,"neck"],avoid:true},
+  {z:["eye_area"]},
+  {z:["forehead","nose","chin"],avoid:true},
+  {z:["chin","forehead"],avoid:true},
+  {z:[...FACE,"neck"]}
+];
+
+const store = {
+  get(k){ try{ return JSON.parse(localStorage.getItem(k)); }catch(e){ return null; } },
+  set(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+};
+let lang = store.get("skinai-lang") === "ro" ? "ro" : "de";
+let st = store.get("skinai-quiz2") || {i:-1,a:{}};
+let prod = 0;
+const L = () => T[lang];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const $ = s => document.querySelector(s);
+
+function applyLang(){
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-t]").forEach(n => n.textContent = L()[n.dataset.t]);
+  document.querySelectorAll("[data-th]").forEach(n => n.innerHTML = L()[n.dataset.th]);
+  document.querySelectorAll("[data-tl]").forEach(n => n.innerHTML = L()[n.dataset.tl].map(x=>`<li>${esc(x)}</li>`).join(""));
+  document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang===lang));
+  $("#products").setAttribute("aria-label", lang==="de"?"Produkt wählen":"Alege produsul");
+  $("#types").setAttribute("aria-label", L().gTypes); $("#problems").setAttribute("aria-label", L().gProblems);
+  renderProducts(); showProduct(prod); renderSkin(); renderLex(); renderQuiz();
+}
+document.querySelectorAll(".lang button").forEach(b => b.onclick = () => { lang = b.dataset.lang; store.set("skinai-lang", lang); applyLang(); });
+
+/* ---------- quiz ---------- */
+const qEl = $("#quiz");
+const save = () => store.set("skinai-quiz2", st);
+function renderQuiz(){
+  const t = L();
+  if(st.i < 0){
+    qEl.innerHTML = `<div class="start">
+      <span class="mono">${esc(t.qStartMeta)}</span>
+      <h3>${esc(t.qStartTitle)}</h3>
+      <ul>${t.qStartList.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+      <div class="btns"><button class="btn" id="q-start">${esc(t.qStartBtn)}</button></div></div>`;
+    $("#q-start").onclick = () => { st = {i:0,a:{}}; save(); renderQuiz(); };
+    return;
+  }
+  if(st.i >= LOGIC.length) return renderResult();
+  const lg = LOGIC[st.i], [qt, opts] = t.Q[st.i], sel = st.a[lg.k] || [];
+  qEl.innerHTML = `
+    <div class="progress"><i style="width:${Math.round(st.i/LOGIC.length*100)}%"></i></div>
+    <div class="qmeta"><span class="mono">${esc(t.qOf(st.i+1, LOGIC.length))}</span>${lg.multi?`<span class="mono">${esc(t.qMulti)}</span>`:""}</div>
+    <h3>${esc(qt)}</h3>
+    <div class="opts${lg.multi?" multi two":""}">${opts.map((o,j)=>`<button class="opt" data-j="${j}" aria-pressed="${sel.includes(j)}">${esc(o)}</button>`).join("")}</div>
+    <div class="qnav">
+      <button class="btn ghost" id="q-back">${esc(t.qBack)}</button>
+      <button class="btn" id="q-next" ${sel.length?"":"disabled"}>${esc(st.i===LOGIC.length-1?t.qDone:t.qNext)}</button>
+    </div>`;
+  qEl.querySelectorAll(".opt").forEach(b => b.onclick = () => {
+    const j = +b.dataset.j;
+    if(lg.multi){
+      let cur = (st.a[lg.k]||[]).slice();
+      if(lg.o[j].none) cur = [j];
+      else { cur = cur.filter(x => !lg.o[x].none); cur = cur.includes(j) ? cur.filter(x=>x!==j) : cur.concat(j); }
+      st.a[lg.k] = cur; save(); renderQuiz();
+    } else { st.a[lg.k] = [j]; st.i++; save(); renderQuiz(); }
+  });
+  $("#q-back").onclick = () => { st.i--; save(); renderQuiz(); };
+  $("#q-next").onclick = () => { st.i++; save(); renderQuiz(); };
+}
+function score(){
+  const s = {oily:0,combo:0,normal:0,dry:0,sens:0,dehyd:0}, concerns = new Set(), flags = new Set(); let spf=false;
+  LOGIC.forEach(q => (st.a[q.k]||[]).forEach(j => {
+    const v = q.o[j];
+    for(const d in s) if(v[d]) s[d]+=v[d];
+    if(v.c) concerns.add(v.c); if(v.flag) flags.add(v.flag); if(v.spf) spf=true;
+  }));
+  const r = ["oily","combo","normal","dry"].sort((x,y)=>s[y]-s[x]);
+  if(s.dehyd) concerns.add("dehyd");
+  return {type: s[r[0]]-s[r[1]] >= 1 ? r[0] : "und", sens: s.sens>=4?"high":s.sens>=2?"mid":"low", concerns:[...concerns], flags, spf};
+}
+function routine(r){
+  const t = L().rt, moist = t.moist[r.type];
+  const cl = (r.type==="dry"||r.sens==="high") ? t.cleanseSoft : t.cleanse;
+  const am = [[cl,""],[moist, r.type==="dry"?"Ceramide NP · Glycerin":"Glycerin · Niacinamide"],[t.spf,t.spfNote]];
+  const c = r.concerns, pm = [[cl,""]];
+  if(r.sens==="high") pm.push([t.calm,"Panthenol · Ceramide NP · Allantoin"]);
+  else {
+    if(c.some(x=>["acne","blackheads","pores"].includes(x))) pm.push([t.bha,"Salicylic Acid"]);
+    if(c.some(x=>["marks","pigment"].includes(x))) pm.push([t.spots,"Niacinamide · Azelaic Acid"]);
+    if(c.includes("lines")) pm.push([t.retinoid,"Retinol"]);
+    if(c.includes("redness")) pm.push([t.red,"Azelaic Acid · Panthenol"]);
+  }
+  pm.push([moist,""]);
+  return {am,pm};
+}
+function renderResult(){
+  const t = L(), r = score(), rt = routine(r);
+  const li = a => a.map(([n,i]) => `<li><span>${esc(n)}${i?`<small class="mono">${esc(i)}</small>`:""}</span></li>`).join("");
+  const n = [];
+  if(r.type==="und") n.push(t.notes.und);
+  if(r.sens==="high") n.push(t.notes.sens);
+  if(r.flags.has("redness")) n.push(t.notes.red);
+  if(!r.spf) n.push(t.notes.spf);
+  if(r.sens!=="high" && r.concerns.includes("lines") && r.concerns.some(x=>["acne","blackheads","pores"].includes(x))) n.push(t.notes.mix);
+  const cNames = r.concerns.map(x=>t.conc[x]);
+  const summary = t.rSummary(t.types[r.type], t.sens[r.sens], cNames.join(", "));
+  qEl.innerHTML = `<div class="result">
+    <span class="eyebrow">${esc(t.rEyebrow)}</span>
+    <h3>${esc(t.types[r.type])} · ${esc(t.sens[r.sens])}</h3>
+    ${cNames.length?`<div class="chips">${cNames.map(x=>`<span class="chip">${esc(x)}</span>`).join("")}</div>`:`<p class="muted">${esc(t.rNone)}</p>`}
+    <div class="routine">
+      <div><span class="eyebrow">${esc(t.rAm)}</span><ol>${li(rt.am)}</ol></div>
+      <div><span class="eyebrow">${esc(t.rPm)}</span><ol>${li(rt.pm)}</ol></div>
+    </div>
+    ${n.map(x=>`<p class="note">${x}</p>`).join("")}
+    <p class="fine">${esc(t.rFine)}</p>
+    <div class="btns"><button class="btn" id="q-copy">${esc(t.rCopy)}</button><button class="btn ghost" id="q-redo">${esc(t.rRedo)}</button></div>
+    <span class="copied" id="q-copied" hidden>${esc(t.rCopied)}</span>
+    <p class="mono" id="q-sum" hidden>${esc(summary)}</p></div>`;
+  $("#q-redo").onclick = () => { st = {i:0,a:{}}; save(); renderQuiz(); };
+  $("#q-copy").onclick = () => {
+    const ok = () => { $("#q-copied").hidden = false; };
+    const fb = () => { const p=$("#q-sum"); p.hidden=false; const g=document.createRange(); g.selectNodeContents(p); const s=getSelection(); s.removeAllRanges(); s.addRange(g); };
+    try{ navigator.clipboard.writeText(summary).then(ok, fb); }catch(e){ fb(); }
+  };
+}
+
+/* ---------- face map ---------- */
+function renderProducts(){
+  const w = $("#products"); w.innerHTML = "";
+  L().P.forEach((p,i) => { const b = document.createElement("button"); b.className="pbtn"; b.textContent=p[0]; b.setAttribute("aria-pressed", i===prod); b.onclick=()=>showProduct(i); w.appendChild(b); });
+}
+function showProduct(i){
+  prod = i; const t = L(), p = t.P[i], z = PZ[i];
+  document.querySelectorAll("#products .pbtn").forEach((b,j)=>b.setAttribute("aria-pressed", j===i));
+  highlight(face1, z.z, !!z.avoid);
+  $("#pName").textContent = p[0];
+  let zs = z.z.length>=6 ? t.zAll : z.z.map(k=>t.zn[k]).join(", ");
+  zs = zs.charAt(0).toUpperCase()+zs.slice(1);
+  $("#pZones").textContent = zs + (z.avoid ? " · " + t.zAvoid : "");
+  $("#pAmount").textContent = p[1]; $("#pHow").textContent = p[2]; $("#pFreq").textContent = p[3]; $("#pWarn").textContent = p[4];
+}
+/* ---------- skin types & concerns ---------- */
+const SK = [
+  {k:"normal",g:"t",z:FACE,ing:"Glycerin · Niacinamide"},
+  {k:"dry",g:"t",z:["left_cheek","right_cheek","forehead"],ing:"Ceramide NP · Squalane · Glycerin · Urea"},
+  {k:"oily",g:"t",z:FACE,ing:"Niacinamide · Salicylic Acid · Zinc PCA"},
+  {k:"combo",g:"t",z:["forehead","nose","chin"],ing:"Niacinamide · Salicylic Acid"},
+  {k:"sens",g:"t",z:["left_cheek","right_cheek","nose"],ing:"Panthenol · Allantoin · Ceramide NP"},
+  {k:"acne",g:"p",z:["forehead","nose","chin"],ing:"Salicylic Acid · Benzoyl Peroxide · Azelaic Acid · Niacinamide",med:true},
+  {k:"pores",g:"p",z:["nose","chin","forehead"],ing:"Salicylic Acid · Niacinamide"},
+  {k:"pigment",g:"p",z:["left_cheek","right_cheek","forehead"],ing:"Niacinamide · Azelaic Acid · Ascorbic Acid",med:true},
+  {k:"redness",g:"p",z:["left_cheek","right_cheek","nose","chin"],ing:"Azelaic Acid · Panthenol · Allantoin",med:true},
+  {k:"dehyd",g:"p",z:FACE,ing:"Glycerin · Sodium Hyaluronate · Panthenol"},
+  {k:"lines",g:"p",z:["eye_area","forehead"],ing:"Retinol · Peptides · Ascorbic Acid"}
+];
+let skin = 3;
+function renderSkin(){
+  const t = L(); $("#types").innerHTML = ""; $("#problems").innerHTML = "";
+  SK.forEach((s,i) => {
+    const b = document.createElement("button"); b.className = "pbtn sbtn"; b.textContent = t.S[s.k][0];
+    b.onclick = () => showSkin(i); (s.g==="t" ? $("#types") : $("#problems")).appendChild(b);
+  });
+  showSkin(skin);
+}
+function showSkin(i){
+  skin = i; const s = SK[i], v = L().S[s.k];
+  document.querySelectorAll(".sbtn").forEach((b,j) => b.setAttribute("aria-pressed", j===i));
+  highlight(face2, s.z, false);
+  $("#sName").textContent = v[0]; $("#sSignV").textContent = v[1]; $("#sZonesV").textContent = v[2];
+  $("#sHelpV").textContent = v[3]; $("#sIngV").textContent = s.ing;
+  const n = $("#sNoteV"); n.textContent = v[4]; n.classList.toggle("flag", !!s.med);
+}
+function highlight(svg, zones, avoid){
+  svg.querySelectorAll(".z").forEach(e => e.classList.toggle("on", zones.includes(e.dataset.zone)));
+  svg.querySelectorAll(".avoid").forEach(e => e.classList.toggle("on", avoid));
+}
+const face1 = $("#karte svg.face");
+const face2 = face1.cloneNode(true);
+face2.querySelector("title").removeAttribute("id"); face2.removeAttribute("aria-labelledby");
+face2.setAttribute("aria-label", "Face map");
+$("#face2").appendChild(face2);
+
+/* ---------- ingredient lexicon & combo check ---------- */
+const ING = [["niacinamide","Niacinamide"],["bha","Salicylic Acid"],["aha","Glycolic Acid · Lactic Acid"],["retinol","Retinol"],["vitc","Ascorbic Acid"],["azelaic","Azelaic Acid"],["bpo","Benzoyl Peroxide"],["ha","Sodium Hyaluronate"],["ceramide","Ceramide NP"],["panthenol","Panthenol"]];
+const GENTLE = ["ha","ceramide","panthenol"], ACIDS = ["aha","bha"];
+let ingSel = 3, cA = "retinol", cB = "vitc";
+function pairRule(a,b){
+  const has = (x,y) => (a===x&&b===y)||(a===y&&b===x);
+  const one = (x,list) => (a===x&&list.includes(b))||(b===x&&list.includes(a));
+  if(a===b) return ["none",null];
+  if(GENTLE.includes(a)||GENTLE.includes(b)) return ["good","gentle"];
+  if(has("niacinamide","retinol")) return ["good","nia_ret"];
+  if(has("niacinamide","vitc")) return ["good","nia_vitc"];
+  if(a==="niacinamide"||b==="niacinamide") return ["good","nia_any"];
+  if(one("retinol",ACIDS)) return ["split","ret_acid"];
+  if(has("retinol","bpo")) return ["split","ret_bpo"];
+  if(has("retinol","vitc")) return ["split","ret_vitc"];
+  if(has("retinol","azelaic")) return ["caution","ret_aze"];
+  if(has("aha","bha")) return ["caution","aha_bha"];
+  if(one("vitc",ACIDS)) return ["split","vitc_acid"];
+  if(has("vitc","bpo")) return ["split","vitc_bpo"];
+  if(one("bpo",ACIDS)) return ["caution","bpo_acid"];
+  if(one("azelaic",ACIDS)) return ["caution","aze_acid"];
+  if(has("azelaic","vitc")) return ["good","aze_vitc"];
+  if(has("azelaic","bpo")) return ["caution","aze_bpo"];
+  return ["caution",null];
+}
+function renderLex(){
+  const t = L(), list = $("#ingList"); list.innerHTML = ""; list.setAttribute("aria-label", t.lexEyebrow);
+  ING.forEach(([k,inci],i) => {
+    const b = document.createElement("button"); b.className = "ibtn";
+    b.innerHTML = `<b>${esc(t.I[k][0])}</b><small>${esc(inci)}</small>`;
+    b.onclick = () => showIng(i); list.appendChild(b);
+  });
+  showIng(ingSel);
+  for(const [id,val] of [["#cSelA",cA],["#cSelB",cB]]){
+    const sel = $(id); sel.innerHTML = ING.map(([k]) => `<option value="${k}">${esc(t.I[k][0])}</option>`).join(""); sel.value = val;
+  }
+  renderCombo();
+}
+function showIng(i){
+  ingSel = i; const [k,inci] = ING[i], v = L().I[k];
+  document.querySelectorAll(".ibtn").forEach((b,j) => b.setAttribute("aria-pressed", j===i));
+  $("#iInci").textContent = inci; $("#iName").textContent = v[0];
+  $("#iDoes").textContent = v[1]; $("#iFor").textContent = v[2]; $("#iUse").textContent = v[3]; $("#iWarn").textContent = v[4];
+}
+function renderCombo(){
+  const t = L(), [lv,key] = pairRule(cA,cB);
+  $("#cRes").className = "combo-res " + lv;
+  $("#cBadge").textContent = t.lv[lv];
+  $("#cText").textContent = lv==="none" ? t.cSame : t.C[key];
+}
+$("#cSelA").onchange = e => { cA = e.target.value; renderCombo(); };
+$("#cSelB").onchange = e => { cB = e.target.value; renderCombo(); };
+
+applyLang();
+})();
+</script>
+
+</body></html>
