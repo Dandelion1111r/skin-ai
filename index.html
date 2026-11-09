@@ -6,6 +6,23 @@
 <title>SKIN AI – Konzept-Prototyp</title>
 <meta name="description" content="Interaktiver Konzept-Prototyp einer Skincare-App mit Hauttest, Gesichtskarte und Wirkstoff-Lexikon. Konzept und Design: Raluca Jidvian.">
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#F7F5F6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#18121A" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SKIN AI">
+<meta property="og:title" content="SKIN AI – Verstehe deine Haut">
+<meta property="og:description" content="Konzept-Prototyp einer Skincare-App: Hauttest, Gesichtskarte und Wirkstoff-Lexikon. Konzept und Design: Raluca Jidvian.">
+<meta property="og:url" content="https://dandelion1111r.github.io/skin-ai/">
+<meta property="og:image" content="https://dandelion1111r.github.io/skin-ai/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SKIN AI: Porträt mit markierten Gesichtszonen neben dem Schriftzug Verstehe deine Haut">
+<meta property="og:locale" content="de_DE">
+<meta property="og:locale:alternate" content="ro_RO">
+<meta name="twitter:card" content="summary_large_image">
 <style>
 @font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/bodoni-moda-latin-ext-400-normal.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 @font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/bodoni-moda-latin-400-normal.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
@@ -26,7 +43,7 @@ footer .legal-links a{color:var(--muted);padding-block:.4rem}
 </style>
 </head>
 <body>
-<div class="proto-bar">Konzept-Prototyp · keine echte App, es werden keine Daten übertragen</div>
+<div class="proto-bar" data-t="protoBar">Konzept-Prototyp · keine echte App, es werden keine Daten übertragen</div>
 <style>
 /* Layout: editorial two-column sections (label column + content column) on a 12-col rhythm; the face map is the one bold object. */
 :root{
@@ -54,6 +71,7 @@ footer .legal-links a{color:var(--muted);padding-block:.4rem}
   --accent:#DBA5BB;--accent-soft:#35242E;--zone:#B66A8B;--warn:#E5A87A;--ok:#8FC6A0;--ok-bg:#1F2E24;--mid:#E6B676;--mid-bg:#33281A;--bad:#E79AB2;--bad-bg:#3A1F29;color-scheme:dark}
 
 *{box-sizing:border-box}
+html,body{margin:0}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:400;font-size:1.0625rem;line-height:1.6;
   -webkit-font-smoothing:antialiased;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -73,14 +91,21 @@ button{font:inherit;cursor:pointer}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
 /* header */
-header{display:flex;justify-content:space-between;align-items:center;gap:var(--s2) var(--s4);flex-wrap:wrap;padding-block:1.25rem;border-bottom:1px solid var(--line)}
-.logo{font-family:var(--display);font-weight:500;font-size:1.35rem;letter-spacing:.28em;color:var(--ink);text-decoration:none;white-space:nowrap}
+.site-header{display:flex;justify-content:space-between;align-items:center;gap:var(--s2) var(--s4);flex-wrap:wrap;padding-block:.9rem;position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--bg)}
+.site-header::after{content:"";position:absolute;bottom:0;left:max(16px,env(safe-area-inset-left,0px));right:max(16px,env(safe-area-inset-right,0px));height:1px;background:var(--line)}
+.site-header.scrolled{box-shadow:0 10px 24px -22px rgba(36,27,35,.6)}
+.logo{font-family:var(--display);font-weight:500;font-size:1.35rem;letter-spacing:.28em;color:var(--ink);text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:.6rem}
+.mark{width:1.7rem;height:1.7rem;flex:none;color:var(--ink)}
+.mark-dot{fill:var(--accent)}
 .hdr-right{display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap}
 nav{display:flex;gap:var(--s3);flex-wrap:wrap}
-nav a{color:var(--muted);text-decoration:none;font-size:.92rem;padding-block:.5rem;display:inline-block}
+nav a{color:var(--muted);text-decoration:none;font-size:.92rem;padding-block:.5rem;display:inline-block;white-space:nowrap}
+nav a.active{color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:6px}
+section{scroll-margin-top:5.5rem}
 nav a:hover{color:var(--ink)}
 .lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px}
-.lang button{background:transparent;border:0;color:var(--muted);padding:.25rem .75rem;border-radius:999px;font-size:.8rem;font-weight:500;letter-spacing:.08em}
+.lang button{background:transparent;border:0;color:var(--muted);min-width:44px;min-height:36px;padding:.25rem .8rem;border-radius:999px;font-size:.8rem;font-weight:500;letter-spacing:.08em}
 .lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
 
 /* hero */
@@ -294,7 +319,11 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
   .map{grid-template-columns:1fr;gap:var(--s3)}
 }
 @media (max-width:600px){
-  nav{display:none}
+  .hdr-right{display:contents}
+  nav{order:3;flex-basis:100%;flex-wrap:nowrap;overflow-x:auto;gap:1.25rem;scrollbar-width:none;margin-top:-.25rem;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent)}
+  nav::-webkit-scrollbar{display:none}
+  .lang button{min-height:40px}
+  section{scroll-margin-top:8.5rem}
   .routine,.tiers,.opts.two{grid-template-columns:1fr}
   .quiz{padding:var(--s3)}
   .quiz h3{font-size:1.35rem}
@@ -307,12 +336,18 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
   .profile dt{padding-bottom:0;border-bottom:0}
   .profile dd{padding-top:.15rem}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hero-copy > *,.hero .profile{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.hero-copy > :nth-child(2){animation-delay:.08s}
+.hero-copy > :nth-child(3){animation-delay:.16s}
+.hero-copy > :nth-child(4){animation-delay:.24s}
+.hero .profile{animation-delay:.32s}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 
 <div class="wrap">
-<header>
-  <a class="logo" href="#top" id="top">SKIN AI</a>
+<header class="site-header">
+  <a class="logo" href="#top" id="top" aria-label="SKIN AI"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="16" rx="10.5" ry="13.5" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="16" cy="10" rx="6" ry="2.6" class="mark-dot"/></svg><span>SKIN AI</span></a>
   <div class="hdr-right">
     <nav aria-label="Navigation">
       <a href="#ablauf" data-t="nav1"></a>
@@ -590,11 +625,11 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
 </section>
 
 <footer>
-  <div><span class="logo">SKIN AI</span></div>
+  <div><span class="logo"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="16" rx="10.5" ry="13.5" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="16" cy="10" rx="6" ry="2.6" class="mark-dot"/></svg><span>SKIN AI</span></span></div>
   <div>
     <p class="muted" data-t="disclaimer"></p>
     <p class="mono" data-t="credit"></p>
-    <p class="legal-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><span class="muted">Foto: Unsplash</span></p>
+    <p class="legal-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="https://github.com/Dandelion1111r/skin-ai">GitHub</a><span class="muted">Foto: Unsplash</span></p>
   </div>
 </footer>
 </div>
@@ -683,6 +718,7 @@ de:{
     lines:["Feine Linien & Falten","Feine Linien um die Augen und auf der Stirn, nachlassende Spannkraft.","Augenpartie und Stirn","Retinoide langsam einführen, dazu Peptide und täglicher Sonnenschutz.","Retinoide machen die Haut sonnenempfindlicher. Nicht am selben Abend wie BHA verwenden."]
   },
   nav1:"So funktioniert's",nav2:"Hauttest",nav3:"Gesichtskarte",nav4:"Kostenlos",
+  docTitle:"SKIN AI – Konzept-Prototyp",protoBar:"Konzept-Prototyp · keine echte App, es werden keine Daten übertragen",
   heroEyebrow:"Personalisierte Hautpflege",
   heroTitle:"<span>Verstehe deine Haut.</span><span><em>Finde deine Produkte.</em></span><span>Baue deine Routine.</span>",
   heroLead:"Ein Test von zwei Minuten zeigt dir deinen Hauttyp, worauf du achten solltest und wie eine passende Routine für morgens und abends aussieht.",
@@ -825,8 +861,9 @@ ro:{
     lines:["Linii fine și riduri","Linii fine în jurul ochilor și pe frunte, piele mai puțin fermă.","Conturul ochilor și fruntea","Retinoizi introduși treptat, peptide și protecție solară zilnică.","Retinoizii fac pielea mai sensibilă la soare. Nu îi folosi în aceeași seară cu BHA."]
   },
   nav1:"Cum funcționează",nav2:"Testul de piele",nav3:"Harta feței",nav4:"Gratuit",
+  docTitle:"SKIN AI – Prototip de concept",protoBar:"Prototip de concept · nu este o aplicație reală, nu se transmit date",
   heroEyebrow:"Îngrijire personalizată a pielii",
-  heroTitle:"<span>Înțelege-ți pielea.</span><span><em>Descoperă-ți produsele.</em></span><span>Construiește-ți rutina.</span>",
+  heroTitle:"<span>Înțelege-⁠ți pielea.</span><span><em>Descoperă-⁠ți produsele.</em></span><span>Construiește-⁠ți rutina.</span>",
   heroLead:"Un test de două minute îți arată ce tip de ten ai, pe ce să te concentrezi și cum arată o rutină potrivită pentru dimineață și seară.",
   heroCta1:"Începe testul",heroCta2:"Vezi harta feței",
   pfTitle:"Exemplu de profil",pfType:"Tip de ten",pfTypeV:"Mixt",pfSens:"Sensibilitate",pfSensV:"Moderată",pfFocus:"Focus",pfFocusV:"Pori vizibili, puncte negre",pfIng:"Ingrediente",pfPm:"Seara",pfPmV:"Curățare → BHA (2×/săpt.) → Cremă",
@@ -921,6 +958,7 @@ const $ = s => document.querySelector(s);
 
 function applyLang(){
   document.documentElement.lang = lang;
+  document.title = L().docTitle;
   document.querySelectorAll("[data-t]").forEach(n => n.textContent = L()[n.dataset.t]);
   document.querySelectorAll("[data-th]").forEach(n => n.innerHTML = L()[n.dataset.th]);
   document.querySelectorAll("[data-tl]").forEach(n => n.innerHTML = L()[n.dataset.tl].map(x=>`<li>${esc(x)}</li>`).join(""));
@@ -930,6 +968,17 @@ function applyLang(){
   renderProducts(); showProduct(prod); renderSkin(); renderLex(); renderQuiz();
 }
 document.querySelectorAll(".lang button").forEach(b => b.onclick = () => { lang = b.dataset.lang; store.set("skinai-lang", lang); applyLang(); });
+
+/* ---------- header state ---------- */
+const hdr = $(".site-header");
+const navLinks = [...document.querySelectorAll("nav a")];
+const onScroll = () => {
+  hdr.classList.toggle("scrolled", scrollY > 8);
+  let cur = null;
+  navLinks.forEach(a => { const sec = document.querySelector(a.getAttribute("href")); if(sec && sec.getBoundingClientRect().top < 140) cur = a; });
+  navLinks.forEach(a => a.classList.toggle("active", a === cur));
+};
+addEventListener("scroll", onScroll, {passive:true}); onScroll();
 
 /* ---------- quiz ---------- */
 const qEl = $("#quiz");
