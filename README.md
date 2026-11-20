@@ -10,7 +10,7 @@
 
 | Bereich | Was er zeigt |
 | --- | --- |
-| Hauttest | 8 Fragen, danach Hauttyp, Empfindlichkeit, Fokus und eine Routine für morgens und abends |
+| Hauttest | 9 Fragen, inklusive Schwangerschaft, danach Hauttyp, Empfindlichkeit, Fokus und eine Routine für morgens und abends |
 | Gesichtskarte | Für 6 Produkte: wo, wie viel und wie oft sie aufgetragen werden, inklusive Zonen zum Aussparen |
 | Hauttypen und Hautprobleme | 6 Hauttypen und 11 Hautprobleme mit Merkmalen, typischen Zonen und passenden Wirkstoffen |
 | Wirkstoff-Lexikon | 10 Wirkstoffe mit INCI-Name, Wirkung, Anwendung und Hinweisen |

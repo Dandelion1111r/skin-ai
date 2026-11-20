@@ -733,11 +733,11 @@ de:{
   heroCta1:"Hauttest starten",heroCta2:"Gesichtskarte ansehen",
   pfTitle:"Beispielprofil",pfType:"Hauttyp",pfTypeV:"Mischhaut",pfSens:"Empfindlichkeit",pfSensV:"Mittel",pfFocus:"Fokus",pfFocusV:"Sichtbare Poren, Mitesser",pfIng:"Wirkstoffe",pfPm:"Abends",pfPmV:"Reinigung → BHA (2×/Woche) → Creme",
   howEyebrow:"So funktioniert's",howTitle:"In drei Schritten zu deiner Routine",
-  s1t:"Fragen beantworten",s1d:"Acht Fragen dazu, wie sich deine Haut im Laufe des Tages verhält und was dich stört.",
+  s1t:"Fragen beantworten",s1d:"Neun Fragen dazu, wie sich deine Haut im Laufe des Tages verhält und was dich stört.",
   s2t:"Profil erhalten",s2d:"Hauttyp, Empfindlichkeit und deine Hautanliegen, einfach erklärt.",
   s3t:"Routine aufbauen",s3d:"Die Schritte für morgens und abends, passende Wirkstoffe und wo jedes Produkt aufgetragen wird.",
   testEyebrow:"Hauttest",testTitle:"Welcher Hauttyp bist du?",testSub:"Dauert etwa zwei Minuten. Deine Antworten bleiben in deinem Browser.",
-  qStartMeta:"8 Fragen · etwa 2 Minuten",qStartTitle:"Antworte so, wie sich deine Haut normalerweise verhält.",
+  qStartMeta:"9 Fragen · etwa 2 Minuten",qStartTitle:"Antworte so, wie sich deine Haut normalerweise verhält.",
   qStartList:["Dein Hauttyp und deine Empfindlichkeit","Die Hautanliegen, auf die du dich konzentrieren solltest","Eine Basisroutine für morgens und abends"],
   qStartBtn:"Test starten",qOf:(a,b)=>`Frage ${a} von ${b}`,qMulti:"Mehrfachauswahl",qBack:"Zurück",qNext:"Weiter",qDone:"Ergebnis ansehen",
   rEyebrow:"Dein Profil",rAm:"Morgens",rPm:"Abends",rNone:"Du hast kein bestimmtes Anliegen gewählt. Eine einfache, regelmäßige Basisroutine reicht dir.",
@@ -751,11 +751,13 @@ de:{
     cleanseSoft:"Milde, cremige Reinigung ohne Duftstoffe",cleanse:"Milde Gel-Reinigung",
     spf:"Sonnenschutz mit LSF 30 oder höher",spfNote:"Der wichtigste Schritt am Morgen",
     calm:"Beruhigendes Serum für die Hautbarriere",bha:"BHA-Peeling, 2–3 Mal pro Woche",spots:"Serum gegen Flecken, an Abenden ohne Peeling",
-    retinoid:"Retinoid, langsam einführen (anfangs 1–2 Abende pro Woche)",red:"Beruhigende Pflege bei Rötungen"},
+    retinoid:"Retinoid, langsam einführen (anfangs 1–2 Abende pro Woche)",retinoidPreg:"Statt Retinol: Azelainsäure oder Niacinamid",red:"Beruhigende Pflege bei Rötungen"},
   notes:{und:"<b>Dein Hauttyp ist noch nicht eindeutig.</b> Deine Antworten deuten in mehrere Richtungen. Beobachte deine Haut ein paar Tage und mache den Test dann noch einmal.",
     sens:"<b>Empfindliche Haut.</b> Führe immer nur ein neues Produkt ein und teste es zuerst 48 Stunden lang an einer kleinen Stelle.",
     red:"<b>Häufige Rötungen</b> können verschiedene Ursachen haben. Lass sie am besten hautärztlich abklären.",
     spf:"<b>Täglicher Sonnenschutz</b> beugt Pigmentflecken und vorzeitiger Hautalterung vor. Damit solltest du anfangen.",
+    preg:"<b>Schwangerschaft und Stillzeit.</b> Retinoide sind in dieser Zeit tabu und kommen in deiner Routine nicht vor. Sprich neue Wirkstoffe am besten mit deiner Ärztin, deinem Arzt oder deiner Hebamme ab.",
+    pregMaybe:"<b>Gut zu wissen:</b> Falls du schwanger bist oder stillst, verzichte auf Retinoide.",
     mix:"<b>Retinoid und BHA</b> nicht am selben Abend verwenden. Wechsle sie ab."},
   Q:[
     ["Wie fühlt sich deine Haut gegen Mittag an?",["Überall glänzend","Nur in der T-Zone glänzend (Stirn, Nase, Kinn)","Angenehm und ausgeglichen","Spannend oder schuppig"]],
@@ -765,7 +767,8 @@ de:{
     ["Bemerkst du Rötungen oder plötzliches Erröten im Gesicht?",["Nein","Gelegentlich","Häufig"]],
     ["Spannt deine Haut oder wirkt sie fahl, auch wenn sie gleichzeitig fettet?",["Nein","Ja"]],
     ["Worauf möchtest du dich konzentrieren?",["Akne","Mitesser","Aknemale","Pigmentflecken","Rötungen","Trockenheit","Sichtbare Poren","Feine Linien","Nichts Bestimmtes"]],
-    ["Verwendest du jeden Morgen Sonnenschutz?",["Ja, fast täglich","Nur im Sommer oder im Urlaub","Nein"]]
+    ["Verwendest du jeden Morgen Sonnenschutz?",["Ja, fast täglich","Nur im Sommer oder im Urlaub","Nein"]],
+    ["Bist du schwanger oder stillst du gerade?",["Nein","Ja","Möchte ich nicht angeben"]]
   ],
   mapEyebrow:"Gesichtskarte",mapTitle:"Wo wird welches Produkt aufgetragen?",
   mapSub:"Nicht jedes Serum und jede Creme gehört auf das ganze Gesicht. Wähle ein Produkt und sieh dir Zonen, Menge und Anwendung an.",
@@ -882,11 +885,11 @@ ro:{
   heroCta1:"Începe testul",heroCta2:"Vezi harta feței",
   pfTitle:"Exemplu de profil",pfType:"Tip de ten",pfTypeV:"Mixt",pfSens:"Sensibilitate",pfSensV:"Moderată",pfFocus:"Focus",pfFocusV:"Pori vizibili, puncte negre",pfIng:"Ingrediente",pfPm:"Seara",pfPmV:"Curățare → BHA (2×/săpt.) → Cremă",
   howEyebrow:"Cum funcționează",howTitle:"Trei pași până la rutina ta",
-  s1t:"Răspunzi la întrebări",s1d:"Opt întrebări despre cum se comportă pielea ta pe parcursul zilei și ce te deranjează.",
+  s1t:"Răspunzi la întrebări",s1d:"Nouă întrebări despre cum se comportă pielea ta pe parcursul zilei și ce te deranjează.",
   s2t:"Primești profilul",s2d:"Tipul de ten, sensibilitatea și problemele pe care să te concentrezi, explicate simplu.",
   s3t:"Îți construiești rutina",s3d:"Pașii de dimineață și de seară, ingredientele potrivite și unde se aplică fiecare produs.",
   testEyebrow:"Testul de piele",testTitle:"Ce tip de ten ai?",testSub:"Durează aproximativ două minute. Răspunsurile rămân în browserul tău.",
-  qStartMeta:"8 întrebări · aproximativ 2 minute",qStartTitle:"Răspunde după cum se comportă pielea ta de obicei.",
+  qStartMeta:"9 întrebări · aproximativ 2 minute",qStartTitle:"Răspunde după cum se comportă pielea ta de obicei.",
   qStartList:["Tipul de ten și nivelul de sensibilitate","Problemele pe care să te concentrezi","O rutină de bază pentru dimineață și seară"],
   qStartBtn:"Începe testul",qOf:(a,b)=>`Întrebarea ${a} din ${b}`,qMulti:"Alegere multiplă",qBack:"Înapoi",qNext:"Mai departe",qDone:"Vezi rezultatul",
   rEyebrow:"Profilul tău",rAm:"Dimineața",rPm:"Seara",rNone:"Nu ai ales o problemă anume. O rutină de bază, folosită constant, este suficientă.",
@@ -900,11 +903,13 @@ ro:{
     cleanseSoft:"Produs de curățare blând, cremos, fără parfum",cleanse:"Gel de curățare blând",
     spf:"Protecție solară SPF 30 sau mai mare",spfNote:"Cel mai important pas al dimineții",
     calm:"Ser calmant pentru bariera pielii",bha:"Exfoliant cu BHA, de 2–3 ori pe săptămână",spots:"Ser pentru pete, în serile fără exfoliant",
-    retinoid:"Retinoid, introdus treptat (la început 1–2 seri pe săptămână)",red:"Produs calmant pentru roșeață"},
+    retinoid:"Retinoid, introdus treptat (la început 1–2 seri pe săptămână)",retinoidPreg:"În loc de retinol: acid azelaic sau niacinamidă",red:"Produs calmant pentru roșeață"},
   notes:{und:"<b>Tipul de ten nu este încă clar.</b> Răspunsurile tale indică mai multe direcții. Observă-ți pielea câteva zile și refă testul.",
     sens:"<b>Piele sensibilă.</b> Introdu un singur produs nou o dată și testează-l mai întâi pe o zonă mică, timp de 48 de ore.",
     red:"<b>Roșeața frecventă</b> poate avea mai multe cauze. Merită o consultație la medicul dermatolog.",
     spf:"<b>Protecția solară zilnică</b> ajută la prevenirea petelor și a îmbătrânirii premature. Este primul obicei pe care merită să-l adaugi.",
+    preg:"<b>Sarcină și alăptare.</b> Retinoizii nu se folosesc în această perioadă și nu apar în rutina ta. Discută ingredientele noi cu medicul sau cu moașa.",
+    pregMaybe:"<b>De reținut:</b> dacă ești însărcinată sau alăptezi, evită retinoizii.",
     mix:"<b>Retinoidul și BHA-ul</b> nu se folosesc în aceeași seară. Alternează-le."},
   Q:[
     ["Cum îți simți pielea la prânz?",["Lucioasă pe toată fața","Lucioasă doar în zona T (frunte, nas, bărbie)","Confortabilă și echilibrată","Întinsă sau cu zone descuamate"]],
@@ -914,7 +919,8 @@ ro:{
     ["Observi roșeață sau înroșire bruscă a feței?",["Nu","Ocazional","Frecvent"]],
     ["Pielea ta se simte întinsă sau arată ternă, chiar dacă devine și grasă?",["Nu","Da"]],
     ["Pe ce vrei să te concentrezi?",["Acnee","Puncte negre","Urme post-acnee","Pete pigmentare","Roșeață","Uscăciune","Pori vizibili","Linii fine","Nimic anume"]],
-    ["Folosești protecție solară în fiecare dimineață?",["Da, aproape zilnic","Doar vara sau în vacanță","Nu"]]
+    ["Folosești protecție solară în fiecare dimineață?",["Da, aproape zilnic","Doar vara sau în vacanță","Nu"]],
+    ["Ești însărcinată sau alăptezi în această perioadă?",["Nu","Da","Prefer să nu spun"]]
   ],
   mapEyebrow:"Harta feței",mapTitle:"Unde se aplică fiecare produs?",
   mapSub:"Nu orice ser sau cremă se aplică pe toată fața. Alege un produs și vezi zonele, cantitatea și modul de aplicare.",
@@ -947,7 +953,8 @@ const LOGIC = [
   {k:"redness",o:[{},{sens:1},{sens:2,flag:"redness"}]},
   {k:"dehyd",o:[{},{dehyd:2}]},
   {k:"concerns",multi:true,o:[{c:"acne"},{c:"blackheads"},{c:"marks"},{c:"pigment"},{c:"redness"},{c:"dryness"},{c:"pores"},{c:"lines"},{none:true}]},
-  {k:"spf",o:[{spf:true},{},{}]}
+  {k:"spf",o:[{spf:true},{},{}]},
+  {k:"preg",o:[{},{flag:"preg"},{flag:"pregMaybe"}]}
 ];
 const FACE = ["forehead","nose","left_cheek","right_cheek","chin"];
 const PZ = [
@@ -1051,7 +1058,7 @@ function routine(r){
   else {
     if(c.some(x=>["acne","blackheads","pores"].includes(x))) pm.push([t.bha,"Salicylic Acid"]);
     if(c.some(x=>["marks","pigment"].includes(x))) pm.push([t.spots,"Niacinamide · Azelaic Acid"]);
-    if(c.includes("lines")) pm.push([t.retinoid,"Retinol"]);
+    if(c.includes("lines")) pm.push(r.flags.has("preg") ? [t.retinoidPreg,"Azelaic Acid · Niacinamide"] : [t.retinoid,"Retinol"]);
     if(c.includes("redness")) pm.push([t.red,"Azelaic Acid · Panthenol"]);
   }
   pm.push([moist,""]);
@@ -1065,7 +1072,9 @@ function renderResult(){
   if(r.sens==="high") n.push(t.notes.sens);
   if(r.flags.has("redness")) n.push(t.notes.red);
   if(!r.spf) n.push(t.notes.spf);
-  if(r.sens!=="high" && r.concerns.includes("lines") && r.concerns.some(x=>["acne","blackheads","pores"].includes(x))) n.push(t.notes.mix);
+  if(r.flags.has("preg")) n.push(t.notes.preg);
+  if(r.flags.has("pregMaybe")) n.push(t.notes.pregMaybe);
+  if(!r.flags.has("preg") && r.sens!=="high" && r.concerns.includes("lines") && r.concerns.some(x=>["acne","blackheads","pores"].includes(x))) n.push(t.notes.mix);
   const cNames = r.concerns.map(x=>t.conc[x]);
   const summary = t.rSummary(t.types[r.type], t.sens[r.sens], cNames.join(", "));
   qEl.innerHTML = `<div class="result">
