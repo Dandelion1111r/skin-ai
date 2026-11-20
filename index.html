@@ -13,6 +13,11 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SKIN AI">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SKIN AI">
 <meta property="og:title" content="SKIN AI – Verstehe deine Haut">
@@ -725,7 +730,7 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
     <span class="eyebrow">FAQ</span>
     <h2 data-t="faqTitle"></h2>
   </div>
-  <div class="faq"><details><summary data-t="f1q"></summary><p class="muted" data-t="f1a"></p></details><details><summary data-t="f2q"></summary><p class="muted" data-t="f2a"></p></details><details><summary data-t="f3q"></summary><p class="muted" data-t="f3a"></p></details><details><summary data-t="f4q"></summary><p class="muted" data-t="f4a"></p></details><details><summary data-t="f5q"></summary><p class="muted" data-t="f5a"></p></details><details><summary data-t="f6q"></summary><p class="muted" data-t="f6a"></p></details><details><summary data-t="f7q"></summary><p class="muted" data-t="f7a"></p></details></div>
+  <div class="faq"><details><summary data-t="f1q"></summary><p class="muted" data-t="f1a"></p></details><details><summary data-t="f2q"></summary><p class="muted" data-t="f2a"></p></details><details><summary data-t="f3q"></summary><p class="muted" data-t="f3a"></p></details><details><summary data-t="f4q"></summary><p class="muted" data-t="f4a"></p></details><details><summary data-t="f5q"></summary><p class="muted" data-t="f5a"></p></details><details><summary data-t="f6q"></summary><p class="muted" data-t="f6a"></p></details><details><summary data-t="f7q"></summary><p class="muted" data-t="f7a"></p></details><details><summary data-t="f8q"></summary><p class="muted" data-t="f8a"></p></details></div>
 </section>
 
 <footer>
@@ -832,6 +837,7 @@ de:{
   f4q:"Woher kommen die Produktempfehlungen?",f4a:"Aus einer geprüften Produktdatenbank. Jedes Produkt wird mit vollständiger Inhaltsstoffliste und Hinweisen geprüft, bevor es empfohlen wird. Die Empfehlungen folgen festen Regeln, nicht dem Zufall einer KI.",
   f5q:"Verdient SKIN AI an den Produkten?",f5a:"Bei manchen Händlern erhalten wir eine Provision, wenn du über einen Link kaufst. Diese Links sind als Werbelink gekennzeichnet. Die Provision hat keinen Einfluss darauf, welche Produkte empfohlen werden.",
   f6q:"Kann ich meine eigenen Produkte eintragen?",f6a:"Ja. Du speicherst die Produkte, die du schon hast, und SKIN AI zeigt dir, wie sie in deine Routine passen und ob sich Wirkstoffe vertragen.",
+  f8q:"Kann ich SKIN AI wie eine App installieren?",f8a:"Ja. Auf dem iPhone in Safari auf Teilen tippen und „Zum Home-Bildschirm“ wählen. Auf Android im Chrome-Menü „App installieren“ wählen. Danach öffnet sich SKIN AI ohne Browserleiste und funktioniert auch ohne Internet.",
   f7q:"In welchen Sprachen gibt es SKIN AI?",f7a:"Zum Start auf Deutsch und Rumänisch.",
   appEyebrow:"Die App",appTitle:"So sieht SKIN AI auf dem Handy aus",appSub:"Ein erster Entwurf der wichtigsten Bildschirme. Alle Inhalte sind Beispiele.",
   a1Date:"Sonntag, 15. November",d1:"M",d2:"D",d3:"M",d4:"D",d5:"F",d6:"S",d7:"S",a1Hello:"Guten Morgen",a1Am:"Morgenroutine",a1Count:"2 von 3",
@@ -1024,6 +1030,7 @@ ro:{
   f4q:"De unde vin recomandările de produse?",f4a:"Dintr-o bază de date cu produse verificate. Fiecare produs este verificat, cu lista completă de ingrediente și avertismentele lui, înainte să fie recomandat. Recomandările urmează reguli clare, nu hazardul unui AI.",
   f5q:"Câștigă SKIN AI din produse?",f5a:"La unele magazine primim un comision dacă cumperi printr-un link. Aceste linkuri sunt marcate ca link afiliat. Comisionul nu influențează ce produse îți recomandăm.",
   f6q:"Pot adăuga produsele pe care le am deja?",f6a:"Da. Salvezi produsele pe care le ai, iar SKIN AI îți arată cum se potrivesc în rutină și dacă ingredientele se pot combina.",
+  f8q:"Pot instala SKIN AI ca pe o aplicație?",f8a:"Da. Pe iPhone, în Safari, atinge Partajare și alege „Adaugă pe ecranul principal”. Pe Android, în meniul Chrome alege „Instalează aplicația”. După aceea SKIN AI se deschide fără bara browserului și funcționează și fără internet.",
   f7q:"În ce limbi este disponibil SKIN AI?",f7a:"La lansare: germană și română.",
   appEyebrow:"Aplicația",appTitle:"Așa arată SKIN AI pe telefon",appSub:"O primă schiță a ecranelor principale. Toate conținuturile sunt exemple.",
   a1Date:"Duminică, 15 noiembrie",d1:"L",d2:"M",d3:"M",d4:"J",d5:"V",d6:"S",d7:"D",a1Hello:"Bună dimineața",a1Am:"Rutina de dimineață",a1Count:"2 din 3",
@@ -1547,6 +1554,7 @@ $("#inciClear").onclick = () => { inciEl.value = ""; inciIsSample = false; store
 { const saved = store.get("skinai-inci"); if(saved){ inciEl.value = saved; } else { inciEl.value = INCI_SAMPLE; inciIsSample = true; } }
 
 applyLang();
+if("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) navigator.serviceWorker.register("sw.js").catch(() => {});
 })();
 </script>
 
