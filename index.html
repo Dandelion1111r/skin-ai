@@ -29,6 +29,7 @@
 <meta property="og:image:alt" content="SKIN AI: Porträt mit markierten Gesichtszonen neben dem Schriftzug Verstehe deine Haut">
 <meta property="og:locale" content="de_DE">
 <meta property="og:locale:alternate" content="ro_RO">
+<meta property="og:locale:alternate" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
 <style>
 @font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/bodoni-moda-latin-ext-400-normal.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
@@ -434,6 +435,7 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
     <div class="lang" role="group" aria-label="Sprache / Limba">
       <button id="lang-de" data-lang="de" aria-pressed="true">DE</button>
       <button id="lang-ro" data-lang="ro" aria-pressed="false">RO</button>
+      <button id="lang-en" data-lang="en" aria-pressed="false">EN</button>
     </div>
   </div>
 </header>
@@ -939,6 +941,200 @@ de:{
   disclaimer:"SKIN AI ist ein Informationsangebot zur kosmetischen Hautpflege. Es stellt keine Diagnosen und ersetzt keine hautärztliche Beratung.",
   credit:"Konzept & Design: Raluca Jidvian · 2026"
 },
+en:{
+  nav7:"My routine",
+  rbEyebrow:"My routine",rbTitle:"Your products, in the right order",
+  rbSub:"Pick what you already use. SKIN AI sorts everything for morning and evening and spreads strong actives across different evenings, with rest nights in between.",
+  rbPick:"What do you use?",rbExample:"Example selection. Tap the products you actually use.",rbSaved:"Your selection is saved in your browser.",
+  rbAm:"Morning",rbPm:"Evening",rbSlot:"Tonight's active, see weekly plan",rbWhere:"Where?",rbEmpty:"Pick at least one product.",
+  rbWeek:"Weekly evening plan",rbRest:"Rest",rbDays:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+  rbWeekNote:"Rest means cleanser and moisturizer only. If your skin handles the plan well after a few weeks, you can slowly do more.",
+  rbProf:p=>`Adjusted to your profile: ${p}`,
+  rbN:{
+    preg:"<b>Retinol is off-limits during pregnancy and breastfeeding.</b> We have taken it out of your plan.",
+    noSpf:"<b>Sunscreen is missing.</b> It is the most important morning step, especially with retinol or exfoliants.",
+    many:"<b>Lots of actives at once.</b> Introduce them one at a time, about two weeks apart.",
+    sens:"<b>Sensitive skin:</b> that is why the plan has more rest nights.",
+    bpoAm:"<b>Benzoyl peroxide in the morning,</b> because it can break down some retinoids. Follow with sunscreen.",
+    bpoVitc:"<b>Don't use benzoyl peroxide and vitamin C together:</b> vitamin C stays in the morning, benzoyl peroxide moves to the evening plan."
+  },
+  RB:{cleanser:"Cleanser",toner:"Toner",vitc:"Vitamin C serum",nia:"Niacinamide serum",ha:"Hyaluronic serum",aha:"AHA exfoliant",bha:"BHA exfoliant",retinol:"Retinol",azelaic:"Azelaic acid",bpo:"Benzoyl peroxide",eye:"Eye cream",moist:"Moisturizer",spf:"Sunscreen"},
+  inciEyebrow:"INCI check",inciTitle:"What's on your label?",
+  inciSub:"Paste a product's ingredient list. SKIN AI spots the actives, flags fragrance and alcohol and checks everything against your skin profile. No scores, no traffic lights.",
+  inciLabel:"Ingredients (INCI), separated by commas",inciSample:"Insert example",inciClear:"Clear",
+  inciTip:"Tip: your phone camera's text recognition can copy the list straight from the label. The list is only analyzed in your browser.",
+  inciPlaceholder:"Aqua, Glycerin, Niacinamide, …",
+  inciEmpty:"Paste an ingredient list and the analysis appears here.",
+  inciCount:(n,k)=>`${n} ingredients · ${k} recognized`,inciExample:"Example list",inciYours:"Your list",
+  inciActives:"Actives",inciNoActives:"None of the actives from our lexicon were found.",inciNotes:"Good to know",inciAll:"All ingredients",
+  inciUnknown:"Not in our database",inciProfile:p=>`Checked against your profile: ${p}`,inciNoProfile:"Take the skin test and we'll check the list against your skin.",
+  inciOrder:"The order follows the amount: what comes first is present in the largest quantity. Below about 1 %, ingredients may appear in any order. An unknown ingredient is not automatically bad.",
+  iF:{
+    fragrance:"<b>Contains fragrance.</b> Not a problem for most people. If your skin is sensitive, fragrance-free is the safer choice.",
+    allergen:n=>`<b>Fragrance allergens:</b> ${n}. They must be listed on the label because some people react to them.`,
+    essoil:"<b>Essential oils</b> can irritate sensitive skin.",
+    alcoholTop:"<b>Alcohol near the top of the list</b> can dry the skin, especially dry and sensitive skin.",
+    alcohol:"<b>Contains alcohol</b>, but further down the list. In small amounts it is usually fine.",
+    fatty:"<b>Cetearyl or cetyl alcohol</b> are conditioning fatty alcohols. They don't dry the skin.",
+    pregRet:"<b>Contains a retinoid.</b> Don't use it during pregnancy or breastfeeding.",
+    sensFrag:"<b>For your sensitive skin:</b> fragrance and essential oils are common triggers. Test the product on a small area first.",
+    dryAlc:"<b>For your dry skin:</b> alcohol this high up can feel tight. Follow with a rich moisturizer.",
+    goodFit:"<b>Fits your profile:</b> nothing found that needs special attention based on your answers.",
+    retAcid:"<b>Retinoid and acid in one product:</b> don't combine it with other exfoliants."
+  },
+  nav6:"Ingredients",
+  lexEyebrow:"Ingredient lexicon",lexTitle:"What's in your skincare?",
+  lexSub:"The most important actives, explained simply. The combination check shows which ones you can use together.",
+  lDoes:"What it does",lFor:"Good for",lUse:"How to use",lWarn:"Note",
+  cEyebrow:"Combination check",cTitle:"Can I use these together?",cA:"Ingredient 1",cB:"Ingredient 2",
+  cFine:"General information. Always follow the directions on the packaging.",
+  cSame:"Pick two different ingredients.",
+  lv:{good:"Work well together",split:"Use separately",caution:"Combine with care",none:"Same ingredient"},
+  I:{
+    niacinamide:["Niacinamide (vitamin B3)","Strengthens the skin barrier, regulates oil, calms redness and fades dark spots.","Almost every skin type, especially combination and oily skin and dark spots.","Morning and/or evening, usually as a serum.","High concentrations can irritate sensitive skin. Start with a low percentage."],
+    bha:["Salicylic acid (BHA)","Dissolves oil and dead skin cells inside pores, helps with blackheads and breakouts.","Oily skin, combination skin, blackheads, acne.","Evening, 2–3 times a week, building up slowly.","Can be drying. Use sunscreen the next day."],
+    aha:["Fruit acids (AHA)","Exfoliate the skin's surface and make it smoother and more even.","Dull skin, rough texture, dark spots, normal to dry skin.","Evening, 1–3 times a week.","Make skin more sensitive to the sun. For sensitive skin, lactic acid is the gentler choice."],
+    retinol:["Retinol (vitamin A)","Speeds up cell renewal, softens fine lines and refines the skin.","Fine lines, breakouts, uneven skin.","Evening only. Start 1–2 times a week, then build up slowly.","Can irritate and flake at first. Use sunscreen every day. Don't use during pregnancy or breastfeeding."],
+    vitc:["Vitamin C","Antioxidant: protects against environmental stress, brightens and fades dark spots.","Dull skin, dark spots, morning protection.","Morning, before sunscreen.","Pure vitamin C is sensitive to light and air. If the product turns yellow or brown, it has oxidized."],
+    azelaic:["Azelaic acid","Calms redness, helps with breakouts and fades dark spots.","Breakouts, redness, post-acne marks, sensitive skin.","Morning and/or evening.","May tingle slightly at first. With rosacea, agree on treatment with a dermatologist."],
+    bpo:["Benzoyl peroxide","Fights the bacteria involved in acne.","Inflamed spots, acne.","As a spot treatment or cleanser, usually once a day.","Can bleach fabrics and hair and dry the skin."],
+    ha:["Hyaluronic acid","Binds water in the skin and plumps it visibly.","All skin types, especially dehydrated skin.","Morning and evening on slightly damp skin, then moisturizer.","Without a cream on top, dry air can pull moisture back out."],
+    ceramide:["Ceramides","Skin-identical lipids that strengthen the barrier and stop moisture loss.","Dry, sensitive or irritated skin.","Morning and evening, usually in a moisturizer.","Very well tolerated. Pairs with almost every active."],
+    panthenol:["Panthenol (provitamin B5)","Soothes, hydrates and supports skin repair.","Sensitive, irritated or dry skin.","Morning and evening.","Very well tolerated."]
+  },
+  C:{
+    gentle:"Hydrating and soothing ingredients complement almost every other active and make it easier to tolerate.",
+    nia_any:"Niacinamide is well tolerated and complements exfoliants and anti-blemish actives.",
+    nia_ret:"Niacinamide strengthens the skin barrier and can reduce irritation from retinol.",
+    nia_vitc:"The idea that they cancel each other out is a common myth. In today's products they combine well.",
+    ret_acid:"Not on the same evening. Both can irritate, and together the risk of redness and flaking is high. Alternate them on different evenings.",
+    ret_bpo:"Benzoyl peroxide in the morning, retinol in the evening. Benzoyl peroxide can break down some retinoids, and together they irritate strongly.",
+    ret_vitc:"A classic duo, but at different times of day: vitamin C in the morning, retinol in the evening.",
+    ret_aze:"Possible, but carefully: both can tingle at first. Introduce them one at a time and combine them only once your skin tolerates both.",
+    aha_bha:"Watch out for over-exfoliation. Ready-made products often balance both well, but don't layer two exfoliants on top of each other.",
+    vitc_acid:"Better kept apart: vitamin C in the morning, acid exfoliant in the evening. Together they can sting sensitive skin.",
+    vitc_bpo:"Benzoyl peroxide can oxidize vitamin C and make it ineffective. Vitamin C in the morning, benzoyl peroxide in the evening.",
+    bpo_acid:"Together they are very drying. Use them at different times and moisturize well.",
+    aze_acid:"Possible, but not right at the start. Both can irritate. Make sure you tolerate each on its own first.",
+    aze_vitc:"Both help with dark spots and complement each other well.",
+    aze_bpo:"Possible, but drying. Introduce them slowly and moisturize well."
+  },
+  dsEyebrow:"Privacy",dsTitle:"Your skin, your data",
+  dsSub:"Photos of your face and details about your skin are sensitive data. These principles apply from day one.",
+  tr1t:"Photos are optional",tr1d:"Photo analysis is optional and needs your explicit consent. Your profile can also come from the questionnaire alone.",
+  tr2t:"No AI training",tr2d:"Your photos are not used to train AI models and are never sold to third parties.",
+  tr3t:"Delete anytime",tr3d:"You can delete single photos, your profile or your whole account yourself in the settings. You can also export your data.",
+  tr4t:"Protected under GDPR",tr4d:"Photos are stored encrypted in private storage. Only you can see them, through short-lived, secure links.",
+  faqTitle:"Frequently asked questions",
+  f1q:"Is SKIN AI free?",f1a:"Yes. The skin test, profile, routine, product catalog and face map are free. Optional premium features will come later. What is free today stays free.",
+  f2q:"Does SKIN AI replace a dermatologist?",f2a:"No. SKIN AI helps with cosmetic skincare and does not diagnose. For skin conditions, strong symptoms or moles that change, see a doctor.",
+  f3q:"Do I have to upload a photo?",f3a:"No. Photo analysis is optional. Your skin profile and routine can come from the questionnaire alone.",
+  f4q:"Where do the product recommendations come from?",f4a:"From a reviewed product database. Every product is checked with its full ingredient list and warnings before it is recommended. Recommendations follow fixed rules, not the whims of an AI.",
+  f5q:"Does SKIN AI earn money from products?",f5a:"Some retailers pay us a commission when you buy through a link. These links are labeled as ads. The commission never affects which products are recommended.",
+  f6q:"Can I add my own products?",f6a:"Yes. You save the products you already own, and SKIN AI shows how they fit into your routine and whether the actives work together.",
+  f8q:"Can I install SKIN AI like an app?",f8a:"Yes. On iPhone, tap Share in Safari and choose “Add to Home Screen”. On Android, choose “Install app” in the Chrome menu. SKIN AI then opens without the browser bar and also works offline.",
+  f7q:"Which languages is SKIN AI available in?",f7a:"German, Romanian and English.",
+  appEyebrow:"The app",appTitle:"What SKIN AI looks like on your phone",appSub:"A first draft of the main screens. All content is example content.",
+  a1Date:"Sunday, 15 November",d1:"M",d2:"T",d3:"W",d4:"T",d5:"F",d6:"S",d7:"S",a1Hello:"Good morning",a1Am:"Morning routine",a1Count:"2 of 3",
+  a1s1:"Gentle gel cleanser",a1s2:"Light moisturizer",a1s3:"Sunscreen SPF 30+",
+  a1Week:"This week",a1Pm:"Evening routine",a1PmV:"4 steps · BHA tonight",a1Tip:"Tip of the day",a1TipV:"Apply sunscreen as the last step, even on cloudy days.",
+  tHome:"Today",tSkin:"Skin",tProd:"Products",tRout:"Routine",
+  a2Brand:"Example brand",a2Name:"Calming barrier cream",a2Fit:"Suits your skin",a2Ing:"Actives",a2Use:"How to use",
+  a2UseV:"Evening · pea-sized amount · whole face",a2Shop:"Available from 3 retailers",a2Price:"from €18.90",a2Ad:"Ad link",a2Btn:"Add to routine",
+  a3Title:"My skin",a3Type:"Combination skin",a3Sens:"Sensitivity: medium",a3Focus:"Focus",a3c1:"Visible pores",a3c2:"Blackheads",
+  a3Prog:"How skin feels · weeks 1–4",a3Note:"Latest note",a3NoteV:"Less shine on the forehead, no irritation from the BHA exfoliant.",a3NoteD:"4 days ago",a3Next:"Next check-in in 3 days",a3Btn:"Log progress",
+  c1:"Today: your routine step by step",c2:"Product page: actives, suitability and use",c3:"My skin: profile and progress",
+  nav5:"Skin types",
+  skinEyebrow:"Skin types & skin concerns",skinTitle:"Every skin is different",
+  skinSub:"Pick a skin type or a skin concern to see how to recognize it, where it usually shows up and which actives can help.",
+  gTypes:"Skin types",gProblems:"Skin concerns",sSign:"Signs",sHelp:"What helps",
+  medNote:"<b>When to see a dermatologist?</b> For severe or painful acne, persistent redness, suspected rosacea, eczema or melasma, and moles that change. SKIN AI does not assess these.",
+  S:{
+    normal:["Normal skin","Balanced, fine pores, rarely tight or shiny.","Whole face, evenly","A simple routine: gentle cleanser, hydration, daily sunscreen.","Normal skin needs sunscreen every morning too."],
+    dry:["Dry skin","Feels tight after washing, looks dull and can flake. Fine lines show sooner.","Mostly cheeks and forehead","Rich care that strengthens the skin barrier and a gentle, creamy cleanser.","Avoid hot water and harsh cleansers."],
+    oily:["Oily skin","Shiny all over, pores are clearly visible, breakouts happen easily.","Whole face, especially the T-zone","Light gel textures and actives that regulate oil and pores.","Oily skin needs hydration too. Stripping it usually makes things worse."],
+    combo:["Combination skin","Forehead, nose and chin are shiny, cheeks are normal to dry.","T-zone: forehead, nose, chin","Light care for the whole face, targeted actives only on the T-zone.","You can apply products by zone, for example BHA on the T-zone only."],
+    sens:["Sensitive skin","Stings, itches or reddens quickly, especially with new products.","Often cheeks and nose","Few fragrance-free products with soothing actives.","Introduce new products one at a time and patch test them for 48 hours."],
+    acne:["Acne & breakouts","Spots, inflamed areas and blackheads that keep coming back.","Forehead, nose, chin and jawline","Actives that clear pores and calm inflammation, introduced slowly.","For severe, painful or scarring acne, see a dermatologist."],
+    pores:["Blackheads & large pores","Dark dots and visibly enlarged pores.","Nose, chin and forehead","Regular, gentle exfoliation with BHA, which gets into the pores.","Don't squeeze. It irritates the skin and can leave marks."],
+    pigment:["Dark spots & post-acne marks","Brown or reddish spots, often after breakouts or from the sun.","Cheeks and forehead","Actives that fade spots and consistent sunscreen.","Without daily sunscreen, spots come back. Have widespread patches (melasma) checked by a dermatologist."],
+    redness:["Redness & rosacea","Red cheeks and nose, sudden flushing, sometimes visible small veins.","Cheeks, nose and chin","Soothing care without fragrance, alcohol or strong exfoliants.","Persistent redness or suspected rosacea belongs in a dermatologist's hands."],
+    dehyd:["Dehydration","Feels tight and looks dull, even when oily. Makeup settles into fine lines.","Whole face","Hydrating actives and a cream that keeps the moisture in.","Dehydration is not a skin type. It can happen to any skin."],
+    mature:["Mature skin","Less firmness, fine lines and wrinkles, often drier than before, sometimes dark spots.","Eye area, forehead and cheeks","Care that strengthens the barrier, retinoids introduced slowly and daily sunscreen.","Mature skin is often more sensitive. Introduce new actives one at a time."],
+    dull:["Dull complexion","Skin looks grey, tired and lacks glow, makeup lasts less well.","Whole face","Gentle exfoliation, antioxidants in the morning and enough hydration.","Sleep, stress and smoking play a part. Skincare alone can't fix everything."],
+    texture:["Uneven texture","Skin feels rough and looks uneven, often with small bumps.","Cheeks, forehead and chin","Regular, mild exfoliation with fruit acids, later retinoids.","Don't exfoliate too often. More is not better here."],
+    closed:["Closed comedones","Small, skin-colored bumps under the skin, without a dark dot.","Forehead and chin","BHA dissolves oil in the pores, azelaic acid and niacinamide help as well.","Don't squeeze. Very rich creams can make them worse."],
+    eyes:["Dark circles & puffiness","Dark shadows or swelling under the eyes, often worse in the morning.","Eye area","Eye care with caffeine for puffiness, plus hydration and daily sunscreen.","Dark circles are often hereditary. Skincare can soften them but rarely removes them completely."],
+    barrier:["Damaged skin barrier","Skin burns, feels tight and reddens even with gentle products, often after too much exfoliation.","Cheeks, nose and chin","Pause exfoliants and actives, use only a gentle cleanser and a ceramide cream.","If it doesn't improve within two to three weeks, see a dermatologist."],
+    lines:["Fine lines & wrinkles","Fine lines around the eyes and on the forehead, less firmness.","Eye area and forehead","Retinoids introduced slowly, plus peptides and daily sunscreen.","Retinoids make skin more sun-sensitive. Don't use them on the same evening as BHA."]
+  },
+  nav1:"How it works",nav2:"Skin test",nav3:"Face map",nav4:"Free",
+  docTitle:"SKIN AI – Concept prototype",protoBar:"Concept prototype · not a real app, no data is transmitted",
+  heroEyebrow:"Personalized skincare",
+  heroTitle:"<span>Understand your skin.</span><span><em>Find your products.</em></span><span>Build your routine.</span>",
+  heroLead:"A two-minute test shows your skin type, what to focus on and what a suitable morning and evening routine looks like.",
+  heroCta1:"Start the skin test",heroCta2:"See the face map",
+  pfTitle:"Example profile",pfType:"Skin type",pfTypeV:"Combination",pfSens:"Sensitivity",pfSensV:"Medium",pfFocus:"Focus",pfFocusV:"Visible pores, blackheads",pfIng:"Actives",pfPm:"Evening",pfPmV:"Cleanser → BHA (2×/week) → Cream",
+  howEyebrow:"How it works",howTitle:"Three steps to your routine",
+  s1t:"Answer questions",s1d:"Nine questions about how your skin behaves during the day and what bothers you.",
+  s2t:"Get your profile",s2d:"Skin type, sensitivity and your skin concerns, explained simply.",
+  s3t:"Build your routine",s3d:"Morning and evening steps, suitable actives and where each product goes.",
+  testEyebrow:"Skin test",testTitle:"What's your skin type?",testSub:"Takes about two minutes. Your answers stay in your browser.",
+  qStartMeta:"9 questions · about 2 minutes",qStartTitle:"Answer based on how your skin usually behaves.",
+  qStartList:["Your skin type and sensitivity","The skin concerns to focus on","A basic morning and evening routine"],
+  qStartBtn:"Start the test",qOf:(a,b)=>`Question ${a} of ${b}`,qMulti:"Multiple choice",qBack:"Back",qNext:"Next",qDone:"See result",
+  rEyebrow:"Your profile",rAm:"Morning",rPm:"Evening",rNone:"You didn't pick a specific concern. A simple, consistent basic routine is all you need.",
+  rFine:"The result is based only on your answers and is for information. It is not a diagnosis.",
+  rShare:"Share as image",rShared:"Image created. Perfect for your Instagram story.",cardEyebrow:"My skin profile",cardCta:"What's your skin type?",cardFine:"Concept prototype · not a diagnosis",cardFile:"skin-ai-profile.png",rCopy:"Copy result",rRedo:"Retake test",rCopied:"Copied. You can share it now.",
+  rSummary:(t,s,c)=>`My SKIN AI profile: ${t}, ${s}.${c?` Focus: ${c}.`:""}`,
+  types:{oily:"Oily skin",combo:"Combination skin",normal:"Normal skin",dry:"Dry skin",und:"Skin type not clear yet"},
+  sens:{low:"low sensitivity",mid:"medium sensitivity",high:"high sensitivity"},
+  conc:{acne:"Acne",blackheads:"Blackheads",marks:"Post-acne marks",pigment:"Dark spots",redness:"Redness",dryness:"Dryness",pores:"Visible pores",lines:"Fine lines",dehyd:"Dehydration"},
+  rt:{moist:{oily:"Gel-texture moisturizer",combo:"Light moisturizer",normal:"Moisturizer",dry:"Rich cream with ceramides",und:"Light moisturizer"},
+    cleanseSoft:"Gentle, creamy, fragrance-free cleanser",cleanse:"Gentle gel cleanser",
+    spf:"Sunscreen SPF 30 or higher",spfNote:"The most important morning step",
+    calm:"Soothing serum for the skin barrier",bha:"BHA exfoliant, 2–3 times a week",spots:"Dark-spot serum, on evenings without exfoliant",
+    retinoid:"Retinoid, introduced slowly (start with 1–2 evenings a week)",retinoidPreg:"Instead of retinol: azelaic acid or niacinamide",red:"Soothing care for redness"},
+  notes:{und:"<b>Your skin type isn't clear yet.</b> Your answers point in several directions. Watch your skin for a few days and take the test again.",
+    sens:"<b>Sensitive skin.</b> Introduce one new product at a time and patch test it on a small area for 48 hours first.",
+    red:"<b>Frequent redness</b> can have several causes. It's best to have it checked by a dermatologist.",
+    spf:"<b>Daily sunscreen</b> helps prevent dark spots and premature skin aging. It's the first habit worth adding.",
+    preg:"<b>Pregnancy and breastfeeding.</b> Retinoids are off-limits during this time and are not in your routine. Check new actives with your doctor or midwife.",
+    pregMaybe:"<b>Good to know:</b> if you are pregnant or breastfeeding, avoid retinoids.",
+    mix:"<b>Don't use retinoid and BHA</b> on the same evening. Alternate them."},
+  Q:[
+    ["How does your skin feel around midday?",["Shiny all over","Shiny only in the T-zone (forehead, nose, chin)","Comfortable and balanced","Tight or flaky"]],
+    ["About an hour after cleansing, with no other products, your skin feels:",["Tight","Comfortable","Oily in the T-zone","Oily all over"]],
+    ["How visible are your pores?",["Barely visible","Mainly on the nose and forehead","Across most of the face"]],
+    ["How often does your skin react to new products, for example with stinging, redness or itching?",["Never or almost never","Sometimes","Often"]],
+    ["Do you notice redness or sudden flushing on your face?",["No","Occasionally","Frequently"]],
+    ["Does your skin feel tight or look dull, even if it also gets oily?",["No","Yes"]],
+    ["What would you like to focus on?",["Acne","Blackheads","Post-acne marks","Dark spots","Redness","Dryness","Visible pores","Fine lines","Nothing in particular"]],
+    ["Do you wear sunscreen every morning?",["Yes, almost daily","Only in summer or on holiday","No"]],
+    ["Are you pregnant or breastfeeding at the moment?",["No","Yes","Prefer not to say"]]
+  ],
+  mapEyebrow:"Face map",mapTitle:"Where does each product go?",
+  mapSub:"Not every serum or cream belongs on the whole face. Pick a product to see the zones, amount and how to apply it.",
+  dZones:"Zones",dAmount:"Amount",dHow:"How to apply",dFreq:"How often",dWarn:"Note",legOn:"Apply here",legAvoid:"Avoid this area",
+  zn:{forehead:"forehead",nose:"nose",left_cheek:"left cheek",right_cheek:"right cheek",chin:"chin",eye_area:"eye area",neck:"neck"},
+  zAll:"Whole face and neck",zAvoid:"avoid the eye area",
+  P:[
+    ["Sunscreen","Two-finger rule: two finger-lengths of product for face and neck","Last step in the morning. Spread evenly without rubbing, including ears and hairline.","Every morning. Reapply every 2 hours in the sun.","Makeup with SPF doesn't replace sunscreen, because you apply too little of it."],
+    ["Serum","2–3 drops","Press gently into clean skin with your palms, from the center of the face outward.","As directed, usually once or twice a day.","Avoid the eye area unless the serum is made for it."],
+    ["Eye cream","About a grain of rice for both eyes","Tap gently with your ring finger along the bone around the eye, not on the moving lid.","Morning and/or evening.","Don't apply too close to the lash line."],
+    ["BHA exfoliant","A few drops or a soaked cotton pad","Apply to areas with visible pores and blackheads, let it absorb, then moisturize.","Evening, 2–3 times a week. Start with once a week.","Not on the same evening as a retinoid. Use sunscreen the next day without fail."],
+    ["Spot treatment","A very thin layer, only on the blemish","Apply only to spots. The marked zones are an example.","Evening, as directed.","Don't spread it over large areas. If irritation appears, use it less often."],
+    ["Moisturizer","A pea-sized amount for the face, a little more for the neck","Warm it between your fingers and apply with gentle upward strokes.","Morning and evening.","Use a dedicated product for the eye area."]
+  ],
+  freeEyebrow:"No subscription",freeTitle:"Everything important is free",
+  freeSub:"The app launches free, with no credit card and no trial period. Optional extra features will come later for anyone who wants more.",
+  tFree:"Free",tLater:"Later · optional",
+  tFreeList:["Skin test and personal profile","Morning and evening routine","Catalog of reviewed products","Face map for every product","List of the products you own"],
+  tLaterList:["AI assistant for skincare questions","Track skin progress with photos","Several saved routines","Product comparisons"],
+  disclaimer:"SKIN AI provides information on cosmetic skincare. It does not diagnose and does not replace advice from a dermatologist.",
+  credit:"Concept & design: Raluca Jidvian · 2026"
+},
+
 ro:{
   nav7:"Rutina mea",
   rbEyebrow:"Rutina mea",rbTitle:"Produsele tale, în ordinea corectă",
@@ -1159,7 +1355,7 @@ const store = {
   get(k){ try{ return JSON.parse(localStorage.getItem(k)); }catch(e){ return null; } },
   set(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
 };
-let lang = store.get("skinai-lang") === "ro" ? "ro" : "de";
+let lang = ["ro","en"].includes(store.get("skinai-lang")) ? store.get("skinai-lang") : "de";
 let st = store.get("skinai-quiz2") || {i:-1,a:{}};
 let prod = 0;
 const L = () => T[lang];
@@ -1173,7 +1369,7 @@ function applyLang(){
   document.querySelectorAll("[data-th]").forEach(n => n.innerHTML = L()[n.dataset.th]);
   document.querySelectorAll("[data-tl]").forEach(n => n.innerHTML = L()[n.dataset.tl].map(x=>`<li>${esc(x)}</li>`).join(""));
   document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang===lang));
-  $("#products").setAttribute("aria-label", lang==="de"?"Produkt wählen":"Alege produsul");
+  $("#products").setAttribute("aria-label", {de:"Produkt wählen",ro:"Alege produsul",en:"Choose a product"}[lang]);
   $("#types").setAttribute("aria-label", L().gTypes); $("#problems").setAttribute("aria-label", L().gProblems);
   renderProducts(); showProduct(prod); renderSkin(); renderLex(); renderQuiz(); renderInci(); renderRB();
 }
@@ -1567,6 +1763,7 @@ const IDB = [
   const parts = pat.split("|"), exact = new Set(parts.filter(x=>!x.startsWith("~"))), partial = parts.filter(x=>x.startsWith("~")).map(x=>x.slice(1));
   return {exact, partial, type, de, ro, key, flag};
 });
+const IDB_EN = {"Wirkstoff: stärkt die Barriere, reguliert Talg":"Active: strengthens the barrier, regulates oil","Wirkstoff: BHA, klärt die Poren":"Active: BHA, clears pores","Wirkstoff: AHA, peelt die Hautoberfläche":"Active: AHA, exfoliates the surface","Wirkstoff: Retinoid":"Active: retinoid","Wirkstoff: Vitamin C":"Active: vitamin C","Wirkstoff: Azelainsäure":"Active: azelaic acid","Wirkstoff: gegen Akne-Bakterien":"Active: fights acne bacteria","Wirkstoff: bindet Feuchtigkeit":"Active: binds moisture","Wirkstoff: stärkt die Hautbarriere":"Active: strengthens the skin barrier","Wirkstoff: beruhigt und pflegt":"Active: soothes and cares","Feuchthaltemittel: bindet Wasser":"Humectant: binds water","Pflegendes Lipid, sehr gut verträglich":"Conditioning lipid, very well tolerated","Feuchthaltemittel, macht raue Haut weicher":"Humectant, softens rough skin","Beruhigend":"Soothing","Reguliert Talg":"Regulates oil","Kann Schwellungen mildern":"Can reduce puffiness","Pflanzliche Alternative zu Retinol":"Plant-based retinol alternative","Vitamin E, Antioxidans":"Vitamin E, antioxidant","Peptid: unterstützt die Spannkraft":"Peptide: supports firmness","Beruhigend (Centella)":"Soothing (centella)","Fettalkohol: pflegt, trocknet nicht aus":"Fatty alcohol: conditions, not drying","Wasser":"Water","Feuchthalte- und Lösungsmittel":"Humectant and solvent","Konservierung":"Preservative","Verdicker":"Thickener","pH-Regulator":"pH adjuster","Stabilisator":"Stabilizer","Pflegende Basis (Emollient)":"Emollient base","Duftstoff":"Fragrance","Alkohol: kann austrocknen":"Alcohol: can be drying","Duftstoff-Allergen":"Fragrance allergen","Ätherisches Öl: kann reizen":"Essential oil: can irritate"};
 const INCI_SAMPLE = "Aqua, Glycerin, Niacinamide, Butylene Glycol, Alcohol Denat., Squalane, Salicylic Acid, Cetearyl Alcohol, Panthenol, Sodium Hyaluronate, Parfum, Linalool, Limonene, Phenoxyethanol, Xanthan Gum, Citric Acid";
 function inciLookup(name){
   const n = name.toLowerCase().replace(/\*+/g,"").replace(/\s+/g," ").trim();
@@ -1610,7 +1807,7 @@ function renderInci(){
       ${actives.length ? `<div class="inci-chips">${actives.map(a=>`<button type="button" data-key="${a.e.key}">${esc(a.name)}</button>`).join("")}</div>` : `<p class="fine">${esc(t.inciNoActives)}</p>`}</div>
     ${flags.length ? `<div><div class="eyebrow" style="margin-bottom:.5rem">${esc(t.inciNotes)}</div><div class="inci-flags">${flags.map(([c,h])=>`<p class="${c}">${h}</p>`).join("")}</div></div>` : ""}
     <div><div class="eyebrow" style="margin-bottom:.5rem">${esc(t.inciAll)}</div>
-      <div class="inci-list"><table><tbody>${rows.map(r=>`<tr class="t-${r.e ? r.e.type : "unknown"}"><td>${r.pos}</td><td>${esc(r.name)}</td><td>${esc(r.e ? r.e[lang] : t.inciUnknown)}</td></tr>`).join("")}</tbody></table></div></div>
+      <div class="inci-list"><table><tbody>${rows.map(r=>`<tr class="t-${r.e ? r.e.type : "unknown"}"><td>${r.pos}</td><td>${esc(r.name)}</td><td>${esc(r.e ? (r.e[lang] || IDB_EN[r.e.de] || r.e.de) : t.inciUnknown)}</td></tr>`).join("")}</tbody></table></div></div>
     <p class="fine">${esc(t.inciOrder)}</p>`;
   inciOut.querySelectorAll(".inci-chips button").forEach(b => b.onclick = () => {
     const i = ING.findIndex(([k]) => k === b.dataset.key); if(i < 0) return;

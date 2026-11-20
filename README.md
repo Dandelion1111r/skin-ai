@@ -1,6 +1,6 @@
 # SKIN AI
 
-**Konzept-Prototyp einer Skincare-App: Hauttest, Gesichtskarte und Wirkstoff-Lexikon, auf Deutsch und Rumänisch.**
+**Konzept-Prototyp einer Skincare-App: Hauttest, Gesichtskarte und Wirkstoff-Lexikon, auf Deutsch, Rumänisch und Englisch.**
 
 [Prototyp ansehen →](https://dandelion1111r.github.io/skin-ai/)
 
@@ -28,7 +28,9 @@
 ## Technik
 
 - Eine HTML-Datei mit CSS und JavaScript, ohne Framework und ohne Build-Schritt
-- Sprachumschalter Deutsch / Rumänisch, Auswahl bleibt im Browser gespeichert
+- Sprachumschalter Deutsch / Rumänisch / Englisch, Auswahl bleibt im Browser gespeichert
+- Installierbar als Web-App (PWA), funktioniert auch offline
+- Ergebnis als Bild für Instagram-Stories teilen
 - Heller und dunkler Modus, angepasst für Smartphone und Desktop
 - Schriften lokal eingebunden, keine Cookies, kein Tracking
 
