@@ -1518,51 +1518,45 @@ async function shareCard(r){
   x.fillStyle = "#F7F5F6"; x.fillRect(0,0,W,H);
   const spaced = (txt, px, y, font, color, align, spacing) => { x.font = font; x.fillStyle = color; x.textAlign = align || "center";
     if("letterSpacing" in x){ x.letterSpacing = spacing || "0px"; x.fillText(txt, px, y); x.letterSpacing = "0px"; } else x.fillText(txt, px, y); };
-  // logo
-  x.strokeStyle = ink; x.lineWidth = 3; x.beginPath(); x.ellipse(W/2 - 190, 168, 20, 26, 0, 0, 2*Math.PI); x.stroke();
-  x.fillStyle = accent; x.beginPath(); x.ellipse(W/2 - 190, 155, 12, 5, 0, 0, 2*Math.PI); x.fill();
-  spaced("SKIN AI", W/2 + 20, 186, '500 54px "Bodoni Moda", Georgia, serif', ink, "center", "14px");
-  // face with zones
+  // portrait with the profile's zones (same zones as the face map on the page)
   const zones = new Set();
   [r.type, ...r.concerns].forEach(k => { const sk = SK.find(e => e.k === CARD_ZONES[k]); if(sk) sk.z.forEach(z => zones.add(z)); });
-  const cx = W/2, cy = 640, Z = {
-    forehead: () => x.ellipse(cx, cy-225, 125, 50, 0, 0, 2*Math.PI),
-    eye_area: () => { x.ellipse(cx-92, cy-85, 62, 30, 0, 0, 2*Math.PI); x.moveTo(cx+92+62, cy-85); x.ellipse(cx+92, cy-85, 62, 30, 0, 0, 2*Math.PI); },
-    nose: () => { x.moveTo(cx-18, cy-110); x.quadraticCurveTo(cx, cy-118, cx+18, cy-110); x.lineTo(cx+40, cy+22); x.quadraticCurveTo(cx, cy+40, cx-40, cy+22); x.closePath(); },
-    left_cheek: () => x.ellipse(cx-140, cy+30, 55, 68, 0, 0, 2*Math.PI),
-    right_cheek: () => x.ellipse(cx+140, cy+30, 55, 68, 0, 0, 2*Math.PI),
-    chin: () => x.ellipse(cx, cy+225, 68, 30, 0, 0, 2*Math.PI)
+  const FX = 120, FY = 200, FW = 840, FH = 960, SC = FW/750, OY = 60*SC, img = new Image(); img.src = "face.jpg";
+  x.fillStyle = "#F7F5F6"; x.fillRect(0,0,W,H);
+  x.save(); x.beginPath(); x.roundRect(FX, FY, FW, FH, 28); x.clip();
+  try{ await img.decode(); x.drawImage(img, FX, FY - OY, FW, 1000*SC); }catch(e){ x.fillStyle = "#e9e4e2"; x.fillRect(FX,FY,FW,FH); }
+  x.translate(FX, FY - OY); x.scale(SC, SC);
+  const Z = {
+    forehead: () => x.ellipse(380, 240, 150, 62, 0, 0, 2*Math.PI),
+    eye_area: () => { x.ellipse(276, 400, 74, 36, 0, 0, 2*Math.PI); x.moveTo(484+74, 400); x.ellipse(484, 400, 74, 36, 0, 0, 2*Math.PI); },
+    nose: () => { x.moveTo(354,352); x.quadraticCurveTo(380,342,406,352); x.lineTo(436,505); x.quadraticCurveTo(380,530,324,505); x.closePath(); },
+    left_cheek: () => x.ellipse(248, 548, 58, 72, 0, 0, 2*Math.PI),
+    right_cheek: () => x.ellipse(512, 548, 58, 72, 0, 0, 2*Math.PI),
+    chin: () => x.ellipse(380, 702, 72, 32, 0, 0, 2*Math.PI)
   };
-  // soft zone glow, then thin outlines, then line-art face on top
-  x.save(); x.filter = "blur(14px)";
-  Object.keys(Z).forEach(k => { if(!zones.has(k)) return; x.beginPath(); Z[k](); x.fillStyle = "rgba(201,143,166,.55)"; x.fill(); });
+  Object.keys(Z).forEach(k => { if(!zones.has(k)) return; x.beginPath(); Z[k]();
+    x.shadowColor = "rgba(255,255,255,.9)"; x.shadowBlur = 18; x.fillStyle = "rgba(255,255,255,.26)"; x.fill();
+    x.shadowBlur = 10; x.strokeStyle = "rgba(255,255,255,.95)"; x.lineWidth = 2.6; x.stroke(); x.shadowBlur = 0; });
   x.restore();
-  Object.keys(Z).forEach(k => { if(!zones.has(k)) return; x.beginPath(); Z[k](); x.strokeStyle = "rgba(134,81,106,.55)"; x.lineWidth = 2; x.setLineDash([2,9]); x.lineCap = "round"; x.stroke(); });
-  x.setLineDash([]);
-  x.strokeStyle = ink; x.lineCap = "round"; x.lineWidth = 2.5;
-  x.beginPath(); x.ellipse(cx, cy, 250, 330, 0, 0, 2*Math.PI); x.stroke();
-  x.beginPath(); x.moveTo(cx-95, cy+322); x.lineTo(cx-98, cy+390); x.moveTo(cx+95, cy+322); x.lineTo(cx+98, cy+390); x.stroke();
-  x.lineWidth = 2; x.globalAlpha = .7;
-  x.beginPath(); x.moveTo(cx-150, cy-140); x.quadraticCurveTo(cx-95, cy-165, cx-40, cy-145); x.moveTo(cx+40, cy-145); x.quadraticCurveTo(cx+95, cy-165, cx+150, cy-140); x.stroke();
-  x.beginPath(); x.moveTo(cx-140, cy-92); x.quadraticCurveTo(cx-92, cy-70, cx-44, cy-92); x.moveTo(cx+44, cy-92); x.quadraticCurveTo(cx+92, cy-70, cx+140, cy-92); x.stroke();
-  x.beginPath(); x.moveTo(cx+4, cy-80); x.lineTo(cx-10, cy+12); x.quadraticCurveTo(cx, cy+26, cx+20, cy+16); x.stroke();
-  x.beginPath(); x.moveTo(cx-62, cy+118); x.quadraticCurveTo(cx-30, cy+100, cx, cy+110); x.quadraticCurveTo(cx+30, cy+100, cx+62, cy+118); x.quadraticCurveTo(cx, cy+150, cx-62, cy+118); x.stroke();
-  x.globalAlpha = 1;
+  // logo above the photo
+  x.strokeStyle = ink; x.lineWidth = 3; x.beginPath(); x.ellipse(W/2 - 160, 112, 18, 24, 0, 0, 2*Math.PI); x.stroke();
+  x.fillStyle = accent; x.beginPath(); x.ellipse(W/2 - 160, 100, 11, 5, 0, 0, 2*Math.PI); x.fill();
+  spaced("SKIN AI", W/2 + 30, 129, '500 48px "Bodoni Moda", Georgia, serif', ink, "center", "12px");
   // text
-  spaced(t.cardEyebrow.toUpperCase(), W/2, 1130, '500 30px Jost, system-ui, sans-serif', accent, "center", "6px");
-  x.font = '400 104px "Bodoni Moda", Georgia, serif'; x.fillStyle = ink; x.textAlign = "center"; x.fillText(t.types[r.type], W/2, 1260);
-  x.font = '400 42px Jost, system-ui, sans-serif'; x.fillStyle = muted; x.fillText(t.sens[r.sens], W/2, 1330);
+  spaced(t.cardEyebrow.toUpperCase(), W/2, 1235, '500 30px Jost, system-ui, sans-serif', accent, "center", "6px");
+  x.font = '400 104px "Bodoni Moda", Georgia, serif'; x.fillStyle = ink; x.textAlign = "center"; x.fillText(t.types[r.type], W/2, 1345);
+  x.font = '400 42px Jost, system-ui, sans-serif'; x.fillStyle = muted; x.fillText(t.sens[r.sens], W/2, 1410);
   // concern chips, centered rows
   const names = r.concerns.map(k => t.conc[k]); x.font = '500 34px Jost, system-ui, sans-serif';
   const rows = [[]]; let rowW = 0; const pad = 34, gap = 18, maxW = W - 160;
   names.forEach(n => { const w = x.measureText(n).width + pad*2; if(rowW + w > maxW && rows.at(-1).length){ rows.push([]); rowW = 0; } rows.at(-1).push([n,w]); rowW += w + gap; });
-  rows.slice(0,3).forEach((row,ri) => { const total = row.reduce((a,[,w]) => a + w, 0) + gap*(row.length-1); let px = (W - total)/2; const y = 1410 + ri*92;
+  rows.slice(0,2).forEach((row,ri) => { const total = row.reduce((a,[,w]) => a + w, 0) + gap*(row.length-1); let px = (W - total)/2; const y = 1462 + ri*90;
     row.forEach(([n,w]) => { x.beginPath(); x.roundRect(px, y, w, 70, 35); x.fillStyle = soft; x.fill(); x.strokeStyle = accent; x.lineWidth = 2; x.stroke();
       x.fillStyle = accent; x.textAlign = "center"; x.fillText(n, px + w/2, y + 47); px += w + gap; }); });
   // footer
-  x.strokeStyle = line; x.lineWidth = 2; x.beginPath(); x.moveTo(140, 1690); x.lineTo(W-140, 1690); x.stroke();
-  x.font = 'italic 400 52px "Bodoni Moda", Georgia, serif'; x.fillStyle = accent; x.textAlign = "center"; x.fillText(t.cardCta, W/2, 1770);
-  x.font = '400 34px Jost, system-ui, sans-serif'; x.fillStyle = ink; x.fillText("dandelion1111r.github.io/skin-ai", W/2, 1830);
+  x.strokeStyle = line; x.lineWidth = 2; x.beginPath(); x.moveTo(140, 1712); x.lineTo(W-140, 1712); x.stroke();
+  x.font = 'italic 400 52px "Bodoni Moda", Georgia, serif'; x.fillStyle = accent; x.textAlign = "center"; x.fillText(t.cardCta, W/2, 1782);
+  x.font = '400 34px Jost, system-ui, sans-serif'; x.fillStyle = ink; x.fillText("dandelion1111r.github.io/skin-ai", W/2, 1838);
   x.font = '400 26px Jost, system-ui, sans-serif'; x.fillStyle = muted; x.fillText(t.cardFine, W/2, 1880);
   const blob = await new Promise(res => c.toBlob(res, "image/png"));
   if(!blob) return;
