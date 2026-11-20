@@ -44,4 +44,4 @@ SKIN AI ist ein Konzept-Prototyp und keine echte App. Es werden keine Daten übe
 
 Konzept und Design: Raluca Jidvian, 2026.
 Schriftarten: Bodoni Moda, Jost, DM Mono (SIL Open Font License, siehe `fonts/`).
-Porträtfoto: Unsplash (Unsplash-Lizenz).
+Fotos: Unsplash (Unsplash-Lizenz), unter anderem von Vitaly Gariev, Shutter Speed, Sanket Khatua, Point Normal, Muhammad Sulyman, Crystalweed Cannabis, Andrea Castro, Jocelyn Morales, 360floralflaves.

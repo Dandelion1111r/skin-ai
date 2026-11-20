@@ -370,6 +370,18 @@ section.wide .sec-head{max-width:44rem}
 .inci-empty{color:var(--muted)}
 @media (max-width:900px){.inci{grid-template-columns:1fr}}
 
+/* section photos */
+.sec-img{margin:var(--s2) 0 0;border-radius:var(--radius);overflow:hidden;aspect-ratio:4/5;max-width:22rem;background:var(--accent-soft)}
+.sec-img.wide{aspect-ratio:3/2}
+.sec-img.square{aspect-ratio:1}
+.sec-img.tall{aspect-ratio:3/4;max-width:16rem}
+.sec-img img{width:100%;height:100%;object-fit:cover;display:block}
+.combo .sec-img{margin-top:var(--s3)}
+@media (max-width:900px){
+  .sec-img,.sec-img.tall{aspect-ratio:16/9;max-width:100%}
+  .combo .sec-img{display:none}
+}
+
 /* trust + faq */
 .trusts{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4) var(--s3)}
 .trust{display:flex;flex-direction:column;gap:.5rem;min-width:0}
@@ -488,6 +500,7 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
   <div class="sec-head">
     <span class="eyebrow" data-t="howEyebrow"></span>
     <h2 data-t="howTitle"></h2>
+    <figure class="sec-img"><img src="img/palm-swatches.jpg" alt="" loading="lazy" decoding="async"></figure>
   </div>
   <ol class="steps">
     <li><div><h3 data-t="s1t"></h3><p class="muted" data-t="s1d"></p></div></li>
@@ -602,6 +615,7 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
     <span class="eyebrow" data-t="testEyebrow"></span>
     <h2 data-t="testTitle"></h2>
     <p class="muted" data-t="testSub"></p>
+    <figure class="sec-img"><img src="img/portrait-glow.jpg" alt="" loading="lazy" decoding="async"></figure>
   </div>
   <div class="card quiz" id="quiz" aria-live="polite"></div>
 </section>
@@ -617,6 +631,7 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
       <span class="mono" data-t="rbPick"></span>
       <div class="rb-chips" id="rbChips" role="group"></div>
       <p class="fine" id="rbState"></p>
+    <figure class="sec-img wide"><img src="img/hand-cream.jpg" alt="" loading="lazy" decoding="async"></figure>
     </div>
     <div class="rb-out" id="rbOut" aria-live="polite"></div>
   </div>
@@ -686,6 +701,7 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
     <div class="combo-head">
       <span class="eyebrow" data-t="cEyebrow"></span>
       <h3 data-t="cTitle"></h3>
+    <figure class="sec-img tall"><img src="img/serum-dropper.jpg" alt="" loading="lazy" decoding="async"></figure>
     </div>
     <div class="combo-pick">
       <label><span class="mono" data-t="cA"></span><select id="cSelA"></select></label>
@@ -715,6 +731,7 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
         <button class="btn ghost" id="inciClear" type="button" data-t="inciClear"></button>
       </div>
       <p class="fine" data-t="inciTip"></p>
+    <figure class="sec-img"><img src="img/bottle-label.jpg" alt="" loading="lazy" decoding="async"></figure>
     </div>
     <div class="card inci-out" id="inciOut" aria-live="polite"></div>
   </div>
@@ -725,6 +742,7 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
     <span class="eyebrow" data-t="freeEyebrow"></span>
     <h2 data-t="freeTitle"></h2>
     <p class="muted" data-t="freeSub"></p>
+    <figure class="sec-img"><img src="img/cream-texture.jpg" alt="" loading="lazy" decoding="async"></figure>
   </div>
   <div class="tiers">
     <div class="card tier main">
@@ -745,6 +763,7 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
     <span class="eyebrow" data-t="dsEyebrow"></span>
     <h2 data-t="dsTitle"></h2>
     <p class="muted" data-t="dsSub"></p>
+    <figure class="sec-img wide"><img src="img/cream-swatch.jpg" alt="" loading="lazy" decoding="async"></figure>
   </div>
   <div class="trusts"><div class="trust"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-2.5h6L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><h3 data-t="tr1t"></h3><p class="muted" data-t="tr1d"></p></div><div class="trust"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="3"/><path d="M4 4l16 16"/></svg><h3 data-t="tr2t"></h3><p class="muted" data-t="tr2d"></p></div><div class="trust"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M10 7V4.5h4V7M7 7l1 13h8l1-13"/></svg><h3 data-t="tr3t"></h3><p class="muted" data-t="tr3d"></p></div><div class="trust"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg><h3 data-t="tr4t"></h3><p class="muted" data-t="tr4d"></p></div></div>
 </section>
@@ -753,6 +772,7 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
   <div class="sec-head">
     <span class="eyebrow">FAQ</span>
     <h2 data-t="faqTitle"></h2>
+    <figure class="sec-img square"><img src="img/bottle-clear.jpg" alt="" loading="lazy" decoding="async"></figure>
   </div>
   <div class="faq"><details><summary data-t="f1q"></summary><p class="muted" data-t="f1a"></p></details><details><summary data-t="f2q"></summary><p class="muted" data-t="f2a"></p></details><details><summary data-t="f3q"></summary><p class="muted" data-t="f3a"></p></details><details><summary data-t="f4q"></summary><p class="muted" data-t="f4a"></p></details><details><summary data-t="f5q"></summary><p class="muted" data-t="f5a"></p></details><details><summary data-t="f6q"></summary><p class="muted" data-t="f6a"></p></details><details><summary data-t="f7q"></summary><p class="muted" data-t="f7a"></p></details><details><summary data-t="f8q"></summary><p class="muted" data-t="f8a"></p></details></div>
 </section>
@@ -762,7 +782,7 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
   <div>
     <p class="muted" data-t="disclaimer"></p>
     <p class="mono" data-t="credit"></p>
-    <p class="legal-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="https://github.com/Dandelion1111r/skin-ai">GitHub</a><span class="muted">Foto: Unsplash</span></p>
+    <p class="legal-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="https://github.com/Dandelion1111r/skin-ai">GitHub</a><span class="muted">Fotos: Unsplash</span></p>
   </div>
 </footer>
 </div>
@@ -1616,7 +1636,9 @@ function renderSkin(){
 function showSkin(i){
   skin = i; const s = SK[i], v = L().S[s.k];
   document.querySelectorAll(".sbtn").forEach(b => b.setAttribute("aria-pressed", +b.dataset.i===i));
-  highlight(face2, s.z, false);
+  const useM = ["mature","lines","eyes"].includes(s.k);
+  face2.style.display = useM ? "none" : ""; faceM.style.display = useM ? "" : "none";
+  highlight(useM ? faceM : face2, s.z, false);
   $("#sName").textContent = v[0]; $("#sSignV").textContent = v[1]; $("#sZonesV").textContent = v[2];
   $("#sHelpV").textContent = v[3]; $("#sIngV").textContent = s.ing;
   const n = $("#sNoteV"); n.textContent = v[4]; n.classList.toggle("flag", !!s.med);
@@ -1625,11 +1647,26 @@ function highlight(svg, zones, avoid){
   svg.querySelectorAll(".z").forEach(e => e.classList.toggle("on", zones.includes(e.dataset.zone)));
   svg.querySelectorAll(".avoid").forEach(e => e.classList.toggle("on", avoid));
 }
+const MATURE_SVG = `<svg class="face" viewBox="0 0 750 1000" aria-hidden="true">
+  <defs><filter id="glowM" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur in="SourceGraphic" stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <image href="img/portrait-mature.jpg" x="0" y="0" width="750" height="1000" preserveAspectRatio="xMidYMid slice"/>
+  <g filter="url(#glowM)">
+    <ellipse class="z" data-zone="forehead" cx="373" cy="150" rx="190" ry="58"/>
+    <ellipse class="z" data-zone="eye_area" cx="162" cy="372" rx="98" ry="50"/>
+    <ellipse class="z" data-zone="eye_area" cx="525" cy="372" rx="98" ry="50"/>
+    <path class="z" data-zone="nose" d="M322 400 Q347 390 372 400 L402 560 Q347 588 292 560 Z"/>
+    <ellipse class="z" data-zone="left_cheek" cx="150" cy="545" rx="70" ry="88"/>
+    <ellipse class="z" data-zone="right_cheek" cx="560" cy="550" rx="70" ry="88"/>
+    <ellipse class="z" data-zone="chin" cx="347" cy="885" rx="92" ry="40"/>
+  </g>
+</svg>`;
 const face1 = $("#karte svg.face");
 const face2 = face1.cloneNode(true);
 face2.querySelector("title").removeAttribute("id"); face2.removeAttribute("aria-labelledby");
 face2.setAttribute("aria-label", "Face map");
 $("#face2").appendChild(face2);
+$("#face2").insertAdjacentHTML("beforeend", MATURE_SVG);
+const faceM = $("#face2").lastElementChild; faceM.style.display = "none";
 const face0 = face1.cloneNode(true);
 face0.querySelector("title").removeAttribute("id"); face0.removeAttribute("aria-labelledby"); face0.setAttribute("aria-hidden","true"); face0.removeAttribute("role");
 $("#face0").appendChild(face0);
