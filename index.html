@@ -288,6 +288,41 @@ section.wide .sec-head{max-width:44rem}
 @media (max-width:900px){.lex,.combo{grid-template-columns:1fr}.combo-head{grid-row:auto}}
 @media (max-width:600px){.ing-card dl{grid-template-columns:1fr}.ing-card dt{padding-bottom:0}.ing-card dd{border-top:0;padding-top:.25rem}.combo{padding:var(--s3)}}
 
+/* routine builder */
+.rb{display:grid;grid-template-columns:4fr 8fr;gap:var(--s4);align-items:start}
+.rb > *{min-width:0}
+.rb-pick{display:flex;flex-direction:column;gap:.75rem}
+.rb-chips{display:flex;flex-wrap:wrap;gap:.45rem}
+.rb-chips button{background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:.45rem .9rem;font-size:.9rem;display:inline-flex;align-items:center;gap:.45rem}
+.rb-chips button::before{content:"";width:.8rem;height:.8rem;border-radius:3px;border:1px solid var(--muted);flex:none}
+.rb-chips button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.rb-chips button[aria-pressed="true"]::before{background:var(--accent);border-color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent-soft)}
+.rb-out{display:flex;flex-direction:column;gap:var(--s3)}
+.rb-cols{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
+.rb-col{padding:var(--s3)}
+.rb-col ol{list-style:none;margin:.75rem 0 0;padding:0;display:grid;gap:.6rem;counter-reset:r}
+.rb-col li{display:grid;grid-template-columns:1.6rem 1fr auto;gap:.35rem;align-items:baseline}
+.rb-col li::before{counter-increment:r;content:counter(r);font-family:var(--display);color:var(--accent);font-size:1.1rem}
+.rb-col li.slot{color:var(--accent)}
+.rb-col li.slot span{font-style:italic}
+.rb-col .where{background:none;border:0;color:var(--muted);font-size:.78rem;text-decoration:underline;text-underline-offset:3px;padding:.2rem 0}
+.rb-col .where:hover{color:var(--accent)}
+.week{padding:var(--s3)}
+.week-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:.4rem;margin-top:.75rem}
+.week-day{border:1px solid var(--line);border-radius:var(--radius);padding:.55rem .4rem;display:flex;flex-direction:column;gap:.3rem;min-height:4.6rem;text-align:center}
+.week-day b{font-family:var(--mono);font-weight:400;font-size:.72rem;color:var(--muted)}
+.week-day span{font-size:.8rem;line-height:1.3;overflow-wrap:anywhere}
+.week-day.on{border-color:var(--accent);background:var(--accent-soft)}
+.week-day.rest span{color:var(--muted)}
+.rb-notes{display:grid;gap:.6rem}
+.rb-notes p{padding:.7rem .9rem;border-radius:var(--radius);background:var(--res-bg);border-left:3px solid var(--res)}
+.rb-notes p b{color:var(--res);font-weight:500}
+.rb-notes .info{--res:var(--muted);--res-bg:var(--accent-soft)}
+.rb-notes .caution{--res:var(--mid);--res-bg:var(--mid-bg)}
+.rb-notes .stop{--res:var(--bad);--res-bg:var(--bad-bg)}
+@media (max-width:900px){.rb{grid-template-columns:1fr}}
+@media (max-width:600px){.rb-cols{grid-template-columns:1fr}.week-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
 /* inci check */
 .inci{display:grid;grid-template-columns:5fr 7fr;gap:var(--s4);align-items:start}
 .inci > *{min-width:0}
@@ -385,10 +420,10 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
       <a href="#ablauf" data-t="nav1"></a>
       <a href="#hauttypen" data-t="nav5"></a>
       <a href="#test" data-t="nav2"></a>
+      <a href="#routine" data-t="nav7"></a>
       <a href="#karte" data-t="nav3"></a>
       <a href="#wirkstoffe" data-t="nav6"></a>
       <a href="#inci">INCI-Check</a>
-      <a href="#preise" data-t="nav4"></a>
       <a href="#faq">FAQ</a>
     </nav>
     <div class="lang" role="group" aria-label="Sprache / Limba">
@@ -542,6 +577,22 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
   <div class="card quiz" id="quiz" aria-live="polite"></div>
 </section>
 
+<section id="routine" class="wide">
+  <div class="sec-head">
+    <span class="eyebrow" data-t="rbEyebrow"></span>
+    <h2 data-t="rbTitle"></h2>
+    <p class="muted" data-t="rbSub"></p>
+  </div>
+  <div class="rb">
+    <div class="rb-pick">
+      <span class="mono" data-t="rbPick"></span>
+      <div class="rb-chips" id="rbChips" role="group"></div>
+      <p class="fine" id="rbState"></p>
+    </div>
+    <div class="rb-out" id="rbOut" aria-live="polite"></div>
+  </div>
+</section>
+
 <section id="karte" class="wide">
   <div class="sec-head">
     <span class="eyebrow" data-t="mapEyebrow"></span>
@@ -691,6 +742,23 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
 (() => {
 const T = {
 de:{
+  nav7:"Meine Routine",
+  rbEyebrow:"Meine Routine",rbTitle:"Deine Produkte, richtig sortiert",
+  rbSub:"Wähle, was du schon benutzt. SKIN AI ordnet alles für morgens und abends und plant starke Wirkstoffe auf verschiedene Abende, mit Pausen dazwischen.",
+  rbPick:"Was benutzt du?",rbExample:"Beispielauswahl. Tippe auf die Produkte, die du wirklich benutzt.",rbSaved:"Deine Auswahl bleibt in deinem Browser gespeichert.",
+  rbAm:"Morgens",rbPm:"Abends",rbSlot:"Wirkstoff des Abends, siehe Wochenplan",rbWhere:"Wo?",rbEmpty:"Wähle mindestens ein Produkt.",
+  rbWeek:"Wochenplan für den Abend",rbRest:"Pause",rbDays:["Mo","Di","Mi","Do","Fr","Sa","So"],
+  rbWeekNote:"Pause heißt: nur Reinigung und Creme. Verträgt deine Haut den Plan nach einigen Wochen gut, kannst du langsam steigern.",
+  rbProf:p=>`Angepasst an dein Profil: ${p}`,
+  rbN:{
+    preg:"<b>Retinol ist in Schwangerschaft und Stillzeit tabu.</b> Wir haben es aus deinem Plan genommen.",
+    noSpf:"<b>Sonnenschutz fehlt.</b> Er ist der wichtigste Schritt am Morgen, besonders mit Retinol oder Peelings.",
+    many:"<b>Viele Wirkstoffe auf einmal.</b> Führe sie nacheinander ein, etwa im Abstand von zwei Wochen.",
+    sens:"<b>Empfindliche Haut:</b> Der Plan hat deshalb mehr Pausen.",
+    bpoAm:"<b>Benzoylperoxid am Morgen,</b> weil es manche Retinoide abbauen kann. Danach Sonnenschutz.",
+    bpoVitc:"<b>Benzoylperoxid und Vitamin C</b> nicht zusammen: Vitamin C bleibt am Morgen, Benzoylperoxid kommt in den Abendplan."
+  },
+  RB:{cleanser:"Reinigung",toner:"Toner",vitc:"Vitamin-C-Serum",nia:"Niacinamid-Serum",ha:"Hyaluron-Serum",aha:"AHA-Peeling",bha:"BHA-Peeling",retinol:"Retinol",azelaic:"Azelainsäure",bpo:"Benzoylperoxid",eye:"Augencreme",moist:"Feuchtigkeitscreme",spf:"Sonnenschutz"},
   inciEyebrow:"INCI-Check",inciTitle:"Was steht auf deiner Verpackung?",
   inciSub:"Füge die Inhaltsstoffliste eines Produkts ein. SKIN AI erkennt Wirkstoffe, markiert Duftstoffe und Alkohol und gleicht alles mit deinem Hautprofil ab. Ohne Punkte und ohne Ampel.",
   inciLabel:"Inhaltsstoffe (INCI), durch Kommas getrennt",inciSample:"Beispiel einfügen",inciClear:"Leeren",
@@ -866,6 +934,23 @@ de:{
   credit:"Konzept & Design: Raluca Jidvian · 2026"
 },
 ro:{
+  nav7:"Rutina mea",
+  rbEyebrow:"Rutina mea",rbTitle:"Produsele tale, în ordinea corectă",
+  rbSub:"Alege ce folosești deja. SKIN AI le ordonează pentru dimineață și seară și împarte ingredientele puternice pe seri diferite, cu pauze între ele.",
+  rbPick:"Ce folosești?",rbExample:"Selecție exemplu. Atinge produsele pe care le folosești de fapt.",rbSaved:"Selecția ta rămâne salvată în browser.",
+  rbAm:"Dimineața",rbPm:"Seara",rbSlot:"Ingredientul activ al serii, vezi planul săptămânal",rbWhere:"Unde?",rbEmpty:"Alege cel puțin un produs.",
+  rbWeek:"Planul săptămânal pentru seară",rbRest:"Pauză",rbDays:["L","Ma","Mi","J","V","S","D"],
+  rbWeekNote:"Pauză înseamnă: doar curățare și cremă. Dacă pielea tolerează bine planul după câteva săptămâni, poți crește treptat.",
+  rbProf:p=>`Adaptat profilului tău: ${p}`,
+  rbN:{
+    preg:"<b>Retinolul nu se folosește în sarcină și alăptare.</b> L-am scos din planul tău.",
+    noSpf:"<b>Lipsește protecția solară.</b> Este cel mai important pas al dimineții, mai ales cu retinol sau exfoliante.",
+    many:"<b>Multe ingrediente active deodată.</b> Introdu-le pe rând, la aproximativ două săptămâni distanță.",
+    sens:"<b>Ten sensibil:</b> de aceea planul are mai multe pauze.",
+    bpoAm:"<b>Peroxidul de benzoil dimineața,</b> pentru că poate degrada unii retinoizi. Apoi protecție solară.",
+    bpoVitc:"<b>Peroxidul de benzoil și vitamina C</b> nu se folosesc împreună: vitamina C rămâne dimineața, peroxidul intră în planul de seară."
+  },
+  RB:{cleanser:"Curățare",toner:"Tonic",vitc:"Ser cu vitamina C",nia:"Ser cu niacinamidă",ha:"Ser cu acid hialuronic",aha:"Exfoliant cu AHA",bha:"Exfoliant cu BHA",retinol:"Retinol",azelaic:"Acid azelaic",bpo:"Peroxid de benzoil",eye:"Cremă de ochi",moist:"Cremă hidratantă",spf:"Protecție solară"},
   inciEyebrow:"INCI-Check",inciTitle:"Ce scrie pe ambalaj?",
   inciSub:"Lipește lista de ingrediente a unui produs. SKIN AI recunoaște ingredientele active, semnalează parfumul și alcoolul și compară totul cu profilul tău. Fără note și fără semafor.",
   inciLabel:"Ingrediente (INCI), separate prin virgulă",inciSample:"Inserează un exemplu",inciClear:"Șterge",
@@ -1083,7 +1168,7 @@ function applyLang(){
   document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang===lang));
   $("#products").setAttribute("aria-label", lang==="de"?"Produkt wählen":"Alege produsul");
   $("#types").setAttribute("aria-label", L().gTypes); $("#problems").setAttribute("aria-label", L().gProblems);
-  renderProducts(); showProduct(prod); renderSkin(); renderLex(); renderQuiz(); renderInci();
+  renderProducts(); showProduct(prod); renderSkin(); renderLex(); renderQuiz(); renderInci(); renderRB();
 }
 document.querySelectorAll(".lang button").forEach(b => b.onclick = () => { lang = b.dataset.lang; store.set("skinai-lang", lang); applyLang(); });
 
@@ -1100,7 +1185,7 @@ addEventListener("scroll", onScroll, {passive:true}); onScroll();
 
 /* ---------- quiz ---------- */
 const qEl = $("#quiz");
-const save = () => { store.set("skinai-quiz2", st); if(st.i >= LOGIC.length || st.i <= 0) renderInci(); };
+const save = () => { store.set("skinai-quiz2", st); if(st.i >= LOGIC.length || st.i <= 0){ renderInci(); renderRB(); } };
 function renderQuiz(){
   const t = L();
   if(st.i < 0){
@@ -1309,6 +1394,62 @@ function renderCombo(){
 }
 $("#cSelA").onchange = e => { cA = e.target.value; renderCombo(); };
 $("#cSelB").onchange = e => { cB = e.target.value; renderCombo(); };
+
+/* ---------- routine builder ---------- */
+// order = position in a routine; map = face-map product index
+const RBP = [
+  {k:"cleanser",o:10,am:1,pm:1},{k:"toner",o:20,am:1,pm:1},{k:"vitc",o:30,am:1,map:1},
+  {k:"bha",o:35,strong:1,map:3},{k:"aha",o:35,strong:1,map:3},{k:"retinol",o:35,strong:1,map:1},{k:"bpo",o:36,map:4},
+  {k:"nia",o:40,am:1,pm:1,map:1},{k:"ha",o:42,am:1,pm:1,map:1},{k:"azelaic",o:45,am:1,pm:1,map:1},
+  {k:"eye",o:60,am:1,pm:1,map:2},{k:"moist",o:70,am:1,pm:1,map:5},{k:"spf",o:90,am:1,map:0}
+];
+const RB_DEFAULT = ["cleanser","vitc","nia","bha","retinol","moist","spf"];
+let rbSel = store.get("skinai-routine"), rbIsSample = !rbSel;
+if(!Array.isArray(rbSel)) rbSel = RB_DEFAULT.slice();
+function rbPlan(){
+  const prof = st.i >= LOGIC.length ? score() : null;
+  const preg = !!(prof && prof.flags.has("preg")), sens = !!(prof && prof.sens==="high");
+  const has = k => rbSel.includes(k) && !(k==="retinol" && preg);
+  const by = k => RBP.find(p=>p.k===k);
+  const am = RBP.filter(p => p.am && has(p.k)).map(p=>p.k);
+  const pm = RBP.filter(p => p.pm && has(p.k)).map(p=>p.k);
+  const groups = ["retinol","bha","aha"].filter(has);
+  const notes = [];
+  if(preg && rbSel.includes("retinol")) notes.push(["stop","preg"]);
+  if(has("bpo")){
+    if(has("vitc")){ groups.push("bpo"); if(has("retinol")) notes.push(["caution","bpoVitc"]); else notes.push(["info","bpoVitc"]); }
+    else if(has("retinol")){ am.push("bpo"); notes.push(["info","bpoAm"]); }
+    else pm.push("bpo");
+  }
+  am.sort((a,b)=>by(a).o-by(b).o); pm.sort((a,b)=>by(a).o-by(b).o);
+  if(groups.length) { const i = pm.findIndex(k => by(k).o > 35); pm.splice(i<0 ? pm.length : i, 0, "_slot"); }
+  const days = sens ? [0,3] : groups.length >= 3 ? [0,2,4,5] : groups.length === 2 ? [0,2,4,6] : [0,2,4];
+  const week = Array(7).fill(null); days.forEach((d,i) => { if(groups.length) week[d] = groups[i % groups.length]; });
+  if(!has("spf") && rbSel.length) notes.push([groups.length||has("vitc") ? "caution" : "info","noSpf"]);
+  if(groups.length + (has("vitc")?1:0) + (has("azelaic")?1:0) >= 4) notes.push(["caution","many"]);
+  if(sens && groups.length) notes.push(["info","sens"]);
+  return {am, pm, groups, week, notes, prof};
+}
+function renderRB(){
+  const t = L(), chips = $("#rbChips"); chips.innerHTML = ""; chips.setAttribute("aria-label", t.rbPick);
+  RBP.forEach(p => { const b = document.createElement("button"); b.type="button"; b.textContent = t.RB[p.k]; b.setAttribute("aria-pressed", rbSel.includes(p.k));
+    b.onclick = () => { rbSel = rbSel.includes(p.k) ? rbSel.filter(x=>x!==p.k) : rbSel.concat(p.k); rbIsSample = false; store.set("skinai-routine", rbSel); renderRB(); };
+    chips.appendChild(b); });
+  $("#rbState").textContent = rbIsSample ? t.rbExample : t.rbSaved;
+  const out = $("#rbOut");
+  if(!rbSel.length){ out.innerHTML = `<p class="muted">${esc(t.rbEmpty)}</p>`; return; }
+  const plan = rbPlan(), by = k => RBP.find(p=>p.k===k);
+  const li = k => k==="_slot" ? `<li class="slot"><span>${esc(t.rbSlot)}</span></li>`
+    : `<li><span>${esc(t.RB[k])}</span>${by(k).map!=null ? `<button class="where" type="button" data-map="${by(k).map}">${esc(t.rbWhere)}</button>` : "<i></i>"}</li>`;
+  const col = (title, list) => `<div class="card rb-col"><span class="eyebrow">${esc(title)}</span>${list.length ? `<ol>${list.map(li).join("")}</ol>` : `<p class="fine" style="margin-top:.75rem">–</p>`}</div>`;
+  const prof = plan.prof ? `<p class="fine">${esc(t.rbProf(`${t.types[plan.prof.type]} · ${t.sens[plan.prof.sens]}`))}</p>` : "";
+  const week = plan.groups.length ? `<div class="card week"><span class="eyebrow">${esc(t.rbWeek)}</span>
+      <div class="week-grid">${plan.week.map((g,i)=>`<div class="week-day ${g?"on":"rest"}"><b>${esc(t.rbDays[i])}</b><span>${esc(g ? t.RB[g] : t.rbRest)}</span></div>`).join("")}</div>
+      <p class="fine" style="margin-top:.75rem">${esc(t.rbWeekNote)}</p></div>` : "";
+  const notes = plan.notes.length ? `<div class="rb-notes">${plan.notes.map(([c,k])=>`<p class="${c}">${t.rbN[k]}</p>`).join("")}</div>` : "";
+  out.innerHTML = `${prof}<div class="rb-cols">${col(t.rbAm, plan.am)}${col(t.rbPm, plan.pm)}</div>${week}${notes}`;
+  out.querySelectorAll(".where").forEach(b => b.onclick = () => { showProduct(+b.dataset.map); document.querySelector("#karte").scrollIntoView({behavior:"smooth"}); });
+}
 
 /* ---------- INCI check ---------- */
 // [pattern, type, role DE, role RO, lexicon key, flag]  type: active | care | base | watch
