@@ -117,7 +117,16 @@ nav a:hover{color:var(--ink)}
 .lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
 
 /* hero */
-.hero{display:grid;grid-template-columns:7fr 5fr;gap:var(--s5);align-items:center;padding-block:var(--s5)}
+.hero{display:grid;grid-template-columns:7fr 5fr;gap:var(--s5);align-items:center;padding-block:var(--s4) var(--s5)}
+.hero-visual{position:relative;min-width:0;padding-bottom:var(--s4)}
+.hero h1{font-size:clamp(2.4rem,4.4vw,3.7rem)}
+.hero-photo{border-radius:var(--radius);overflow:hidden;background:#e9e4e2;aspect-ratio:3/4;max-width:100%}
+.hero-photo svg{display:block;width:100%;height:100%}
+.hero-visual .profile{position:absolute;left:-18%;bottom:0;width:min(330px,80%);box-shadow:0 30px 50px -30px rgba(36,27,35,.45);padding:var(--s2) var(--s3)}
+.hero-visual .profile dt,.hero-visual .profile dd{padding-block:.55rem;font-size:.88rem}
+.hero-visual .profile dt:nth-of-type(n+4),.hero-visual .profile dd:nth-of-type(n+4){display:none}
+.hero-visual .profile dd:nth-of-type(3){border-bottom:0;padding-bottom:0}
+.hero-visual .profile dt:nth-of-type(3){border-bottom:0;padding-bottom:0}
 .hero-copy{min-width:0;display:flex;flex-direction:column;gap:var(--s3)}
 .lead{font-size:1.15rem;color:var(--muted)}
 .btns{display:flex;gap:.75rem;flex-wrap:wrap}
@@ -238,6 +247,8 @@ section.wide .sec-head{max-width:44rem}
 .a-week .d{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:.6rem;background:#86516A;color:#FFFFFF}
 .a-week .d.half{background:#D7AFC0}
 .a-week .d.today{background:transparent;color:#86516A;border:1.5px solid #86516A}
+.a-note{display:flex;gap:10px;align-items:flex-start}
+.a-thumb{width:58px;height:74px;flex:none;object-fit:cover;object-position:50% 38%;border-radius:10px}
 .a-tip{background:#F4ECEF;border-color:#F4ECEF}
 .a-prod{display:flex;justify-content:center;background:#F3ECEF;border-radius:16px;padding:8px}
 .a-fit{align-self:flex-start;font-size:.68rem;font-weight:500;color:#3F6B4E;background:#E5F0E8;border-radius:999px;padding:3px 9px}
@@ -389,6 +400,8 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
 @media (max-width:900px){
   section,footer{grid-template-columns:1fr}
   .hero{grid-template-columns:1fr;gap:var(--s4);padding-block:var(--s4)}
+  .hero-visual{max-width:30rem;padding-bottom:0}
+  .hero-visual .profile{position:relative;left:auto;bottom:auto;width:auto;margin:-4rem var(--s2) 0}
   .map{grid-template-columns:1fr;gap:var(--s3)}
 }
 @media (max-width:600px){
@@ -415,6 +428,12 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
 .hero-copy > :nth-child(3){animation-delay:.16s}
 .hero-copy > :nth-child(4){animation-delay:.24s}
 .hero .profile{animation-delay:.32s}
+.hero-photo{animation:rise .9s cubic-bezier(.2,.7,.2,1) .12s both}
+@media (max-width:600px){
+  .hero-visual .profile dl{grid-template-columns:auto 1fr}
+  .hero-visual .profile dt{border-bottom:1px solid var(--line);padding-bottom:.55rem}
+  .hero-visual .profile dd{text-align:right;padding-top:.55rem}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 
@@ -450,6 +469,8 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
       <a class="btn ghost" href="#karte" data-t="heroCta2"></a>
     </div>
   </div>
+  <div class="hero-visual">
+  <div class="hero-photo" id="face0"></div>
   <aside class="card profile" aria-labelledby="pf-title">
     <header><span class="eyebrow" id="pf-title" data-t="pfTitle"></span><span class="mono">v1</span></header>
     <dl>
@@ -460,6 +481,7 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
       <dt data-t="pfPm"></dt><dd data-t="pfPmV"></dd>
     </dl>
   </aside>
+  </div>
 </div>
 
 <section id="ablauf">
@@ -541,7 +563,7 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
               <div><i style="height:80%"></i><span>4</span></div>
             </div>
           </div>
-          <div class="acard"><div class="a-label" data-t="a3Note"></div><div data-t="a3NoteV"></div><div class="a-muted" style="margin-top:4px" data-t="a3NoteD"></div></div>
+          <div class="acard a-note"><img src="face.jpg" alt="" class="a-thumb"><div><div class="a-label" data-t="a3Note"></div><div data-t="a3NoteV"></div><div class="a-muted" style="margin-top:4px" data-t="a3NoteD"></div></div></div>
           <div class="a-muted" data-t="a3Next"></div>
           <div class="a-btn" data-t="a3Btn"></div>
         </div>
@@ -1614,6 +1636,10 @@ const face2 = face1.cloneNode(true);
 face2.querySelector("title").removeAttribute("id"); face2.removeAttribute("aria-labelledby");
 face2.setAttribute("aria-label", "Face map");
 $("#face2").appendChild(face2);
+const face0 = face1.cloneNode(true);
+face0.querySelector("title").removeAttribute("id"); face0.removeAttribute("aria-labelledby"); face0.setAttribute("aria-hidden","true"); face0.removeAttribute("role");
+$("#face0").appendChild(face0);
+highlight(face0, ["forehead","nose","chin"], false);
 
 /* ---------- ingredient lexicon & combo check ---------- */
 const ING = [["niacinamide","Niacinamide"],["bha","Salicylic Acid"],["aha","Glycolic Acid · Lactic Acid"],["retinol","Retinol"],["vitc","Ascorbic Acid"],["azelaic","Azelaic Acid"],["bpo","Benzoyl Peroxide"],["ha","Sodium Hyaluronate"],["ceramide","Ceramide NP"],["panthenol","Panthenol"]];
