@@ -288,6 +288,36 @@ section.wide .sec-head{max-width:44rem}
 @media (max-width:900px){.lex,.combo{grid-template-columns:1fr}.combo-head{grid-row:auto}}
 @media (max-width:600px){.ing-card dl{grid-template-columns:1fr}.ing-card dt{padding-bottom:0}.ing-card dd{border-top:0;padding-top:.25rem}.combo{padding:var(--s3)}}
 
+/* inci check */
+.inci{display:grid;grid-template-columns:5fr 7fr;gap:var(--s4);align-items:start}
+.inci > *{min-width:0}
+.inci-in{display:flex;flex-direction:column;gap:.75rem}
+.inci-in textarea{font-family:var(--mono);font-size:.85rem;line-height:1.6;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:.9rem 1rem;resize:vertical;width:100%}
+.inci-out{padding:var(--s3) var(--s3) var(--s2);display:flex;flex-direction:column;gap:var(--s2)}
+.inci-sum{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s2);flex-wrap:wrap}
+.inci-sum h3{font-size:1.5rem}
+.inci-chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.inci-chips button{font-family:var(--mono);font-size:.78rem;background:var(--accent-soft);color:var(--ink);border:1px solid transparent;border-radius:999px;padding:.35rem .8rem}
+.inci-chips button:hover{border-color:var(--accent)}
+.inci-flags{display:grid;gap:.6rem}
+.inci-flags p{padding:.7rem .9rem;border-radius:var(--radius);background:var(--res-bg);border-left:3px solid var(--res)}
+.inci-flags p b{color:var(--res);font-weight:500}
+.inci-flags .info{--res:var(--muted);--res-bg:var(--accent-soft)}
+.inci-flags .caution{--res:var(--mid);--res-bg:var(--mid-bg)}
+.inci-flags .stop{--res:var(--bad);--res-bg:var(--bad-bg)}
+.inci-flags .ok{--res:var(--ok);--res-bg:var(--ok-bg)}
+.inci-list{border-top:1px solid var(--line);max-height:22rem;overflow:auto}
+.inci-list table{width:100%;border-collapse:collapse;font-size:.9rem}
+.inci-list td{padding:.5rem .4rem;border-bottom:1px solid var(--line);vertical-align:top}
+.inci-list td:first-child{font-family:var(--mono);font-size:.75rem;color:var(--muted);width:2rem;font-variant-numeric:tabular-nums}
+.inci-list td:nth-child(2){font-family:var(--mono);font-size:.8rem;overflow-wrap:anywhere}
+.inci-list td:last-child{color:var(--muted)}
+.inci-list .t-active td:last-child{color:var(--accent)}
+.inci-list .t-watch td:last-child{color:var(--mid)}
+.inci-list .t-unknown td:last-child{font-style:italic}
+.inci-empty{color:var(--muted)}
+@media (max-width:900px){.inci{grid-template-columns:1fr}}
+
 /* trust + faq */
 .trusts{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4) var(--s3)}
 .trust{display:flex;flex-direction:column;gap:.5rem;min-width:0}
@@ -357,6 +387,7 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
       <a href="#test" data-t="nav2"></a>
       <a href="#karte" data-t="nav3"></a>
       <a href="#wirkstoffe" data-t="nav6"></a>
+      <a href="#inci">INCI-Check</a>
       <a href="#preise" data-t="nav4"></a>
       <a href="#faq">FAQ</a>
     </nav>
@@ -589,6 +620,26 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
   </div>
 </section>
 
+<section id="inci" class="wide">
+  <div class="sec-head">
+    <span class="eyebrow" data-t="inciEyebrow"></span>
+    <h2 data-t="inciTitle"></h2>
+    <p class="muted" data-t="inciSub"></p>
+  </div>
+  <div class="inci">
+    <div class="inci-in">
+      <label for="inciText" class="mono" data-t="inciLabel"></label>
+      <textarea id="inciText" rows="9" spellcheck="false" autocomplete="off"></textarea>
+      <div class="btns">
+        <button class="btn ghost" id="inciSample" type="button" data-t="inciSample"></button>
+        <button class="btn ghost" id="inciClear" type="button" data-t="inciClear"></button>
+      </div>
+      <p class="fine" data-t="inciTip"></p>
+    </div>
+    <div class="card inci-out" id="inciOut" aria-live="polite"></div>
+  </div>
+</section>
+
 <section id="preise">
   <div class="sec-head">
     <span class="eyebrow" data-t="freeEyebrow"></span>
@@ -640,6 +691,29 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
 (() => {
 const T = {
 de:{
+  inciEyebrow:"INCI-Check",inciTitle:"Was steht auf deiner Verpackung?",
+  inciSub:"Füge die Inhaltsstoffliste eines Produkts ein. SKIN AI erkennt Wirkstoffe, markiert Duftstoffe und Alkohol und gleicht alles mit deinem Hautprofil ab. Ohne Punkte und ohne Ampel.",
+  inciLabel:"Inhaltsstoffe (INCI), durch Kommas getrennt",inciSample:"Beispiel einfügen",inciClear:"Leeren",
+  inciTip:"Tipp: Mit der Texterkennung deiner Handykamera kannst du die Liste direkt vom Etikett kopieren. Die Liste wird nur in deinem Browser ausgewertet.",
+  inciPlaceholder:"Aqua, Glycerin, Niacinamide, …",
+  inciEmpty:"Füge eine Inhaltsstoffliste ein, dann erscheint hier die Auswertung.",
+  inciCount:(n,k)=>`${n} Inhaltsstoffe · ${k} erkannt`,inciExample:"Beispielliste",inciYours:"Deine Liste",
+  inciActives:"Wirkstoffe",inciNoActives:"Keine der Wirkstoffe aus unserem Lexikon gefunden.",inciNotes:"Gut zu wissen",inciAll:"Alle Inhaltsstoffe",
+  inciUnknown:"Nicht in unserer Datenbank",inciProfile:p=>`Abgeglichen mit deinem Profil: ${p}`,inciNoProfile:"Mach den Hauttest, dann gleichen wir die Liste mit deiner Haut ab.",
+  inciOrder:"Die Reihenfolge folgt der Menge: Was vorne steht, ist am meisten enthalten. Ab etwa 1 % dürfen Stoffe in beliebiger Reihenfolge stehen. Unbekannte Stoffe sind nicht automatisch schlecht.",
+  iF:{
+    fragrance:"<b>Enthält Duftstoff.</b> Für die meisten kein Problem. Bei empfindlicher Haut lieber parfümfrei wählen.",
+    allergen:n=>`<b>Duftstoff-Allergene:</b> ${n}. Sie müssen auf der Verpackung stehen, weil manche Menschen darauf reagieren.`,
+    essoil:"<b>Ätherische Öle</b> können empfindliche Haut reizen.",
+    alcoholTop:"<b>Alkohol weit vorne in der Liste</b> kann die Haut austrocknen, besonders trockene und empfindliche Haut.",
+    alcohol:"<b>Enthält Alkohol</b>, aber eher weiter hinten. In kleinen Mengen meist unproblematisch.",
+    fatty:"<b>Cetearyl- oder Cetylalkohol</b> sind pflegende Fettalkohole. Sie trocknen nicht aus.",
+    pregRet:"<b>Enthält ein Retinoid.</b> In Schwangerschaft und Stillzeit nicht verwenden.",
+    sensFrag:"<b>Für deine empfindliche Haut:</b> Duftstoffe und ätherische Öle sind häufige Auslöser. Teste das Produkt zuerst an einer kleinen Stelle.",
+    dryAlc:"<b>Für deine trockene Haut:</b> Alkohol so weit vorne kann spannen. Achte auf reichhaltige Pflege danach.",
+    goodFit:"<b>Passt zu deinem Profil:</b> Keine Stoffe gefunden, die bei deinen Angaben besonders zu beachten sind.",
+    retAcid:"<b>Retinoid und Säure in einem Produkt:</b> nicht zusätzlich mit weiteren Peelings kombinieren."
+  },
   nav6:"Wirkstoffe",
   lexEyebrow:"Wirkstoff-Lexikon",lexTitle:"Was steckt in deiner Pflege?",
   lexSub:"Die wichtigsten Wirkstoffe, einfach erklärt. Mit dem Kombi-Check siehst du, welche du zusammen verwenden kannst.",
@@ -792,6 +866,29 @@ de:{
   credit:"Konzept & Design: Raluca Jidvian · 2026"
 },
 ro:{
+  inciEyebrow:"INCI-Check",inciTitle:"Ce scrie pe ambalaj?",
+  inciSub:"Lipește lista de ingrediente a unui produs. SKIN AI recunoaște ingredientele active, semnalează parfumul și alcoolul și compară totul cu profilul tău. Fără note și fără semafor.",
+  inciLabel:"Ingrediente (INCI), separate prin virgulă",inciSample:"Inserează un exemplu",inciClear:"Șterge",
+  inciTip:"Sfat: cu recunoașterea textului din camera telefonului poți copia lista direct de pe etichetă. Lista este analizată doar în browserul tău.",
+  inciPlaceholder:"Aqua, Glycerin, Niacinamide, …",
+  inciEmpty:"Lipește o listă de ingrediente și analiza apare aici.",
+  inciCount:(n,k)=>`${n} ingrediente · ${k} recunoscute`,inciExample:"Listă exemplu",inciYours:"Lista ta",
+  inciActives:"Ingrediente active",inciNoActives:"Nu am găsit niciun ingredient activ din lexiconul nostru.",inciNotes:"De reținut",inciAll:"Toate ingredientele",
+  inciUnknown:"Nu este în baza noastră de date",inciProfile:p=>`Comparat cu profilul tău: ${p}`,inciNoProfile:"Fă testul de piele și comparăm lista cu tenul tău.",
+  inciOrder:"Ordinea urmează cantitatea: ce e la început se găsește în cea mai mare cantitate. Sub aproximativ 1 %, ingredientele pot fi în orice ordine. Un ingredient necunoscut nu este automat rău.",
+  iF:{
+    fragrance:"<b>Conține parfum.</b> Pentru majoritatea nu e o problemă. Pentru ten sensibil, alege mai bine produse fără parfum.",
+    allergen:n=>`<b>Alergeni din parfum:</b> ${n}. Trebuie trecuți pe ambalaj, pentru că unele persoane reacționează la ei.`,
+    essoil:"<b>Uleiurile esențiale</b> pot irita pielea sensibilă.",
+    alcoholTop:"<b>Alcool printre primele ingrediente</b>: poate usca pielea, mai ales tenul uscat și sensibil.",
+    alcohol:"<b>Conține alcool</b>, dar mai spre final. În cantități mici, de obicei nu e o problemă.",
+    fatty:"<b>Cetearyl sau Cetyl Alcohol</b> sunt alcooli grași emolienți. Nu usucă pielea.",
+    pregRet:"<b>Conține un retinoid.</b> Nu se folosește în sarcină și în perioada de alăptare.",
+    sensFrag:"<b>Pentru tenul tău sensibil:</b> parfumul și uleiurile esențiale declanșează des reacții. Testează produsul mai întâi pe o zonă mică.",
+    dryAlc:"<b>Pentru tenul tău uscat:</b> alcoolul atât de sus în listă poate da senzația de piele întinsă. Folosește apoi o cremă bogată.",
+    goodFit:"<b>Se potrivește cu profilul tău:</b> nu am găsit ingrediente la care să fii atentă, după răspunsurile tale.",
+    retAcid:"<b>Retinoid și acid în același produs:</b> nu-l combina cu alte exfoliante."
+  },
   nav6:"Ingrediente",
   lexEyebrow:"Lexicon de ingrediente",lexTitle:"Ce conțin produsele tale?",
   lexSub:"Cele mai importante ingrediente, explicate simplu. Cu verificatorul de combinații vezi pe care le poți folosi împreună.",
@@ -986,7 +1083,7 @@ function applyLang(){
   document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang===lang));
   $("#products").setAttribute("aria-label", lang==="de"?"Produkt wählen":"Alege produsul");
   $("#types").setAttribute("aria-label", L().gTypes); $("#problems").setAttribute("aria-label", L().gProblems);
-  renderProducts(); showProduct(prod); renderSkin(); renderLex(); renderQuiz();
+  renderProducts(); showProduct(prod); renderSkin(); renderLex(); renderQuiz(); renderInci();
 }
 document.querySelectorAll(".lang button").forEach(b => b.onclick = () => { lang = b.dataset.lang; store.set("skinai-lang", lang); applyLang(); });
 
@@ -1003,7 +1100,7 @@ addEventListener("scroll", onScroll, {passive:true}); onScroll();
 
 /* ---------- quiz ---------- */
 const qEl = $("#quiz");
-const save = () => store.set("skinai-quiz2", st);
+const save = () => { store.set("skinai-quiz2", st); if(st.i >= LOGIC.length || st.i <= 0) renderInci(); };
 function renderQuiz(){
   const t = L();
   if(st.i < 0){
@@ -1212,6 +1309,101 @@ function renderCombo(){
 }
 $("#cSelA").onchange = e => { cA = e.target.value; renderCombo(); };
 $("#cSelB").onchange = e => { cB = e.target.value; renderCombo(); };
+
+/* ---------- INCI check ---------- */
+// [pattern, type, role DE, role RO, lexicon key, flag]  type: active | care | base | watch
+const IDB = [
+  ["niacinamide","active","Wirkstoff: stärkt die Barriere, reguliert Talg","Activ: întărește bariera, reglează sebumul","niacinamide"],
+  ["salicylic acid|betaine salicylate","active","Wirkstoff: BHA, klärt die Poren","Activ: BHA, curăță porii","bha","acid"],
+  ["glycolic acid|lactic acid|mandelic acid","active","Wirkstoff: AHA, peelt die Hautoberfläche","Activ: AHA, exfoliază suprafața pielii","aha","acid"],
+  ["retinol|retinal|retinaldehyde|retinyl palmitate|retinyl retinoate|hydroxypinacolone retinoate","active","Wirkstoff: Retinoid","Activ: retinoid","retinol","retinoid"],
+  ["ascorbic acid|3-o-ethyl ascorbic acid|ethyl ascorbic acid|sodium ascorbyl phosphate|magnesium ascorbyl phosphate|ascorbyl glucoside|ascorbyl tetraisopalmitate|tetrahexyldecyl ascorbate","active","Wirkstoff: Vitamin C","Activ: vitamina C","vitc"],
+  ["azelaic acid|potassium azeloyl diglycinate","active","Wirkstoff: Azelainsäure","Activ: acid azelaic","azelaic"],
+  ["benzoyl peroxide","active","Wirkstoff: gegen Akne-Bakterien","Activ: împotriva bacteriilor din acnee","bpo"],
+  ["sodium hyaluronate|hyaluronic acid|hydrolyzed hyaluronic acid|hydrolyzed sodium hyaluronate|sodium hyaluronate crosspolymer","active","Wirkstoff: bindet Feuchtigkeit","Activ: reține apa","ha"],
+  ["ceramide np|ceramide ap|ceramide eop|ceramide ng|ceramide ns|ceramide eos|ceramide 3|ceramide 1|ceramide 6 ii","active","Wirkstoff: stärkt die Hautbarriere","Activ: întărește bariera pielii","ceramide"],
+  ["panthenol|dexpanthenol","active","Wirkstoff: beruhigt und pflegt","Activ: calmează și hidratează","panthenol"],
+  ["glycerin|glycerine","care","Feuchthaltemittel: bindet Wasser","Umectant: atrage apa"],
+  ["squalane","care","Pflegendes Lipid, sehr gut verträglich","Lipid emolient, foarte bine tolerat"],
+  ["urea","care","Feuchthaltemittel, macht raue Haut weicher","Umectant, înmoaie pielea aspră"],
+  ["allantoin","care","Beruhigend","Calmant"],
+  ["zinc pca","care","Reguliert Talg","Reglează sebumul"],
+  ["caffeine","care","Kann Schwellungen mildern","Poate reduce umflăturile"],
+  ["bakuchiol","care","Pflanzliche Alternative zu Retinol","Alternativă vegetală la retinol"],
+  ["tocopherol|tocopheryl acetate","care","Vitamin E, Antioxidans","Vitamina E, antioxidant"],
+  ["~peptide|~palmitoyl|~acetyl hexapeptide|~copper tripeptide","care","Peptid: unterstützt die Spannkraft","Peptidă: susține fermitatea"],
+  ["~centella asiatica|madecassoside|asiaticoside","care","Beruhigend (Centella)","Calmant (centella)"],
+  ["cetearyl alcohol|cetyl alcohol|stearyl alcohol|behenyl alcohol","care","Fettalkohol: pflegt, trocknet nicht aus","Alcool gras: emolient, nu usucă",null,"fatty"],
+  ["aqua|water|eau","base","Wasser","Apă"],
+  ["butylene glycol|propanediol|pentylene glycol|propylene glycol|1,2-hexanediol","base","Feuchthalte- und Lösungsmittel","Umectant și solvent"],
+  ["phenoxyethanol|ethylhexylglycerin|sodium benzoate|potassium sorbate|chlorphenesin","base","Konservierung","Conservant"],
+  ["xanthan gum|carbomer|hydroxyethylcellulose|sclerotium gum|acrylates/c10-30 alkyl acrylate crosspolymer","base","Verdicker","Agent de îngroșare"],
+  ["citric acid|sodium hydroxide|sodium citrate|tromethamine|arginine","base","pH-Regulator","Regulator de pH"],
+  ["disodium edta|sodium phytate|tetrasodium glutamate diacetate|trisodium ethylenediamine disuccinate","base","Stabilisator","Stabilizator"],
+  ["caprylic/capric triglyceride|dimethicone|isononyl isononanoate|c12-15 alkyl benzoate|cetearyl ethylhexanoate|coco-caprylate/caprate","base","Pflegende Basis (Emollient)","Bază emolientă"],
+  ["parfum|fragrance|aroma","watch","Duftstoff","Parfum",null,"fragrance"],
+  ["alcohol denat.|alcohol denat|alcohol|sd alcohol|ethanol","watch","Alkohol: kann austrocknen","Alcool: poate usca pielea",null,"alcohol"],
+  ["linalool|limonene|citral|geraniol|citronellol|eugenol|isoeugenol|coumarin|benzyl salicylate|hexyl cinnamal|cinnamal|farnesol|benzyl benzoate|benzyl alcohol|cinnamyl alcohol|anise alcohol|amyl cinnamal","watch","Duftstoff-Allergen","Alergen din parfum",null,"allergen"],
+  ["~lavandula|~citrus aurantium|~citrus limon|~citrus sinensis|~citrus bergamia|~eucalyptus|~mentha|~rosmarinus|~melaleuca|~cymbopogon|menthol","watch","Ätherisches Öl: kann reizen","Ulei esențial: poate irita",null,"essoil"]
+].map(([pat,type,de,ro,key,flag]) => {
+  const parts = pat.split("|"), exact = new Set(parts.filter(x=>!x.startsWith("~"))), partial = parts.filter(x=>x.startsWith("~")).map(x=>x.slice(1));
+  return {exact, partial, type, de, ro, key, flag};
+});
+const INCI_SAMPLE = "Aqua, Glycerin, Niacinamide, Butylene Glycol, Alcohol Denat., Squalane, Salicylic Acid, Cetearyl Alcohol, Panthenol, Sodium Hyaluronate, Parfum, Linalool, Limonene, Phenoxyethanol, Xanthan Gum, Citric Acid";
+function inciLookup(name){
+  const n = name.toLowerCase().replace(/\*+/g,"").replace(/\s+/g," ").trim();
+  const cands = [n, n.replace(/\(.*?\)/g,"").trim(), ...(n.match(/\(([^)]*)\)/g)||[]).map(x=>x.slice(1,-1).trim())].filter(Boolean);
+  for(const e of IDB){
+    if(cands.some(c => e.exact.has(c) || e.partial.some(p => c.includes(p)))) return e;
+  }
+  return null;
+}
+const inciEl = $("#inciText"), inciOut = $("#inciOut");
+let inciIsSample = false;
+function renderInci(){
+  const t = L(), raw = inciEl.value.trim();
+  inciEl.placeholder = t.inciPlaceholder;
+  if(!raw){ inciOut.innerHTML = `<p class="inci-empty">${esc(t.inciEmpty)}</p>`; return; }
+  const items = raw.replace(/^(ingredients|inhaltsstoffe|ingrediente|inci)\s*:\s*/i,"").split(/\s*[,;•\n]\s*(?![^()]*\))/).map(x=>x.replace(/\.$/,"").trim()).filter(Boolean);
+  const rows = items.map((name,i) => ({name, pos:i+1, e: inciLookup(name)}));
+  const known = rows.filter(r=>r.e).length;
+  const has = f => rows.some(r => r.e && r.e.flag===f);
+  const firstPos = f => (rows.find(r => r.e && r.e.flag===f)||{}).pos;
+  const actives = []; rows.forEach(r => { if(r.e && r.e.type==="active" && !actives.some(a=>a.e===r.e)) actives.push(r); });
+  const done = st.i >= LOGIC.length, prof = done ? score() : null;
+  const flags = [];
+  if(prof && prof.flags.has("preg") && has("retinoid")) flags.push(["stop", t.iF.pregRet]);
+  if(has("retinoid") && has("acid")) flags.push(["caution", t.iF.retAcid]);
+  const alcPos = firstPos("alcohol");
+  if(prof && prof.type==="dry" && alcPos && alcPos<=5) flags.push(["caution", t.iF.dryAlc]);
+  else if(alcPos && alcPos<=5) flags.push(["caution", t.iF.alcoholTop]);
+  else if(alcPos) flags.push(["info", t.iF.alcohol]);
+  if(prof && prof.sens==="high" && (has("fragrance")||has("essoil")||has("allergen"))) flags.push(["caution", t.iF.sensFrag]);
+  else { if(has("fragrance")) flags.push(["info", t.iF.fragrance]); if(has("essoil")) flags.push(["caution", t.iF.essoil]); }
+  const allergens = rows.filter(r=>r.e && r.e.flag==="allergen").map(r=>r.name);
+  if(allergens.length) flags.push(["info", t.iF.allergen(esc(allergens.join(", ")))]);
+  if(has("fatty")) flags.push(["info", t.iF.fatty]);
+  if(prof && !flags.some(f=>f[0]!=="info")) flags.unshift(["ok", t.iF.goodFit]);
+  const profLine = prof ? t.inciProfile(`${t.types[prof.type]} · ${t.sens[prof.sens]}`) : t.inciNoProfile;
+  inciOut.innerHTML = `
+    <div class="inci-sum"><h3>${esc(inciIsSample ? t.inciExample : t.inciYours)}</h3><span class="mono">${esc(t.inciCount(rows.length, known))}</span></div>
+    <p class="fine">${prof ? esc(profLine) : `<a href="#test">${esc(profLine)}</a>`}</p>
+    <div><div class="eyebrow" style="margin-bottom:.5rem">${esc(t.inciActives)}</div>
+      ${actives.length ? `<div class="inci-chips">${actives.map(a=>`<button type="button" data-key="${a.e.key}">${esc(a.name)}</button>`).join("")}</div>` : `<p class="fine">${esc(t.inciNoActives)}</p>`}</div>
+    ${flags.length ? `<div><div class="eyebrow" style="margin-bottom:.5rem">${esc(t.inciNotes)}</div><div class="inci-flags">${flags.map(([c,h])=>`<p class="${c}">${h}</p>`).join("")}</div></div>` : ""}
+    <div><div class="eyebrow" style="margin-bottom:.5rem">${esc(t.inciAll)}</div>
+      <div class="inci-list"><table><tbody>${rows.map(r=>`<tr class="t-${r.e ? r.e.type : "unknown"}"><td>${r.pos}</td><td>${esc(r.name)}</td><td>${esc(r.e ? r.e[lang] : t.inciUnknown)}</td></tr>`).join("")}</tbody></table></div></div>
+    <p class="fine">${esc(t.inciOrder)}</p>`;
+  inciOut.querySelectorAll(".inci-chips button").forEach(b => b.onclick = () => {
+    const i = ING.findIndex(([k]) => k === b.dataset.key); if(i < 0) return;
+    showIng(i); document.querySelector("#wirkstoffe").scrollIntoView({behavior:"smooth"});
+  });
+}
+let inciTimer;
+inciEl.addEventListener("input", () => { inciIsSample = false; store.set("skinai-inci", inciEl.value); clearTimeout(inciTimer); inciTimer = setTimeout(renderInci, 200); });
+$("#inciSample").onclick = () => { inciEl.value = INCI_SAMPLE; inciIsSample = true; store.set("skinai-inci", ""); renderInci(); };
+$("#inciClear").onclick = () => { inciEl.value = ""; inciIsSample = false; store.set("skinai-inci", ""); renderInci(); inciEl.focus(); };
+{ const saved = store.get("skinai-inci"); if(saved){ inciEl.value = saved; } else { inciEl.value = INCI_SAMPLE; inciIsSample = true; } }
 
 applyLang();
 })();

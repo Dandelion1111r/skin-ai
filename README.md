@@ -15,6 +15,7 @@
 | Hauttypen und Hautprobleme | 6 Hauttypen und 11 Hautprobleme mit Merkmalen, typischen Zonen und passenden Wirkstoffen |
 | Wirkstoff-Lexikon | 10 Wirkstoffe mit INCI-Name, Wirkung, Anwendung und Hinweisen |
 | Kombi-Check | Zwei Wirkstoffe wählen und sehen, ob sie zusammenpassen |
+| INCI-Check | Inhaltsstoffliste einfügen: Wirkstoffe, Duftstoffe und Alkohol werden erkannt und mit dem Hautprofil abgeglichen, ohne Punkte und ohne Datenübertragung |
 | App-Screens | Erste Entwürfe: Heute, Produktseite, Meine Haut |
 
 ![Gesichtskarte mit markierten Zonen](docs/gesichtskarte.jpg)
