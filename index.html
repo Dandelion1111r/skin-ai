@@ -44,6 +44,8 @@
 @font-face{font-family:"Jost";font-style:normal;font-weight:500;font-display:swap;src:url("fonts/jost-latin-500-normal.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"DM Mono";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/dm-mono-latin-ext-400-normal.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 @font-face{font-family:"DM Mono";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/dm-mono-latin-400-normal.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+.skip{position:absolute;left:-999px;top:0;z-index:50;background:var(--ink);color:var(--bg);padding:.6rem 1rem;border-radius:0 0 6px 0}
+.skip:focus{left:0}
 .proto-bar{background:var(--ink);color:var(--bg);font-size:.82rem;line-height:1.5;padding:.6rem max(16px,env(safe-area-inset-left,0px));margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px)));text-align:center}
 .proto-bar a{color:inherit;text-underline-offset:3px}
 footer .legal-links{display:flex;flex-wrap:wrap;gap:.25rem 1.25rem;font-size:.85rem}
@@ -51,7 +53,8 @@ footer .legal-links a{color:var(--muted);padding-block:.4rem}
 </style>
 </head>
 <body>
-<div class="proto-bar" data-t="protoBar">Konzept-Prototyp · keine echte App, es werden keine Daten übertragen</div>
+<a class="skip" href="#main" data-t="skip"></a>
+<aside class="proto-bar" aria-label="Info" data-t="protoBar">Konzept-Prototyp · keine echte App, es werden keine Daten übertragen</aside>
 <style>
 /* Layout: editorial two-column sections (label column + content column) on a 12-col rhythm; the face map is the one bold object. */
 :root{
@@ -261,7 +264,7 @@ section.wide .sec-head{max-width:44rem}
 .a-bars i{display:block;width:100%;background:#D7AFC0;border-radius:6px 6px 2px 2px}
 .a-bars div:last-child i{background:#86516A}
 .a-bars span{font-size:.6rem;color:#7A6C78}
-.tabbar{flex:none;display:flex;justify-content:space-around;padding:9px 6px 16px;border-top:1px solid #EDE5EA;background:#FFFFFF;font-size:.62rem;color:#8A7D88}
+.tabbar{flex:none;display:flex;justify-content:space-around;padding:9px 6px 16px;border-top:1px solid #EDE5EA;background:#FFFFFF;font-size:.62rem;color:#6B5E69}
 .tabbar .on{color:#86516A;font-weight:500}
 @media (max-width:900px){
   .phones{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;justify-content:flex-start;padding-bottom:var(--s2);gap:var(--s3)}
@@ -471,6 +474,7 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
   </div>
 </header>
 
+<main id="main">
 <div class="hero">
   <div class="hero-copy">
     <span class="eyebrow" data-t="heroEyebrow"></span>
@@ -777,6 +781,8 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
   <div class="faq"><details><summary data-t="f1q"></summary><p class="muted" data-t="f1a"></p></details><details><summary data-t="f2q"></summary><p class="muted" data-t="f2a"></p></details><details><summary data-t="f3q"></summary><p class="muted" data-t="f3a"></p></details><details><summary data-t="f4q"></summary><p class="muted" data-t="f4a"></p></details><details><summary data-t="f5q"></summary><p class="muted" data-t="f5a"></p></details><details><summary data-t="f6q"></summary><p class="muted" data-t="f6a"></p></details><details><summary data-t="f7q"></summary><p class="muted" data-t="f7a"></p></details><details><summary data-t="f8q"></summary><p class="muted" data-t="f8a"></p></details></div>
 </section>
 
+</main>
+
 <footer>
   <div><span class="logo"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="16" rx="10.5" ry="13.5" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="16" cy="10" rx="6" ry="2.6" class="mark-dot"/></svg><span>SKIN AI</span></span></div>
   <div>
@@ -918,7 +924,7 @@ de:{
     lines:["Feine Linien & Falten","Feine Linien um die Augen und auf der Stirn, nachlassende Spannkraft.","Augenpartie und Stirn","Retinoide langsam einführen, dazu Peptide und täglicher Sonnenschutz.","Retinoide machen die Haut sonnenempfindlicher. Nicht am selben Abend wie BHA verwenden."]
   },
   nav1:"So funktioniert's",nav2:"Hauttest",nav3:"Gesichtskarte",nav4:"Kostenlos",
-  docTitle:"SKIN AI – Konzept-Prototyp",protoBar:"Konzept-Prototyp · keine echte App, es werden keine Daten übertragen",
+  skip:"Zum Inhalt springen",docTitle:"SKIN AI – Konzept-Prototyp",protoBar:"Konzept-Prototyp · keine echte App, es werden keine Daten übertragen",
   heroEyebrow:"Personalisierte Hautpflege",
   heroTitle:"<span>Verstehe deine Haut.</span><span><em>Finde deine Produkte.</em></span><span>Baue deine Routine.</span>",
   heroLead:"Ein Test von zwei Minuten zeigt dir deinen Hauttyp, worauf du achten solltest und wie eine passende Routine für morgens und abends aussieht.",
@@ -1111,7 +1117,7 @@ en:{
     lines:["Fine lines & wrinkles","Fine lines around the eyes and on the forehead, less firmness.","Eye area and forehead","Retinoids introduced slowly, plus peptides and daily sunscreen.","Retinoids make skin more sun-sensitive. Don't use them on the same evening as BHA."]
   },
   nav1:"How it works",nav2:"Skin test",nav3:"Face map",nav4:"Free",
-  docTitle:"SKIN AI – Concept prototype",protoBar:"Concept prototype · not a real app, no data is transmitted",
+  skip:"Skip to content",docTitle:"SKIN AI – Concept prototype",protoBar:"Concept prototype · not a real app, no data is transmitted",
   heroEyebrow:"Personalized skincare",
   heroTitle:"<span>Understand your skin.</span><span><em>Find your products.</em></span><span>Build your routine.</span>",
   heroLead:"A two-minute test shows your skin type, what to focus on and what a suitable morning and evening routine looks like.",
@@ -1305,7 +1311,7 @@ ro:{
     lines:["Linii fine și riduri","Linii fine în jurul ochilor și pe frunte, piele mai puțin fermă.","Conturul ochilor și fruntea","Retinoizi introduși treptat, peptide și protecție solară zilnică.","Retinoizii fac pielea mai sensibilă la soare. Nu îi folosi în aceeași seară cu BHA."]
   },
   nav1:"Cum funcționează",nav2:"Testul de piele",nav3:"Harta feței",nav4:"Gratuit",
-  docTitle:"SKIN AI – Prototip de concept",protoBar:"Prototip de concept · nu este o aplicație reală, nu se transmit date",
+  skip:"Sari la conținut",docTitle:"SKIN AI – Prototip de concept",protoBar:"Prototip de concept · nu este o aplicație reală, nu se transmit date",
   heroEyebrow:"Îngrijire personalizată a pielii",
   heroTitle:"<span>Înțelege-⁠ți pielea.</span><span><em>Descoperă-⁠ți produsele.</em></span><span>Construiește-⁠ți rutina.</span>",
   heroLead:"Un test de două minute îți arată ce tip de ten ai, pe ce să te concentrezi și cum arată o rutină potrivită pentru dimineață și seară.",
@@ -1864,7 +1870,7 @@ function renderInci(){
       ${actives.length ? `<div class="inci-chips">${actives.map(a=>`<button type="button" data-key="${a.e.key}">${esc(a.name)}</button>`).join("")}</div>` : `<p class="fine">${esc(t.inciNoActives)}</p>`}</div>
     ${flags.length ? `<div><div class="eyebrow" style="margin-bottom:.5rem">${esc(t.inciNotes)}</div><div class="inci-flags">${flags.map(([c,h])=>`<p class="${c}">${h}</p>`).join("")}</div></div>` : ""}
     <div><div class="eyebrow" style="margin-bottom:.5rem">${esc(t.inciAll)}</div>
-      <div class="inci-list"><table><tbody>${rows.map(r=>`<tr class="t-${r.e ? r.e.type : "unknown"}"><td>${r.pos}</td><td>${esc(r.name)}</td><td>${esc(r.e ? (r.e[lang] || IDB_EN[r.e.de] || r.e.de) : t.inciUnknown)}</td></tr>`).join("")}</tbody></table></div></div>
+      <div class="inci-list" tabindex="0" role="region" aria-label="${esc(t.inciAll)}"><table><tbody>${rows.map(r=>`<tr class="t-${r.e ? r.e.type : "unknown"}"><td>${r.pos}</td><td>${esc(r.name)}</td><td>${esc(r.e ? (r.e[lang] || IDB_EN[r.e.de] || r.e.de) : t.inciUnknown)}</td></tr>`).join("")}</tbody></table></div></div>
     <p class="fine">${esc(t.inciOrder)}</p>`;
   inciOut.querySelectorAll(".inci-chips button").forEach(b => b.onclick = () => {
     const i = ING.findIndex(([k]) => k === b.dataset.key); if(i < 0) return;
