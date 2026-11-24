@@ -343,6 +343,42 @@ section.wide .sec-head{max-width:44rem}
 @media (max-width:900px){.rb{grid-template-columns:1fr}}
 @media (max-width:600px){.rb-cols{grid-template-columns:1fr}.week-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 
+/* skin diary */
+.journal{margin-top:var(--s4);padding:var(--s4);display:flex;flex-direction:column;gap:var(--s3)}
+.j-head{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--s3);flex-wrap:wrap}
+.j-head > div:first-child{display:flex;flex-direction:column;gap:.4rem;max-width:40rem}
+.j-streak{font-family:var(--display);font-size:1.6rem;color:var(--accent);white-space:nowrap}
+.j-streak small{display:block;font-family:var(--body);font-size:.8rem;color:var(--muted)}
+.j-grid{display:grid;grid-template-columns:5fr 7fr;gap:var(--s4)}
+.j-grid > *{min-width:0}
+.j-today{display:flex;flex-direction:column;gap:.75rem}
+.j-check{display:flex;align-items:center;gap:.7rem;padding:.7rem .9rem;border:1px solid var(--line);border-radius:var(--radius);cursor:pointer}
+.j-check input{width:1.15rem;height:1.15rem;accent-color:var(--accent);margin:0}
+.j-check:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.j-label{display:block;font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.j-rates{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.35rem}
+.j-rates button{background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:var(--radius);padding:.5rem .2rem;font-size:.78rem;display:flex;flex-direction:column;align-items:center;gap:.15rem;min-width:0}
+.j-rates button b{font-family:var(--display);font-weight:400;font-size:1.25rem;line-height:1}
+.j-rates button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+#jNote{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:.7rem .8rem;width:100%}
+.j-hist{display:flex;flex-direction:column;gap:.6rem}
+.j-chart{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:.3rem;align-items:end;height:9rem;border-bottom:1px solid var(--line);padding-bottom:.3rem}
+.j-col{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:.25rem;height:100%}
+.j-bar{width:100%;max-width:1.6rem;border-radius:4px 4px 2px 2px;background:var(--zone);opacity:.85}
+.j-bar.empty{height:2px!important;background:var(--line);opacity:1}
+.j-col.today .j-bar{background:var(--accent);opacity:1}
+.j-dots{display:flex;gap:2px}
+.j-dots i{width:5px;height:5px;border-radius:50%;border:1px solid var(--muted)}
+.j-dots i.on{background:var(--accent);border-color:var(--accent)}
+.j-col span{font-family:var(--mono);font-size:.62rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.j-tip{padding:.7rem .9rem;border-radius:var(--radius);background:var(--mid-bg);border-left:3px solid var(--mid)}
+.j-tip b{color:var(--mid);font-weight:500}
+.j-clear{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;font-size:.88rem}
+.j-clear button{background:none;border:0;color:var(--muted);text-decoration:underline;text-underline-offset:3px;padding:.3rem 0}
+.j-clear button.danger{color:var(--bad)}
+@media (max-width:900px){.j-grid{grid-template-columns:1fr}}
+@media (max-width:600px){.journal{padding:var(--s3)}.j-chart{gap:.15rem;height:6.5rem}}
+
 /* inci check */
 .inci{display:grid;grid-template-columns:5fr 7fr;gap:var(--s4);align-items:start}
 .inci > *{min-width:0}
@@ -639,6 +675,29 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
     </div>
     <div class="rb-out" id="rbOut" aria-live="polite"></div>
   </div>
+  <div class="card journal" id="journal">
+    <div class="j-head">
+      <div><span class="eyebrow" data-t="jTitle"></span><p class="muted" data-t="jSub"></p></div>
+      <div class="j-streak" id="jStreak" aria-live="polite"></div>
+    </div>
+    <div class="j-grid">
+      <div class="j-today">
+        <span class="mono" id="jDate"></span>
+        <label class="j-check"><input type="checkbox" id="jAm"><span data-t="jAm"></span></label>
+        <label class="j-check"><input type="checkbox" id="jPm"><span data-t="jPm"></span></label>
+        <div><span class="j-label" data-t="jRate"></span><div class="j-rates" id="jRates" role="group"></div></div>
+        <label class="j-label" for="jNote" data-t="jNote"></label>
+        <input type="text" id="jNote" maxlength="140" autocomplete="off">
+      </div>
+      <div class="j-hist">
+        <span class="j-label" data-t="j14"></span>
+        <div class="j-chart" id="jChart"></div>
+        <p class="fine" data-t="jLegend"></p>
+        <div id="jTip"></div>
+        <div class="j-clear" id="jClearBox"></div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="karte" class="wide">
@@ -797,6 +856,12 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
 (() => {
 const T = {
 de:{
+  jTitle:"Mein Hauttagebuch",jSub:"Hake deine Routine ab und notiere, wie sich deine Haut anfühlt. Alles bleibt in deinem Browser.",
+  jAm:"Morgenroutine erledigt",jPm:"Abendroutine erledigt",jRate:"Wie fühlt sich deine Haut an?",jRates:["Gereizt","Unruhig","Okay","Gut","Sehr gut"],
+  jNote:"Notiz (optional)",jNotePh:"z. B. neues Serum begonnen, weniger Glanz",j14:"Letzte 14 Tage",jLegend:"Balken: Hautgefühl · Punkte: Routine morgens und abends",
+  jStreak:n=>`${n} ${n===1?"Tag":"Tage"} in Folge`,jStreakSub:"Routine erledigt",jStreakNone:"Starte heute deine Serie.",
+  jClear:"Tagebuch löschen",jClearAsk:"Wirklich alle Einträge löschen?",jYes:"Ja, löschen",jNo:"Abbrechen",
+  jTip:"<b>Deine Haut ist seit einigen Tagen unruhig.</b> Lass neue Wirkstoffe weg und kehre zur Basisroutine zurück. Bessert es sich nicht, frag eine Hautärztin oder einen Hautarzt.",
   nav7:"Meine Routine",
   rbEyebrow:"Meine Routine",rbTitle:"Deine Produkte, richtig sortiert",
   rbSub:"Wähle, was du schon benutzt. SKIN AI ordnet alles für morgens und abends und plant starke Wirkstoffe auf verschiedene Abende, mit Pausen dazwischen.",
@@ -991,6 +1056,12 @@ de:{
   credit:"Konzept & Design: Raluca Jidvian · 2026"
 },
 en:{
+  jTitle:"My skin diary",jSub:"Tick off your routine and note how your skin feels. Everything stays in your browser.",
+  jAm:"Morning routine done",jPm:"Evening routine done",jRate:"How does your skin feel?",jRates:["Irritated","Unsettled","Okay","Good","Great"],
+  jNote:"Note (optional)",jNotePh:"e.g. started a new serum, less shine",j14:"Last 14 days",jLegend:"Bar: how your skin felt · Dots: morning and evening routine",
+  jStreak:n=>`${n} ${n===1?"day":"days"} in a row`,jStreakSub:"routine done",jStreakNone:"Start your streak today.",
+  jClear:"Clear diary",jClearAsk:"Delete all entries?",jYes:"Yes, delete",jNo:"Cancel",
+  jTip:"<b>Your skin has been unsettled for a few days.</b> Drop new actives and go back to your basic routine. If it doesn't improve, ask a dermatologist.",
   nav7:"My routine",
   rbEyebrow:"My routine",rbTitle:"Your products, in the right order",
   rbSub:"Pick what you already use. SKIN AI sorts everything for morning and evening and spreads strong actives across different evenings, with rest nights in between.",
@@ -1186,6 +1257,12 @@ en:{
 },
 
 ro:{
+  jTitle:"Jurnalul pielii mele",jSub:"Bifează rutina și notează cum se simte pielea. Totul rămâne în browserul tău.",
+  jAm:"Rutina de dimineață făcută",jPm:"Rutina de seară făcută",jRate:"Cum se simte pielea?",jRates:["Iritată","Agitată","OK","Bine","Foarte bine"],
+  jNote:"Notiță (opțional)",jNotePh:"de ex. am început un ser nou, mai puțin luciu",j14:"Ultimele 14 zile",jLegend:"Bară: cum s-a simțit pielea · Puncte: rutina de dimineață și de seară",
+  jStreak:n=>n===1?"1 zi la rând":`${n} zile la rând`,jStreakSub:"rutină făcută",jStreakNone:"Începe azi seria.",
+  jClear:"Șterge jurnalul",jClearAsk:"Sigur ștergi toate notițele?",jYes:"Da, șterge",jNo:"Renunță",
+  jTip:"<b>Pielea ta e agitată de câteva zile.</b> Renunță la ingredientele noi și revino la rutina de bază. Dacă nu se ameliorează, întreabă un medic dermatolog.",
   nav7:"Rutina mea",
   rbEyebrow:"Rutina mea",rbTitle:"Produsele tale, în ordinea corectă",
   rbSub:"Alege ce folosești deja. SKIN AI le ordonează pentru dimineață și seară și împarte ingredientele puternice pe seri diferite, cu pauze între ele.",
@@ -1422,7 +1499,7 @@ function applyLang(){
   document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang===lang));
   $("#products").setAttribute("aria-label", {de:"Produkt wählen",ro:"Alege produsul",en:"Choose a product"}[lang]);
   $("#types").setAttribute("aria-label", L().gTypes); $("#problems").setAttribute("aria-label", L().gProblems);
-  renderProducts(); showProduct(prod); renderSkin(); renderLex(); renderQuiz(); renderInci(); renderRB();
+  renderProducts(); showProduct(prod); renderSkin(); renderLex(); renderQuiz(); renderInci(); renderRB(); renderJournal();
 }
 document.querySelectorAll(".lang button").forEach(b => b.onclick = () => { lang = b.dataset.lang; store.set("skinai-lang", lang); applyLang(); });
 
@@ -1789,6 +1866,46 @@ function renderRB(){
   out.innerHTML = `${prof}<div class="rb-cols">${col(t.rbAm, plan.am)}${col(t.rbPm, plan.pm)}</div>${week}${notes}`;
   out.querySelectorAll(".where").forEach(b => b.onclick = () => { showProduct(+b.dataset.map); document.querySelector("#karte").scrollIntoView({behavior:"smooth"}); });
 }
+
+/* ---------- skin diary ---------- */
+const jKey = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+let jData = store.get("skinai-journal"); if(!jData || typeof jData !== "object") jData = {};
+let jAsk = false;
+const jToday = () => jKey(new Date());
+const jEntry = k => jData[k] || {};
+function jSave(k, patch){ jData[k] = Object.assign({}, jEntry(k), patch); store.set("skinai-journal", jData); renderJournal(); }
+function jStreakCount(){
+  const d = new Date(); let n = 0;
+  if(!(jEntry(jKey(d)).am || jEntry(jKey(d)).pm)) d.setDate(d.getDate()-1);
+  while(jEntry(jKey(d)).am || jEntry(jKey(d)).pm){ n++; d.setDate(d.getDate()-1); }
+  return n;
+}
+function renderJournal(){
+  const t = L(), k = jToday(), e = jEntry(k);
+  $("#jDate").textContent = new Intl.DateTimeFormat(lang, {weekday:"long", day:"numeric", month:"long"}).format(new Date());
+  $("#jAm").checked = !!e.am; $("#jPm").checked = !!e.pm;
+  const rates = $("#jRates"); rates.setAttribute("aria-label", t.jRate); rates.innerHTML = "";
+  t.jRates.forEach((lab,i) => { const b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-pressed", e.r === i+1);
+    b.innerHTML = `<b>${i+1}</b><span>${esc(lab)}</span>`; b.onclick = () => jSave(k, {r: e.r === i+1 ? 0 : i+1}); rates.appendChild(b); });
+  const note = $("#jNote"); note.placeholder = t.jNotePh; if(document.activeElement !== note) note.value = e.n || "";
+  const n = jStreakCount();
+  $("#jStreak").innerHTML = n ? `${esc(t.jStreak(n))}<small>${esc(t.jStreakSub)}</small>` : `<small>${esc(t.jStreakNone)}</small>`;
+  const fmt = new Intl.DateTimeFormat(lang, {weekday:"narrow"}); const cols = [];
+  for(let i = 13; i >= 0; i--){ const d = new Date(); d.setDate(d.getDate()-i); const x = jEntry(jKey(d));
+    cols.push(`<div class="j-col${i===0?" today":""}" title="${esc(jKey(d))}${x.n ? " · " + esc(x.n) : ""}"><div class="j-bar${x.r ? "" : " empty"}" style="height:${x.r ? x.r*20 : 0}%"></div><div class="j-dots"><i class="${x.am?"on":""}"></i><i class="${x.pm?"on":""}"></i></div><span>${esc(fmt.format(d))}</span></div>`); }
+  $("#jChart").innerHTML = cols.join("");
+  const last3 = [0,1,2].map(i => { const d = new Date(); d.setDate(d.getDate()-i); return jEntry(jKey(d)).r || 0; });
+  $("#jTip").innerHTML = last3.filter(r => r && r <= 2).length >= 3 ? `<p class="j-tip">${t.jTip}</p>` : "";
+  const box = $("#jClearBox"), any = Object.keys(jData).length > 0;
+  box.innerHTML = !any ? "" : jAsk
+    ? `<span>${esc(t.jClearAsk)}</span><button type="button" class="danger" id="jYes">${esc(t.jYes)}</button><button type="button" id="jNo">${esc(t.jNo)}</button>`
+    : `<button type="button" id="jClear">${esc(t.jClear)}</button>`;
+  if(any && jAsk){ $("#jYes").onclick = () => { jData = {}; jAsk = false; store.set("skinai-journal", jData); renderJournal(); }; $("#jNo").onclick = () => { jAsk = false; renderJournal(); }; }
+  else if(any){ $("#jClear").onclick = () => { jAsk = true; renderJournal(); }; }
+}
+$("#jAm").onchange = e => jSave(jToday(), {am: e.target.checked});
+$("#jPm").onchange = e => jSave(jToday(), {pm: e.target.checked});
+let jNoteTimer; $("#jNote").addEventListener("input", e => { clearTimeout(jNoteTimer); const v = e.target.value; jNoteTimer = setTimeout(() => jSave(jToday(), {n: v}), 400); });
 
 /* ---------- INCI check ---------- */
 // [pattern, type, role DE, role RO, lexicon key, flag]  type: active | care | base | watch
