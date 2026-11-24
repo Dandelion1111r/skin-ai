@@ -54,7 +54,7 @@ footer .legal-links a{color:var(--muted);padding-block:.4rem}
 </head>
 <body>
 <a class="skip" href="#main" data-t="skip"></a>
-<aside class="proto-bar" aria-label="Info" data-t="protoBar">Konzept-Prototyp · keine echte App, es werden keine Daten übertragen</aside>
+<aside class="proto-bar" aria-label="Info" data-t="protoBar">Konzept-Prototyp · keine echte App · deine Eingaben bleiben in deinem Browser</aside>
 <style>
 /* Layout: editorial two-column sections (label column + content column) on a 12-col rhythm; the face map is the one bold object. */
 :root{
@@ -197,6 +197,9 @@ section.wide .sec-head{max-width:44rem}
 .note{border-left:2px solid var(--warn);padding-left:var(--s2)}
 .note b{color:var(--warn);font-weight:500}
 .fine{font-size:.88rem;color:var(--muted)}
+.fb-box{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s2);padding:var(--s2) var(--s3);border-radius:var(--radius);background:var(--accent-soft)}
+.fb-box p{flex:1 1 16rem;font-size:.95rem}
+.fb-box b{font-weight:500}
 .copied{font-size:.88rem;color:var(--accent)}
 
 /* face map */
@@ -847,7 +850,7 @@ footer > div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
   <div>
     <p class="muted" data-t="disclaimer"></p>
     <p class="mono" data-t="credit"></p>
-    <p class="legal-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="https://github.com/Dandelion1111r/skin-ai">GitHub</a><span class="muted">Fotos: Unsplash</span></p>
+    <p class="legal-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="https://tally.so/r/gb9VdO" id="fbFooter" target="_blank" rel="noopener" data-t="fbLink"></a><a href="https://github.com/Dandelion1111r/skin-ai">GitHub</a><span class="muted">Fotos: Unsplash</span></p>
   </div>
 </footer>
 </div>
@@ -990,7 +993,9 @@ de:{
     lines:["Feine Linien & Falten","Feine Linien um die Augen und auf der Stirn, nachlassende Spannkraft.","Augenpartie und Stirn","Retinoide langsam einführen, dazu Peptide und täglicher Sonnenschutz.","Retinoide machen die Haut sonnenempfindlicher. Nicht am selben Abend wie BHA verwenden."]
   },
   nav1:"So funktioniert's",nav2:"Hauttest",nav3:"Gesichtskarte",nav4:"Kostenlos",
-  skip:"Zum Inhalt springen",docTitle:"SKIN AI – Konzept-Prototyp",protoBar:"Konzept-Prototyp · keine echte App, es werden keine Daten übertragen",
+  skip:"Zum Inhalt springen",docTitle:"SKIN AI – Konzept-Prototyp",
+  fbLink:"Feedback geben",fbTitle:"Hilf mit 2 Minuten Feedback.",fbText:"Anonym, ohne Namen und ohne E-Mail.",fbBtn:"Feedback geben",
+  protoBar:"Konzept-Prototyp · keine echte App · deine Eingaben bleiben in deinem Browser",
   heroEyebrow:"Personalisierte Hautpflege",
   heroTitle:"<span>Verstehe deine Haut.</span><span><em>Finde deine Produkte.</em></span><span>Baue deine Routine.</span>",
   heroLead:"Ein Test von zwei Minuten zeigt dir deinen Hauttyp, worauf du achten solltest und wie eine passende Routine für morgens und abends aussieht.",
@@ -1193,7 +1198,9 @@ en:{
     lines:["Fine lines & wrinkles","Fine lines around the eyes and on the forehead, less firmness.","Eye area and forehead","Retinoids introduced slowly, plus peptides and daily sunscreen.","Retinoids make skin more sun-sensitive. Don't use them on the same evening as BHA."]
   },
   nav1:"How it works",nav2:"Skin test",nav3:"Face map",nav4:"Free",
-  skip:"Skip to content",docTitle:"SKIN AI – Concept prototype",protoBar:"Concept prototype · not a real app, no data is transmitted",
+  skip:"Skip to content",docTitle:"SKIN AI – Concept prototype",
+  fbLink:"Give feedback",fbTitle:"Help with 2 minutes of feedback.",fbText:"Anonymous, no name and no email.",fbBtn:"Give feedback",
+  protoBar:"Concept prototype · not a real app · what you enter stays in your browser",
   heroEyebrow:"Personalized skincare",
   heroTitle:"<span>Understand your skin.</span><span><em>Find your products.</em></span><span>Build your routine.</span>",
   heroLead:"A two-minute test shows your skin type, what to focus on and what a suitable morning and evening routine looks like.",
@@ -1397,7 +1404,9 @@ ro:{
     lines:["Linii fine și riduri","Linii fine în jurul ochilor și pe frunte, piele mai puțin fermă.","Conturul ochilor și fruntea","Retinoizi introduși treptat, peptide și protecție solară zilnică.","Retinoizii fac pielea mai sensibilă la soare. Nu îi folosi în aceeași seară cu BHA."]
   },
   nav1:"Cum funcționează",nav2:"Testul de piele",nav3:"Harta feței",nav4:"Gratuit",
-  skip:"Sari la conținut",docTitle:"SKIN AI – Prototip de concept",protoBar:"Prototip de concept · nu este o aplicație reală, nu se transmit date",
+  skip:"Sari la conținut",docTitle:"SKIN AI – Prototip de concept",
+  fbLink:"Spune-ți părerea",fbTitle:"Ajută-mă cu 2 minute de feedback.",fbText:"Anonim, fără nume și fără email.",fbBtn:"Spune-ți părerea",
+  protoBar:"Prototip de concept · nu este o aplicație reală · ce introduci rămâne în browserul tău",
   heroEyebrow:"Îngrijire personalizată a pielii",
   heroTitle:"<span>Înțelege-⁠ți pielea.</span><span><em>Descoperă-⁠ți produsele.</em></span><span>Construiește-⁠ți rutina.</span>",
   heroLead:"Un test de două minute îți arată ce tip de ten ai, pe ce să te concentrezi și cum arată o rutină potrivită pentru dimineață și seară.",
@@ -1503,6 +1512,7 @@ const $ = s => document.querySelector(s);
 function applyLang(){
   document.documentElement.lang = lang;
   document.title = L().docTitle;
+  $("#fbFooter").href = FB[lang] + "?lang=" + lang;
   document.querySelectorAll("[data-t]").forEach(n => n.textContent = L()[n.dataset.t]);
   document.querySelectorAll("[data-th]").forEach(n => n.innerHTML = L()[n.dataset.th]);
   document.querySelectorAll("[data-tl]").forEach(n => n.innerHTML = L()[n.dataset.tl].map(x=>`<li>${esc(x)}</li>`).join(""));
@@ -1615,6 +1625,7 @@ function renderResult(){
     ${n.map(x=>`<p class="note">${x}</p>`).join("")}
     <p class="fine">${esc(t.rFine)}</p>
     <div class="btns"><button class="btn" id="q-share">${esc(t.rShare)}</button><button class="btn ghost" id="q-copy">${esc(t.rCopy)}</button><button class="btn ghost" id="q-redo">${esc(t.rRedo)}</button></div>
+    <div class="fb-box"><p><b>${esc(t.fbTitle)}</b> ${esc(t.fbText)}</p><a class="btn" href="${fbUrl(r.type)}" target="_blank" rel="noopener">${esc(t.fbBtn)}</a></div>
     <span class="copied" id="q-copied" hidden>${esc(t.rCopied)}</span>
     <span class="copied" id="q-shared" hidden>${esc(t.rShared)}</span>
     <p class="mono" id="q-sum" hidden>${esc(summary)}</p></div>`;
@@ -1626,6 +1637,10 @@ function renderResult(){
     try{ navigator.clipboard.writeText(summary).then(ok, fb); }catch(e){ fb(); }
   };
 }
+
+/* ---------- feedback form (Tally) ---------- */
+const FB = {de:"https://tally.so/r/gb9VdO", ro:"https://tally.so/r/Yj4b0B", en:"https://tally.so/r/VpzaPJ"};
+const fbUrl = type => `${FB[lang]}?typ=${encodeURIComponent(type || "")}&lang=${lang}`;
 
 /* ---------- share card (1080 × 1920, for stories) ---------- */
 const CARD_ZONES = {oily:"oily",combo:"combo",normal:"normal",dry:"dry",acne:"acne",blackheads:"pores",pores:"pores",marks:"pigment",pigment:"pigment",redness:"redness",dryness:"dry",lines:"lines",dehyd:"dehyd"};
