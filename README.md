@@ -10,7 +10,7 @@
 
 | Bereich | Was er zeigt |
 | --- | --- |
-| Hauttest | 9 Fragen, inklusive Schwangerschaft, danach Hauttyp, Empfindlichkeit, Fokus und eine Routine für morgens und abends |
+| Hauttest | 10 Fragen, inklusive Schwangerschaft und Wetter, danach Hauttyp, Empfindlichkeit, Fokus und eine Routine für morgens und abends |
 | Meine Routine | Eigene Produkte auswählen: Reihenfolge für morgens und abends und ein Wochenplan, der Retinol und Peelings auf verschiedene Abende mit Pausen verteilt |
 | Hauttagebuch | Routine abhaken, Hautgefühl 1–5 und Notiz, Serie in Folge und Verlauf der letzten 14 Tage, nur im Browser gespeichert |
 | Gesichtskarte | Für 6 Produkte: wo, wie viel und wie oft sie aufgetragen werden, inklusive Zonen zum Aussparen |
