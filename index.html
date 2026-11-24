@@ -826,7 +826,8 @@ de:{
   inciOrder:"Die Reihenfolge folgt der Menge: Was vorne steht, ist am meisten enthalten. Ab etwa 1 % dürfen Stoffe in beliebiger Reihenfolge stehen. Unbekannte Stoffe sind nicht automatisch schlecht.",
   iF:{
     fragrance:"<b>Enthält Duftstoff.</b> Für die meisten kein Problem. Bei empfindlicher Haut lieber parfümfrei wählen.",
-    allergen:n=>`<b>Duftstoff-Allergene:</b> ${n}. Sie müssen auf der Verpackung stehen, weil manche Menschen darauf reagieren.`,
+    allergen:n=>`<b>Duftstoff-Allergene:</b> ${n}. Sie müssen auf der Verpackung stehen, weil manche Menschen darauf reagieren. Seit dem 31. Juli 2026 müssen neue Produkte in der EU mehr als 80 solcher Stoffe einzeln angeben.`,
+    retEU:"<b>Retinol in der EU:</b> In Gesichtspflege sind höchstens 0,3 % erlaubt, und auf der Verpackung muss ein Hinweis auf Vitamin A stehen.",
     essoil:"<b>Ätherische Öle</b> können empfindliche Haut reizen.",
     alcoholTop:"<b>Alkohol weit vorne in der Liste</b> kann die Haut austrocknen, besonders trockene und empfindliche Haut.",
     alcohol:"<b>Enthält Alkohol</b>, aber eher weiter hinten. In kleinen Mengen meist unproblematisch.",
@@ -1019,7 +1020,8 @@ en:{
   inciOrder:"The order follows the amount: what comes first is present in the largest quantity. Below about 1 %, ingredients may appear in any order. An unknown ingredient is not automatically bad.",
   iF:{
     fragrance:"<b>Contains fragrance.</b> Not a problem for most people. If your skin is sensitive, fragrance-free is the safer choice.",
-    allergen:n=>`<b>Fragrance allergens:</b> ${n}. They must be listed on the label because some people react to them.`,
+    allergen:n=>`<b>Fragrance allergens:</b> ${n}. They must be listed on the label because some people react to them. Since 31 July 2026, new products in the EU must list more than 80 of these substances individually.`,
+    retEU:"<b>Retinol in the EU:</b> face products may contain at most 0.3 %, and the packaging must carry a vitamin A warning.",
     essoil:"<b>Essential oils</b> can irritate sensitive skin.",
     alcoholTop:"<b>Alcohol near the top of the list</b> can dry the skin, especially dry and sensitive skin.",
     alcohol:"<b>Contains alcohol</b>, but further down the list. In small amounts it is usually fine.",
@@ -1213,7 +1215,8 @@ ro:{
   inciOrder:"Ordinea urmează cantitatea: ce e la început se găsește în cea mai mare cantitate. Sub aproximativ 1 %, ingredientele pot fi în orice ordine. Un ingredient necunoscut nu este automat rău.",
   iF:{
     fragrance:"<b>Conține parfum.</b> Pentru majoritatea nu e o problemă. Pentru ten sensibil, alege mai bine produse fără parfum.",
-    allergen:n=>`<b>Alergeni din parfum:</b> ${n}. Trebuie trecuți pe ambalaj, pentru că unele persoane reacționează la ei.`,
+    allergen:n=>`<b>Alergeni din parfum:</b> ${n}. Trebuie trecuți pe ambalaj, pentru că unele persoane reacționează la ei. De la 31 iulie 2026, produsele noi din UE trebuie să declare separat peste 80 de astfel de substanțe.`,
+    retEU:"<b>Retinolul în UE:</b> în produsele pentru față sunt permise cel mult 0,3 %, iar pe ambalaj trebuie să existe o avertizare despre vitamina A.",
     essoil:"<b>Uleiurile esențiale</b> pot irita pielea sensibilă.",
     alcoholTop:"<b>Alcool printre primele ingrediente</b>: poate usca pielea, mai ales tenul uscat și sensibil.",
     alcohol:"<b>Conține alcool</b>, dar mai spre final. În cantități mici, de obicei nu e o problemă.",
@@ -1820,8 +1823,8 @@ const IDB = [
   ["caprylic/capric triglyceride|dimethicone|isononyl isononanoate|c12-15 alkyl benzoate|cetearyl ethylhexanoate|coco-caprylate/caprate","base","Pflegende Basis (Emollient)","Bază emolientă"],
   ["parfum|fragrance|aroma","watch","Duftstoff","Parfum",null,"fragrance"],
   ["alcohol denat.|alcohol denat|alcohol|sd alcohol|ethanol","watch","Alkohol: kann austrocknen","Alcool: poate usca pielea",null,"alcohol"],
-  ["linalool|limonene|citral|geraniol|citronellol|eugenol|isoeugenol|coumarin|benzyl salicylate|hexyl cinnamal|cinnamal|farnesol|benzyl benzoate|benzyl alcohol|cinnamyl alcohol|anise alcohol|amyl cinnamal","watch","Duftstoff-Allergen","Alergen din parfum",null,"allergen"],
-  ["~lavandula|~citrus aurantium|~citrus limon|~citrus sinensis|~citrus bergamia|~eucalyptus|~mentha|~rosmarinus|~melaleuca|~cymbopogon|menthol","watch","Ätherisches Öl: kann reizen","Ulei esențial: poate irita",null,"essoil"]
+  ["linalool|limonene|citral|geraniol|citronellol|eugenol|isoeugenol|coumarin|benzyl salicylate|hexyl cinnamal|cinnamal|farnesol|benzyl benzoate|benzyl alcohol|cinnamyl alcohol|anise alcohol|amyl cinnamal|amylcinnamyl alcohol|benzyl cinnamate|hydroxycitronellal|alpha-isomethyl ionone|methyl 2-octynoate|benzaldehyde|camphor|carvone|caryophyllene|beta-caryophyllene|methyl salicylate|salicylaldehyde|sclareol|terpineol|terpinolene|vanillin|linalyl acetate|pinene|alpha-pinene|beta-pinene|santalol|acetylcedrene|amyl salicylate|anethole|trans-anethole|eugenyl acetate|isoeugenyl acetate|hexadecanolactone|hexamethylindanopyran|dimethylbenzyl carbinyl acetate|trimethylbenzenepropanol|rose ketones|alpha-damascone|tetramethyl acetyloctahydronaphthalenes|~evernia prunastri|~evernia furfuracea","watch","Duftstoff-Allergen","Alergen din parfum",null,"allergen"],
+  ["~lavandula|~citrus aurantium|~citrus limon|~citrus sinensis|~citrus bergamia|~eucalyptus|~mentha|~rosmarinus|~melaleuca|~cymbopogon|~cananga|~santalum|~pogostemon|~pelargonium|~jasminum|~juniperus|~laurus nobilis|~cinnamomum|~eugenia caryophyllus|~myroxylon|~cedrus|~narcissus|~rosa damascena|~pinus|turpentine|menthol","watch","Ätherisches Öl: kann reizen","Ulei esențial: poate irita",null,"essoil"]
 ].map(([pat,type,de,ro,key,flag]) => {
   const parts = pat.split("|"), exact = new Set(parts.filter(x=>!x.startsWith("~"))), partial = parts.filter(x=>x.startsWith("~")).map(x=>x.slice(1));
   return {exact, partial, type, de, ro, key, flag};
@@ -1851,6 +1854,7 @@ function renderInci(){
   const done = st.i >= LOGIC.length, prof = done ? score() : null;
   const flags = [];
   if(prof && prof.flags.has("preg") && has("retinoid")) flags.push(["stop", t.iF.pregRet]);
+  if(has("retinoid")) flags.push(["info", t.iF.retEU]);
   if(has("retinoid") && has("acid")) flags.push(["caution", t.iF.retAcid]);
   const alcPos = firstPos("alcohol");
   if(prof && prof.type==="dry" && alcPos && alcPos<=5) flags.push(["caution", t.iF.dryAlc]);
